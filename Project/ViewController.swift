@@ -6,8 +6,6 @@
 //  Copyright © 2020 TonyRen. All rights reserved.
 //
 
-//Github created!
-
 import UIKit
 //import UIKit.CreateUserVC
 
