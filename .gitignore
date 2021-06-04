@@ -5,3 +5,5 @@
 #hidden
 *.DS_Store
 **/carcards.xcodeproj
+**/carcards.xcodeproj/project.xcworkspace/xcuserdata/tonyren.xcuserdatad/UserInterfaceState.xcuserstate
+
