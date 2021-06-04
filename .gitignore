@@ -1,0 +1,6 @@
+# logs
+**/logs
+*.log
+
+#hidden
+*.DS_Store
