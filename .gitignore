@@ -4,3 +4,4 @@
 
 #hidden
 *.DS_Store
+**/carcards.xcodeproj
