@@ -58,6 +58,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func competitorTapped(sender: UIButton) {
         
     }
+    
+    func addCard(){
+        //to be planned
+    }
 
 
 }

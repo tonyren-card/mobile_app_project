@@ -6,6 +6,8 @@
 //  Copyright © 2021 TonyRen. All rights reserved.
 //
 
+//06/11/2021 update: added the "Add card to library" button
+
 import UIKit
 
 class Scrape: UIViewController {
