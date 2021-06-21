@@ -100,8 +100,7 @@ class Scrape: UIViewController {
             }
             
             guard let checkString = foundCarInfo, !checkString.isEmpty else{
-                self.carName.text = "Car not found"
-                self.carType.text = "There may be a typo in your search"
+                self.scrapeCard = Card()
                 return
             }
             

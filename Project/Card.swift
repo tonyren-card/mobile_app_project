@@ -13,6 +13,7 @@ import UIKit
 class Card: UIViewController {
     
     @IBOutlet weak var carName: UILabel!
+    var carNameStr: String = " "
     @IBOutlet weak var sales: UILabel!
     @IBOutlet weak var carType: UILabel!
     @IBOutlet weak var price: UILabel!
@@ -29,11 +30,31 @@ class Card: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    init(carName name: String, carSales sales: String, carType type: String){
-        self.carName.text = name
-        self.sales.text = sales
-        self.carType.text = type
+    init(){
         super.init(nibName: nil, bundle: nil)
+        self.carNameStr = "Car not found"
+        self.carName?.text = self.carNameStr
+        self.carType?.text = "There may be a typo in your search"
+        
+        print(getCarName())
+    }
+    
+    init(carName name: String, carSales sales: String, carType type: String, carPrice price: String, carHP horsepower: String, carEngine engineSize: String, carWB wheelbase: String, carFuel fuelEff: String, carCap fuelCap: String, carLaunch latestLaunch: String){
+        super.init(nibName: nil, bundle: nil)
+        
+        self.carNameStr = name
+        self.carName?.text = self.carNameStr
+        self.sales?.text = sales
+        self.carType?.text = type
+        self.price?.text = price
+        self.horsepower?.text = horsepower
+        self.engineSize?.text = engineSize
+        self.wheelbase?.text = wheelbase
+        self.fuelEff?.text = fuelEff
+        self.fuelCap?.text = fuelCap
+        self.latestLaunch?.text = latestLaunch
+        
+        print("card object created: \(getCarName())")
     }
     
     required init?(coder: NSCoder) {
@@ -41,7 +62,7 @@ class Card: UIViewController {
     }
     
     func getCarName() -> String{
-        return carName.text ?? " "
+        return carNameStr
     }
 
     /*
