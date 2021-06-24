@@ -101,6 +101,7 @@ class Scrape: UIViewController {
             
             guard let checkString = foundCarInfo, !checkString.isEmpty else{
                 self.scrapeCard = Card()
+                viewCardObject()
                 return
             }
             
@@ -129,6 +130,12 @@ class Scrape: UIViewController {
         }catch{
             print("File read error for file \(filepath)")
         }
+    }
+    
+    private func viewCardObject(){
+        let viewCard = UIViewController(nibName: "Card", bundle: nil)
+        print("viewing card object...")
+        self.navigationController?.pushViewController(viewCard, animated: true)
     }
 
 }
