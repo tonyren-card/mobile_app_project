@@ -300,6 +300,12 @@
                                 <rect key="frame" x="0.0" y="792" width="428" height="30"/>
                                 <state key="normal" title="Add Card to Library"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scrape" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2n3-Ba-thJ">
+                                <rect key="frame" x="0.0" y="135" width="428" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="oRd-Wr-A9t"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -311,6 +317,7 @@
                             <constraint firstItem="gIM-xD-cWT" firstAttribute="top" secondItem="g3k-SM-Zhw" secondAttribute="bottom" constant="8" id="6wY-Fs-BSX"/>
                             <constraint firstItem="Lb7-xs-Ewq" firstAttribute="top" secondItem="pZJ-Sd-weo" secondAttribute="bottom" constant="8" id="9dE-0r-nSD"/>
                             <constraint firstItem="oRd-Wr-A9t" firstAttribute="trailing" secondItem="kAi-hK-0g3" secondAttribute="trailing" id="B5i-lu-kcd"/>
+                            <constraint firstItem="2n3-Ba-thJ" firstAttribute="trailing" secondItem="oRd-Wr-A9t" secondAttribute="trailing" id="BPe-LA-zj3"/>
                             <constraint firstItem="oRd-Wr-A9t" firstAttribute="trailing" secondItem="pwU-lj-qkF" secondAttribute="trailing" constant="15" id="BVu-dx-BSb"/>
                             <constraint firstItem="eFN-Xt-zzH" firstAttribute="leading" secondItem="oRd-Wr-A9t" secondAttribute="leading" id="Bl7-hL-lsV"/>
                             <constraint firstItem="9B9-P4-vOc" firstAttribute="leading" secondItem="oRd-Wr-A9t" secondAttribute="leading" constant="15" id="CeU-ai-gfr"/>
@@ -334,11 +341,13 @@
                             <constraint firstItem="ep1-HA-60K" firstAttribute="top" secondItem="D7l-5f-H4V" secondAttribute="bottom" constant="8" id="dcW-fG-gfR"/>
                             <constraint firstItem="1FD-ZY-WfO" firstAttribute="leading" secondItem="oRd-Wr-A9t" secondAttribute="leading" constant="15" id="h9t-uM-h7f"/>
                             <constraint firstItem="cLH-N0-zLw" firstAttribute="leading" secondItem="oRd-Wr-A9t" secondAttribute="leading" constant="15" id="hX5-yY-Cj7"/>
+                            <constraint firstItem="2n3-Ba-thJ" firstAttribute="leading" secondItem="oRd-Wr-A9t" secondAttribute="leading" id="hh6-l6-Vyu"/>
                             <constraint firstItem="9B9-P4-vOc" firstAttribute="top" secondItem="pKJ-TE-30l" secondAttribute="bottom" constant="48" id="i8I-ax-xdv"/>
                             <constraint firstItem="oRd-Wr-A9t" firstAttribute="trailing" secondItem="Lb7-xs-Ewq" secondAttribute="trailing" constant="15" id="k4f-D4-bwe"/>
                             <constraint firstItem="oRd-Wr-A9t" firstAttribute="trailing" secondItem="pZJ-Sd-weo" secondAttribute="trailing" constant="15" id="krB-EZ-qrN"/>
                             <constraint firstItem="kAi-hK-0g3" firstAttribute="leading" secondItem="oRd-Wr-A9t" secondAttribute="leading" id="m3w-p1-Ok6"/>
                             <constraint firstItem="pKJ-TE-30l" firstAttribute="top" secondItem="eFN-Xt-zzH" secondAttribute="bottom" constant="8" id="nHj-zK-zDI"/>
+                            <constraint firstItem="2n3-Ba-thJ" firstAttribute="top" secondItem="oRd-Wr-A9t" secondAttribute="top" constant="135" id="oLX-aW-FtP"/>
                             <constraint firstItem="g3k-SM-Zhw" firstAttribute="leading" secondItem="oRd-Wr-A9t" secondAttribute="leading" constant="15" id="qSP-Ad-eqd"/>
                             <constraint firstItem="zWE-6W-zu2" firstAttribute="leading" secondItem="oRd-Wr-A9t" secondAttribute="leading" constant="15" id="wAv-aI-SkX"/>
                             <constraint firstItem="oRd-Wr-A9t" firstAttribute="trailing" secondItem="eFN-Xt-zzH" secondAttribute="trailing" id="wW2-Bp-fru"/>

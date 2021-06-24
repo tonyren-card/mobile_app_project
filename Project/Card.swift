@@ -36,7 +36,7 @@ class Card: UIViewController {
         self.carName?.text = self.carNameStr
         self.carType?.text = "There may be a typo in your search"
         
-        print(getCarName())
+        print("From Card object: \(getCarName())")
     }
     
     init(carName name: String, carSales sales: String, carType type: String, carPrice price: String, carHP horsepower: String, carEngine engineSize: String, carWB wheelbase: String, carFuel fuelEff: String, carCap fuelCap: String, carLaunch latestLaunch: String){
@@ -58,7 +58,7 @@ class Card: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
     func getCarName() -> String{
