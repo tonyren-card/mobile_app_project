@@ -12,6 +12,7 @@ import UIKit
 
 class Card: UIViewController {
     
+    //Definition of the variables
     @IBOutlet weak var carName: UILabel!
     var carNameStr: String = " "
     @IBOutlet weak var sales: UILabel!
@@ -39,6 +40,7 @@ class Card: UIViewController {
         print("From Card object: \(getCarName())")
     }
     
+    //Constructor of the object
     init(carName name: String, carSales sales: String, carType type: String, carPrice price: String, carHP horsepower: String, carEngine engineSize: String, carWB wheelbase: String, carFuel fuelEff: String, carCap fuelCap: String, carLaunch latestLaunch: String){
         super.init(nibName: nil, bundle: nil)
         
