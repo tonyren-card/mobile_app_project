@@ -12,6 +12,7 @@ import UIKit
 
 class Card: UIViewController {
     
+    @IBOutlet var cardView: UIView!
     //Definition of the variables
     @IBOutlet weak var carName: UILabel!
     var carNameStr: String = " "
@@ -27,7 +28,7 @@ class Card: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        commonInit()
         // Do any additional setup after loading the view.
     }
     
@@ -59,8 +60,14 @@ class Card: UIViewController {
         print("card object created: \(getCarName())")
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        Bundle.main.loadNibNamed("Card", owner: self, options: nil)
+        
     }
     
     func getCarName() -> String{
