@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Scrape.swift
 //  Project
 //
 //  Created by Tony Ren on 2021-03-07.
@@ -13,6 +13,7 @@ class Scrape: UIViewController {
     
     var scrapeCard: Card? = nil
     
+    //Definition of the variables
     @IBOutlet weak var carName: UILabel!
 //    @IBOutlet weak var lblCar: UILabel!
     
@@ -44,6 +45,7 @@ class Scrape: UIViewController {
     }
     
     func scrapeData(){
+        //CSV file opens
         let file = "Car_sales"
         
         guard let filepath = Bundle.main.path(forResource: file, ofType: "csv")
@@ -52,6 +54,7 @@ class Scrape: UIViewController {
             return
         }
 
+        //Reading and processing CSV file
         do {
             let contents = try String(contentsOfFile: filepath)
             
@@ -76,6 +79,7 @@ class Scrape: UIViewController {
             
             var foundCarInfo: [String]? = nil
             
+            //Data gets collected
             for line in lines{
                 if firstLine{
                     firstLine = false
@@ -99,6 +103,7 @@ class Scrape: UIViewController {
 //                }
             }
             
+            //Data gets presented
             guard let checkString = foundCarInfo, !checkString.isEmpty else{
                 self.scrapeCard = Card()
                 viewCardObject()
