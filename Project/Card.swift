@@ -67,7 +67,9 @@ class Card: UIViewController {
     
     private func commonInit() {
         Bundle.main.loadNibNamed("Card", owner: self, options: nil)
-        
+//        addSubview(cardView)
+//        cardView.frame = self.bounds
+        cardView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
     func getCarName() -> String{

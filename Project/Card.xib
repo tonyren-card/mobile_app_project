@@ -20,7 +20,6 @@
                 <outlet property="latestLaunch" destination="Nbo-97-AeZ" id="2qa-pH-QgX"/>
                 <outlet property="price" destination="NcD-uC-OpA" id="c03-7l-5Hk"/>
                 <outlet property="sales" destination="5nX-tc-JcM" id="d9Q-6h-KT7"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="wheelbase" destination="8EV-ao-4P8" id="SeH-ZT-Rdn"/>
             </connections>
         </placeholder>

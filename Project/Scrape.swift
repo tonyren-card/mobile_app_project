@@ -105,7 +105,6 @@ class Scrape: UIViewController {
             
             //Data gets presented
             guard let checkString = foundCarInfo, !checkString.isEmpty else{
-                self.scrapeCard = Card()
                 viewCardObject()
                 return
             }
@@ -138,9 +137,12 @@ class Scrape: UIViewController {
     }
     
     private func viewCardObject(){
-        let viewCard = UIViewController(nibName: "Card", bundle: nil)
         print("viewing card object...")
+        let viewCard = UIViewController(nibName: "Card", bundle: nil)
         self.navigationController?.pushViewController(viewCard, animated: true)
+        print("performing segue to card")
+        performSegue(withIdentifier: "errorSegue", sender: self)
+        self.scrapeCard = Card()
     }
 
 }

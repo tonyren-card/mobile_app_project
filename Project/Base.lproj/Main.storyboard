@@ -368,11 +368,27 @@
                         <outlet property="price" destination="FVy-yY-mHp" id="oSv-q1-OXe"/>
                         <outlet property="sales" destination="Lb7-xs-Ewq" id="vDL-Zy-lIi"/>
                         <outlet property="wheelbase" destination="ep1-HA-60K" id="eRD-yE-Hgm"/>
+                        <segue destination="cca-rn-UrQ" kind="showDetail" identifier="errorSegue" id="IOo-ac-h1l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="REc-Po-5i9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-185.04672897196261" y="-717.27861771058315"/>
+        </scene>
+        <!--Card-->
+        <scene sceneID="Uzd-Lv-xqR">
+            <objects>
+                <viewController id="cca-rn-UrQ" customClass="Card" customModule="CARD" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tp6-if-NyI">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="twe-UH-vIm"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uvV-q2-xKv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="859" y="-710"/>
         </scene>
         <!--View Card-->
         <scene sceneID="2w7-ll-YTL">
@@ -656,7 +672,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Jj2-Mj-HJB"/>
+        <segue reference="9Mm-bB-wef"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="03C_my22_civic_sedan_features_exterior_01.webp" width="128" height="128"/>
