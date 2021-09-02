@@ -299,6 +299,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAi-hK-0g3">
                                 <rect key="frame" x="0.0" y="792" width="428" height="30"/>
                                 <state key="normal" title="Add Card to Library"/>
+                                <connections>
+                                    <action selector="navigationButtonTapped:" destination="8Nq-GB-3sF" eventType="touchUpInside" id="U7b-Hf-qXb"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scrape" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2n3-Ba-thJ">
                                 <rect key="frame" x="0.0" y="135" width="428" height="21"/>
@@ -368,27 +371,11 @@
                         <outlet property="price" destination="FVy-yY-mHp" id="oSv-q1-OXe"/>
                         <outlet property="sales" destination="Lb7-xs-Ewq" id="vDL-Zy-lIi"/>
                         <outlet property="wheelbase" destination="ep1-HA-60K" id="eRD-yE-Hgm"/>
-                        <segue destination="cca-rn-UrQ" kind="showDetail" identifier="errorSegue" id="IOo-ac-h1l"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="REc-Po-5i9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-185.04672897196261" y="-717.27861771058315"/>
-        </scene>
-        <!--Card-->
-        <scene sceneID="Uzd-Lv-xqR">
-            <objects>
-                <viewController id="cca-rn-UrQ" customClass="Card" customModule="CARD" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tp6-if-NyI">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="twe-UH-vIm"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uvV-q2-xKv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="859" y="-710"/>
         </scene>
         <!--View Card-->
         <scene sceneID="2w7-ll-YTL">
@@ -663,7 +650,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="MTn-rd-Vkh"/>
                     <connections>
-                        <segue destination="8Nq-GB-3sF" kind="showDetail" identifier="segueScrape" id="9Mm-bB-wef"/>
+                        <segue destination="8Nq-GB-3sF" kind="show" identifier="segueScrape" id="9Mm-bB-wef"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Db7-LA-zUH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -672,7 +659,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="9Mm-bB-wef"/>
+        <segue reference="Jj2-Mj-HJB"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="03C_my22_civic_sedan_features_exterior_01.webp" width="128" height="128"/>

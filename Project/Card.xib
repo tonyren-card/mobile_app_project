@@ -12,7 +12,6 @@
             <connections>
                 <outlet property="carName" destination="djM-kW-S9I" id="EXp-3H-d3d"/>
                 <outlet property="carType" destination="jno-8G-Oy4" id="wZm-E0-nNb"/>
-                <outlet property="cardView" destination="i5M-Pr-FkT" id="7VH-Cb-rdh"/>
                 <outlet property="engineSize" destination="QYV-GG-1c5" id="VX2-6I-umg"/>
                 <outlet property="fuelCap" destination="5sX-Zb-4o4" id="mqm-qD-qcp"/>
                 <outlet property="fuelEff" destination="xcU-BC-RxF" id="2Rc-zv-Zec"/>
@@ -20,6 +19,7 @@
                 <outlet property="latestLaunch" destination="Nbo-97-AeZ" id="2qa-pH-QgX"/>
                 <outlet property="price" destination="NcD-uC-OpA" id="c03-7l-5Hk"/>
                 <outlet property="sales" destination="5nX-tc-JcM" id="d9Q-6h-KT7"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="f12-a9-OJK"/>
                 <outlet property="wheelbase" destination="8EV-ao-4P8" id="SeH-ZT-Rdn"/>
             </connections>
         </placeholder>

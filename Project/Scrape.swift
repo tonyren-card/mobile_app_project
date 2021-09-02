@@ -103,12 +103,13 @@ class Scrape: UIViewController {
 //                }
             }
             
-            //Data gets presented
+            //If no car found
             guard let checkString = foundCarInfo, !checkString.isEmpty else{
-                viewCardObject()
+//                viewCardObject()
                 return
             }
             
+            //Data gets presented
             self.carName.text = "\(String((foundCarInfo?[0])!)) \(String((foundCarInfo?[1])!))"
             
             if let floatSales = Float(String((foundCarInfo?[2])!)){
@@ -137,12 +138,14 @@ class Scrape: UIViewController {
     }
     
     private func viewCardObject(){
+//        self.scrapeCard = Card()
+    }
+    
+    @IBAction private func navigationButtonTapped(_ sender: Any) {
         print("viewing card object...")
         let viewCard = UIViewController(nibName: "Card", bundle: nil)
         self.navigationController?.pushViewController(viewCard, animated: true)
         print("performing segue to card")
-        performSegue(withIdentifier: "errorSegue", sender: self)
-        self.scrapeCard = Card()
     }
 
 }
