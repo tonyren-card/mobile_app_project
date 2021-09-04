@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="carName" destination="djM-kW-S9I" id="EXp-3H-d3d"/>
                 <outlet property="carType" destination="jno-8G-Oy4" id="wZm-E0-nNb"/>
+                <outlet property="cardView" destination="i5M-Pr-FkT" id="eo8-rc-Fks"/>
                 <outlet property="engineSize" destination="QYV-GG-1c5" id="VX2-6I-umg"/>
                 <outlet property="fuelCap" destination="5sX-Zb-4o4" id="mqm-qD-qcp"/>
                 <outlet property="fuelEff" destination="xcU-BC-RxF" id="2Rc-zv-Zec"/>

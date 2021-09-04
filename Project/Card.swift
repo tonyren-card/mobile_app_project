@@ -12,7 +12,7 @@ import UIKit
 
 class Card: UIViewController {
     
-    @IBOutlet var cardView: UIView!
+    @IBOutlet weak var cardView: UIView!
     //Definition of the variables
     @IBOutlet weak var carName: UILabel!
     var carNameStr: String = " "
@@ -43,6 +43,7 @@ class Card: UIViewController {
     
     //Constructor of the object
     init(carName name: String, carSales sales: String, carType type: String, carPrice price: String, carHP horsepower: String, carEngine engineSize: String, carWB wheelbase: String, carFuel fuelEff: String, carCap fuelCap: String, carLaunch latestLaunch: String){
+        
         super.init(nibName: nil, bundle: nil)
         
         self.carNameStr = name
@@ -58,6 +59,7 @@ class Card: UIViewController {
         self.latestLaunch?.text = latestLaunch
         
         print("card object created: \(getCarName())")
+        print(self.carName?.text as Any)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -69,7 +71,7 @@ class Card: UIViewController {
         Bundle.main.loadNibNamed("Card", owner: self, options: nil)
 //        addSubview(cardView)
 //        cardView.frame = self.bounds
-        cardView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+//        cardView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
     func getCarName() -> String{
