@@ -15,24 +15,13 @@ class Scrape: UIViewController {
     
     //Definition of the variables
     @IBOutlet weak var carName: UILabel!
-//    @IBOutlet weak var lblCar: UILabel!
     
-//    @IBOutlet weak var carImage: UIImageView!
     @IBOutlet weak var sales: UILabel!
     @IBOutlet weak var carType: UILabel!
     @IBOutlet weak var price: UILabel!
-//    @IBOutlet weak var startPrice: UILabel!
     
     @IBOutlet weak var horsepower: UILabel!
-//    @IBOutlet var engines: [UILabel]!
     @IBOutlet weak var engineSize: UILabel!
-//    @IBOutlet weak var trims: UILabel!
-//    @IBOutlet var listTrims: [UILabel]!
-//    @IBOutlet weak var assembly: UILabel!
-//    @IBOutlet weak var locAssembly: UILabel!
-//    @IBOutlet weak var details: UILabel!
-//    @IBOutlet weak var competitors: UILabel!
-//    @IBOutlet var listCompetitors: [UILabel]!
     @IBOutlet weak var wheelbase: UILabel!
     @IBOutlet weak var fuelEff: UILabel!
     @IBOutlet weak var fuelCap: UILabel!
@@ -106,11 +95,30 @@ class Scrape: UIViewController {
             //If no car found
             guard let checkString = foundCarInfo, !checkString.isEmpty else{
 //                viewCardObject()
+                self.scrapeCard = Card()
+//                self.present(self.scrapeCard!, animated: true)
                 return
             }
             
             //Data gets presented
-            self.carName.text = "\(String((foundCarInfo?[0])!)) \(String((foundCarInfo?[1])!))"
+            var sales = ""
+            if let floatSales = Float(String((foundCarInfo?[2])!)){
+                sales = String(format: "%.0f units", floatSales*1000)
+            }else{
+                sales = String((foundCarInfo?[2])!)
+            }
+            
+            var price = ""
+            if let floatPrice = Float(String((foundCarInfo?[5])!)){
+                price = String(format: "$%.2f", floatPrice*1000)
+            }else{
+                price = String((foundCarInfo?[5])!)
+            }
+            
+            self.scrapeCard = Card(carName: "\(String((foundCarInfo?[0])!)) \(String((foundCarInfo?[1])!))", carSales: sales, carType: String((foundCarInfo?[4])!), carPrice: price, carHP: String((foundCarInfo?[7])!), carEngine: String((foundCarInfo?[6])!), carWB: String((foundCarInfo?[8])!), carFuel: "\(String((foundCarInfo?[13])!)) mpg", carCap: String((foundCarInfo?[12])!), carLaunch: String((foundCarInfo?[14])!))
+//            self.present(self.scrapeCard!, animated: true)
+            
+            /*self.carName.text = "\(String((foundCarInfo?[0])!)) \(String((foundCarInfo?[1])!))"
             
             if let floatSales = Float(String((foundCarInfo?[2])!)){
                 self.sales.text = String(format: "%.0f units", floatSales*1000)
@@ -131,7 +139,7 @@ class Scrape: UIViewController {
             self.wheelbase.text = String((foundCarInfo?[8])!)
             self.fuelCap.text = String((foundCarInfo?[12])!)
             self.fuelEff.text = "\(String((foundCarInfo?[13])!)) mpg"
-            self.latestLaunch.text = String((foundCarInfo?[14])!)
+            self.latestLaunch.text = String((foundCarInfo?[14])!)*/
         }catch{
             print("File read error for file \(filepath)")
         }
@@ -143,8 +151,7 @@ class Scrape: UIViewController {
     
     @IBAction private func navigationButtonTapped(_ sender: Any) {
         print("viewing card object...")
-        let viewCard = UIViewController(nibName: "Card", bundle: nil)
-        self.navigationController?.pushViewController(viewCard, animated: true)
+        self.present(self.scrapeCard!, animated: true)
         print("performing segue to card")
     }
 
