@@ -14,31 +14,32 @@ class Card: UIViewController {
     
     @IBOutlet weak var cardView: UIView!
     //Definition of the variables
-    @IBOutlet weak var carName: UILabel!
+    @IBOutlet weak var carName: UILabel?
     var carNameStr: String = " "
-    @IBOutlet weak var sales: UILabel!
-    @IBOutlet weak var carType: UILabel!
-    @IBOutlet weak var price: UILabel!
-    @IBOutlet weak var horsepower: UILabel!
-    @IBOutlet weak var engineSize: UILabel!
-    @IBOutlet weak var wheelbase: UILabel!
-    @IBOutlet weak var fuelEff: UILabel!
-    @IBOutlet weak var fuelCap: UILabel!
-    @IBOutlet weak var latestLaunch: UILabel!
-
+    @IBOutlet weak var sales: UILabel?
+    @IBOutlet weak var carType: UILabel?
+    @IBOutlet weak var price: UILabel?
+    @IBOutlet weak var horsepower: UILabel?
+    @IBOutlet weak var engineSize: UILabel?
+    @IBOutlet weak var wheelbase: UILabel?
+    @IBOutlet weak var fuelEff: UILabel?
+    @IBOutlet weak var fuelCap: UILabel?
+    @IBOutlet weak var latestLaunch: UILabel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        commonInit()
-        // Do any additional setup after loading the view.
+        definesPresentationContext = true
+//        commonInit()
     }
     
     init(){
         super.init(nibName: nil, bundle: nil)
         self.carNameStr = "Car not found"
-        self.carName?.text = self.carNameStr
+        self.carName?.text = "Car not found"
         self.carType?.text = "There may be a typo in your search"
         
         print("From Card object: \(getCarName())")
+        commonInit()
     }
     
     //Constructor of the object
@@ -47,7 +48,7 @@ class Card: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.carNameStr = name
-        self.carName?.text = self.carNameStr
+        self.carName?.text = name
         self.sales?.text = sales
         self.carType?.text = type
         self.price?.text = price
@@ -59,7 +60,8 @@ class Card: UIViewController {
         self.latestLaunch?.text = latestLaunch
         
         print("card object created: \(getCarName())")
-        print(self.carName?.text as Any)
+        commonInit()
+//        print(self.carName.text ?? "variable not assigned")
     }
     
     required init?(coder aDecoder: NSCoder) {
