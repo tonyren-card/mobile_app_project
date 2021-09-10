@@ -39,7 +39,7 @@ class Card: UIViewController {
         self.carType?.text = "There may be a typo in your search"
         
         print("From Card object: \(getCarName())")
-        commonInit()
+//        commonInit()
     }
     
     //Constructor of the object
@@ -60,13 +60,13 @@ class Card: UIViewController {
         self.latestLaunch?.text = latestLaunch
         
         print("card object created: \(getCarName())")
-        commonInit()
+//        commonInit()
 //        print(self.carName.text ?? "variable not assigned")
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        commonInit()
+//        commonInit()
     }
     
     private func commonInit() {
