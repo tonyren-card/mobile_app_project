@@ -14,8 +14,19 @@ class Card: UIViewController {
     
     @IBOutlet weak var cardView: UIView!
     //Definition of the variables
-    @IBOutlet weak var carName: UILabel?
     var carNameStr: String = " "
+    var salesStr: String = " "
+    var carTypeStr: String = " "
+    var priceStr: String = " "
+    var horsepowerStr: String = " "
+    var engineSizeStr: String = " "
+    var wheelbaseStr: String = " "
+    var fuelEffStr: String = " "
+    var fuelCapStr: String = " "
+    var latestLaunchStr: String = " "
+    
+    //Definition of the labels
+    @IBOutlet weak var carName: UILabel?
     @IBOutlet weak var sales: UILabel?
     @IBOutlet weak var carType: UILabel?
     @IBOutlet weak var price: UILabel?
@@ -26,6 +37,9 @@ class Card: UIViewController {
     @IBOutlet weak var fuelCap: UILabel?
     @IBOutlet weak var latestLaunch: UILabel?
     
+    @IBOutlet weak var addCarBtn: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         definesPresentationContext = true
@@ -35,8 +49,7 @@ class Card: UIViewController {
     init(){
         super.init(nibName: nil, bundle: nil)
         self.carNameStr = "Car not found"
-        self.carName?.text = "Car not found"
-        self.carType?.text = "There may be a typo in your search"
+        self.carTypeStr = "There may be a typo in your search"
         
         print("From Card object: \(getCarName())")
 //        commonInit()
@@ -48,16 +61,15 @@ class Card: UIViewController {
         super.init(nibName: nil, bundle: nil)
         
         self.carNameStr = name
-        self.carName?.text = name
-        self.sales?.text = sales
-        self.carType?.text = type
-        self.price?.text = price
-        self.horsepower?.text = horsepower
-        self.engineSize?.text = engineSize
-        self.wheelbase?.text = wheelbase
-        self.fuelEff?.text = fuelEff
-        self.fuelCap?.text = fuelCap
-        self.latestLaunch?.text = latestLaunch
+        self.salesStr = sales
+        self.carTypeStr = type
+        self.priceStr = price
+        self.horsepowerStr = horsepower
+        self.engineSizeStr = engineSize
+        self.wheelbaseStr = wheelbase
+        self.fuelEffStr = fuelEff
+        self.fuelCapStr = fuelCap
+        self.latestLaunchStr = latestLaunch
         
         print("card object created: \(getCarName())")
 //        commonInit()
@@ -78,6 +90,23 @@ class Card: UIViewController {
     
     func getCarName() -> String{
         return carNameStr
+    }
+    
+    func setDisplayText(){
+        self.carName?.text = self.carNameStr
+        self.sales?.text = self.salesStr
+        self.carType?.text = self.carTypeStr
+        self.price?.text = self.priceStr
+        self.horsepower?.text = self.horsepowerStr
+        self.engineSize?.text = self.engineSizeStr
+        self.wheelbase?.text = self.wheelbaseStr
+        self.fuelEff?.text = self.fuelEffStr
+        self.fuelCap?.text = self.fuelCapStr
+        self.latestLaunch?.text = self.latestLaunchStr
+        
+        if self.carName?.text == "Car not found" {
+            addCarBtn.removeFromSuperview()
+        }
     }
 
 }

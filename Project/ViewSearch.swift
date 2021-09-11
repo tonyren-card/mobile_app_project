@@ -42,12 +42,6 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
         }
     }*/
     
-    override func viewDidDisappear(_ animated: Bool) {
-        if mySearchController.isActive == true {
-            mySearchController.isActive = false
-        }
-    }
-    
     func didPresentSearchController(_ searchController: UISearchController) {
         self.mySearchController.searchBar.becomeFirstResponder()
     }
@@ -102,7 +96,7 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
             //If no car found
             guard let checkString = foundCarInfo, !checkString.isEmpty else{
                 self.scrapeCard = Card()
-                self.present(self.scrapeCard!, animated: true)
+                self.dismissCurView()
                 return
             }
             
@@ -122,10 +116,20 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
             }
             
             self.scrapeCard = Card(carName: "\(String((foundCarInfo?[0])!)) \(String((foundCarInfo?[1])!))", carSales: sales, carType: String((foundCarInfo?[4])!), carPrice: price, carHP: String((foundCarInfo?[7])!), carEngine: String((foundCarInfo?[6])!), carWB: String((foundCarInfo?[8])!), carFuel: "\(String((foundCarInfo?[13])!)) mpg", carCap: String((foundCarInfo?[12])!), carLaunch: String((foundCarInfo?[14])!))
-            self.present(self.scrapeCard!, animated: true)
+            
+            self.dismissCurView()
             
         }catch{
             print("File read error for file \(filepath)")
+        }
+    }
+    
+    func dismissCurView(){
+        if mySearchController.isActive{
+            self.mySearchController.dismiss(animated: false, completion: {
+                self.present(self.scrapeCard!, animated: true)
+                self.scrapeCard?.setDisplayText()
+            })
         }
     }
     
