@@ -10,18 +10,19 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Card" customModule="CARD" customModuleProvider="target">
             <connections>
-                <outlet property="carName" destination="djM-kW-S9I" id="0U4-fe-AID"/>
-                <outlet property="carType" destination="jno-8G-Oy4" id="l4G-MO-Xt3"/>
+                <outlet property="addCarBtn" destination="hFi-Oq-XG8" id="KR8-70-V9y"/>
+                <outlet property="carName" destination="djM-kW-S9I" id="9Gi-xz-ruq"/>
+                <outlet property="carType" destination="jno-8G-Oy4" id="sdI-P0-VZ8"/>
                 <outlet property="cardView" destination="i5M-Pr-FkT" id="eo8-rc-Fks"/>
-                <outlet property="engineSize" destination="QYV-GG-1c5" id="jy8-Ut-x8s"/>
-                <outlet property="fuelCap" destination="5sX-Zb-4o4" id="gJo-SF-SR6"/>
-                <outlet property="fuelEff" destination="xcU-BC-RxF" id="d0E-wf-qqz"/>
-                <outlet property="horsepower" destination="YOm-ao-XQN" id="eL6-l8-7ae"/>
-                <outlet property="latestLaunch" destination="Nbo-97-AeZ" id="iMm-24-C3O"/>
-                <outlet property="price" destination="NcD-uC-OpA" id="XAi-xg-msy"/>
-                <outlet property="sales" destination="5nX-tc-JcM" id="RoQ-hm-mkJ"/>
+                <outlet property="engineSize" destination="QYV-GG-1c5" id="MtQ-5I-2z6"/>
+                <outlet property="fuelCap" destination="5sX-Zb-4o4" id="SPx-ez-kP1"/>
+                <outlet property="fuelEff" destination="xcU-BC-RxF" id="HZW-zV-ztm"/>
+                <outlet property="horsepower" destination="YOm-ao-XQN" id="BHu-a0-0Bn"/>
+                <outlet property="latestLaunch" destination="Nbo-97-AeZ" id="xo6-S8-qhb"/>
+                <outlet property="price" destination="NcD-uC-OpA" id="ZfD-lH-7v9"/>
+                <outlet property="sales" destination="5nX-tc-JcM" id="j54-rq-1t4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="f12-a9-OJK"/>
-                <outlet property="wheelbase" destination="8EV-ao-4P8" id="uf8-Dr-Cf9"/>
+                <outlet property="wheelbase" destination="8EV-ao-4P8" id="fgB-RG-sqe"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
