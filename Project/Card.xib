@@ -141,6 +141,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFi-Oq-XG8">
                     <rect key="frame" x="0.0" y="847" width="428" height="30"/>
                     <state key="normal" title="Add Card to Library"/>
+                    <connections>
+                        <action selector="addCard:" destination="-1" eventType="touchUpInside" id="J1T-96-Nh6"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Card Object" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UoO-Im-et5">
                     <rect key="frame" x="0.0" y="158" width="428" height="21"/>

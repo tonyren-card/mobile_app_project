@@ -7,22 +7,18 @@
 //
 
 import UIKit
-//import UIKit.CreateUserVC
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    //Outlets for the Honda Civic Sample Card
     @IBOutlet var tableView: UITableView!
-//    @IBOutlet var addBarButton
-    
     @IBOutlet var msCarName: UIButton!
     @IBOutlet var msCarImg: UIImageView!
     
-//    var addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addCar))
+    var cards: [Card] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.navigationItem.rightBarButtonItem = addBarButton
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -35,12 +31,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sampleCar")
         
-//        let btnListCar = cell?.contentView.viewWithTag(1) as! UIButton
-//        
-//        let imgListCar = cell?.contentView.viewWithTag(2) as! UIImage
-        
         return cell!
     }
+    
+    //When a cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "cardCivic", sender: self)
@@ -48,19 +42,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("Tapped Card")
     }
     
-//    @IBAction func addCar() {
-//        let storyboard = UIStoryboard(name: "AddNewCar", bundle: nil)
-//        let secondVC = storyboard.instantiateViewController(identifier: "createCard")
-//
-//        show(secondVC, sender: self)
-//    }
-    
     @IBAction func competitorTapped(sender: UIButton) {
         
     }
     
-    func addCard(){
-        //to be planned
+    func addCard(cardObject card: Card){
+        cards.append(card)
     }
 
 
