@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController {
     
     //Outlets for the Honda Civic Sample Card
     @IBOutlet var tableView: UITableView!
@@ -24,6 +24,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.dataSource = self
     }
     
+    func addCard(cardObject card: Card){
+        cards.append(card)
+    }
+
+
+}
+
+extension ViewController: UITableViewDelegate{
+    //When a cell is tapped
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "cardCivic", sender: self)
+        
+        print("Tapped Card")
+    }
+    
+}
+
+extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
@@ -33,22 +52,4 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return cell!
     }
-    
-    //When a cell is tapped
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "cardCivic", sender: self)
-        
-        print("Tapped Card")
-    }
-    
-    @IBAction func competitorTapped(sender: UIButton) {
-        
-    }
-    
-    func addCard(cardObject card: Card){
-        cards.append(card)
-    }
-
-
 }
