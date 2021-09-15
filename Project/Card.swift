@@ -110,12 +110,11 @@ class Card: UIViewController {
     }
     
     @IBAction func addCard(_ sender: Any) {
-//        let mainObj: ViewController
         
         if self.addCarBtn.titleLabel?.text == "Add Card to Library"{
             print("card to be added")
             self.addCarBtn.setTitle("Card added to Library", for: .normal)
-//            mainObj.addCard(cardObject: self)
+            
         }
     }
     
