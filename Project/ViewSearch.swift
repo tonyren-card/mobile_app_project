@@ -14,6 +14,7 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
     var mySearchController = UISearchController()
     var mySearchBar: UISearchBar?
     
+    var mainController: ViewController?
     var scrapeCard: Card? = nil
     
     override func viewDidLoad() {
@@ -34,6 +35,10 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
         self.mySearchController.isActive = true
         self.mySearchController.delegate = self
         self.mySearchBar?.delegate = self
+        
+        if mainController != nil{
+            print("Main controller is defined")
+        }
     }
     
     /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -96,7 +101,7 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
             //If no car found
             guard let checkString = foundCarInfo, !checkString.isEmpty else{
                 self.scrapeCard = Card()
-                self.dismissCurView()
+                self.dispCardAct()
                 return
             }
             
@@ -117,17 +122,22 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
             
             self.scrapeCard = Card(carName: "\(String((foundCarInfo?[0])!)) \(String((foundCarInfo?[1])!))", carSales: sales, carType: String((foundCarInfo?[4])!), carPrice: price, carHP: String((foundCarInfo?[7])!), carEngine: String((foundCarInfo?[6])!), carWB: String((foundCarInfo?[8])!), carFuel: "\(String((foundCarInfo?[13])!)) mpg", carCap: String((foundCarInfo?[12])!), carLaunch: String((foundCarInfo?[14])!))
             
-            self.dismissCurView()
+            self.dispCardAct()
             
         }catch{
             print("File read error for file \(filepath)")
         }
     }
     
-    func dismissCurView(){
+    func dispCardAct(){
         if mySearchController.isActive{
+            //Dismiss
             self.mySearchController.dismiss(animated: false, completion: {
+                //Segue
                 self.present(self.scrapeCard!, animated: true)
+                //Delegate
+                self.scrapeCard?.delegate = self.mainController
+                //Display
                 self.scrapeCard?.setDisplayText()
             })
         }

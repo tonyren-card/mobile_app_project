@@ -39,11 +39,11 @@ class Card: UIViewController {
     
     @IBOutlet weak var addCarBtn: UIButton!
     
+    var delegate: CardDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         definesPresentationContext = true
-//        commonInit()
     }
     
     init(){
@@ -112,9 +112,10 @@ class Card: UIViewController {
     @IBAction func addCard(_ sender: Any) {
         
         if self.addCarBtn.titleLabel?.text == "Add Card to Library"{
-            print("card to be added")
+            print("Add card pressed")
             self.addCarBtn.setTitle("Card added to Library", for: .normal)
-            
+            delegate?.addCard(cardObject: self)
+            print("Passed delegate point")
         }
     }
     

@@ -8,7 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+protocol CardDelegate {
+    func addCard(cardObject: Card)
+}
+
+class ViewController: UIViewController, CardDelegate {
     
     //Outlets for the Honda Civic Sample Card
     @IBOutlet var tableView: UITableView!
@@ -24,10 +28,21 @@ class ViewController: UIViewController {
         tableView.dataSource = self
     }
     
-    func addCard(cardObject card: Card){
-        cards.append(card)
+    @IBAction func addBtnAction(_ sender: Any) {
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? ViewSearch{
+            vc.mainController = self
+        }
+    }
+    
+    func addCard(cardObject: Card){
+        print("Conforming")
+        print("Adding card object from VC: \(cardObject.getCarName())")
+        cards.append(cardObject)
+        print("Cards array size = \(cards.count)")
+    }
 
 }
 
