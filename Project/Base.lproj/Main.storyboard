@@ -51,57 +51,38 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b0M-Kj-D4O" userLabel="MainMenuList">
                                 <rect key="frame" x="0.0" y="177" width="428" height="715"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sampleCar" rowHeight="82" id="F9d-CV-QXf">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="428" height="82"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="F9d-CV-QXf" id="rmO-za-9qg">
-                                            <rect key="frame" x="0.0" y="0.0" width="428" height="82"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="03C_my22_civic_sedan_features_exterior_01.webp" adjustsImageSizeForAccessibilityContentSizeCategory="YES" id="AE0-Dh-RAj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="146" height="81"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" scale="default"/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2022 Honda Civic Sedan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5J-RV-SkI">
-                                                    <rect key="frame" x="154" y="11" width="189" height="60"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="y5J-RV-SkI" firstAttribute="top" secondItem="rmO-za-9qg" secondAttribute="topMargin" id="4Mg-ID-57c"/>
-                                                <constraint firstItem="y5J-RV-SkI" firstAttribute="leading" secondItem="AE0-Dh-RAj" secondAttribute="trailing" constant="8" id="AD4-34-kap"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="y5J-RV-SkI" secondAttribute="bottom" id="o9f-a0-HWS"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cardCell" rowHeight="82" id="Ua8-Rb-uWG">
-                                        <rect key="frame" x="0.0" y="126.66666603088379" width="428" height="82"/>
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="428" height="82"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ua8-Rb-uWG" id="I5e-7z-XvO">
                                             <rect key="frame" x="0.0" y="0.0" width="428" height="82"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xUV-x6-hNi">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xUV-x6-hNi">
                                                     <rect key="frame" x="0.0" y="0.0" width="146" height="82"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="146" id="Uq8-VF-UOu"/>
+                                                        <constraint firstAttribute="height" constant="82" id="igK-03-AIN"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Car Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFR-Kj-bpy">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="11" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EFR-Kj-bpy">
                                                     <rect key="frame" x="154" y="11" width="266" height="60"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="266" id="vzn-Ax-La3"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="xUV-x6-hNi" firstAttribute="top" secondItem="I5e-7z-XvO" secondAttribute="top" id="EsM-ob-Ljv"/>
-                                                <constraint firstAttribute="bottom" secondItem="xUV-x6-hNi" secondAttribute="bottom" id="Xhw-7c-vfi"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="EFR-Kj-bpy" secondAttribute="trailing" id="Y64-qb-Rak"/>
-                                                <constraint firstItem="EFR-Kj-bpy" firstAttribute="top" secondItem="I5e-7z-XvO" secondAttribute="topMargin" id="eiw-q5-A21"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="EFR-Kj-bpy" secondAttribute="bottom" id="ljE-JB-xdN"/>
-                                                <constraint firstItem="EFR-Kj-bpy" firstAttribute="leading" secondItem="xUV-x6-hNi" secondAttribute="trailing" constant="8" id="q5L-BF-CcY"/>
-                                                <constraint firstItem="xUV-x6-hNi" firstAttribute="leading" secondItem="I5e-7z-XvO" secondAttribute="leading" id="yG6-ku-QkA"/>
+                                                <constraint firstItem="EFR-Kj-bpy" firstAttribute="leading" secondItem="xUV-x6-hNi" secondAttribute="trailing" constant="8" id="4iV-oa-Bch"/>
+                                                <constraint firstItem="xUV-x6-hNi" firstAttribute="top" secondItem="I5e-7z-XvO" secondAttribute="top" id="C4K-UC-Znc"/>
+                                                <constraint firstItem="EFR-Kj-bpy" firstAttribute="top" secondItem="I5e-7z-XvO" secondAttribute="top" constant="11" id="CQj-ZG-Xux"/>
+                                                <constraint firstAttribute="bottom" secondItem="xUV-x6-hNi" secondAttribute="bottom" id="Ins-SY-zIF"/>
+                                                <constraint firstAttribute="trailing" secondItem="EFR-Kj-bpy" secondAttribute="trailing" constant="8" id="eLp-VR-GMu"/>
+                                                <constraint firstItem="xUV-x6-hNi" firstAttribute="leading" secondItem="I5e-7z-XvO" secondAttribute="leading" id="hDB-fH-zrR"/>
+                                                <constraint firstAttribute="bottom" secondItem="EFR-Kj-bpy" secondAttribute="bottom" constant="11" id="rEc-6m-erl"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -122,16 +103,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ecy-Hv-wbI">
+                        <barButtonItem key="leftBarButtonItem" title="Sample" id="bhu-N5-9bM">
+                            <connections>
+                                <segue destination="Rcf-uf-MVZ" kind="showDetail" id="GAr-Hi-1CS"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="kAY-bJ-NWK">
                             <connections>
-                                <action selector="addBtnAction:" destination="BYZ-38-t0r" id="pmm-bQ-pU6"/>
                                 <segue destination="FbL-mc-tVO" kind="push" id="kb1-c5-KG4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="b0M-Kj-D4O" id="bdh-da-Pf0"/>
-                        <segue destination="Rcf-uf-MVZ" kind="showDetail" identifier="cardCivic" id="6MY-23-iGg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
