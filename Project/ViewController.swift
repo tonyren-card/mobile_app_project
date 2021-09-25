@@ -16,7 +16,6 @@ class ViewController: UIViewController, CardDelegate {
     
     //Outlets for the Honda Civic Sample Card
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var msCarName: UIButton!
     @IBOutlet var msCarImg: UIImageView!
     
     var cards: [Card] = []
@@ -28,9 +27,6 @@ class ViewController: UIViewController, CardDelegate {
         tableView.dataSource = self
     }
     
-    @IBAction func addBtnAction(_ sender: Any) {
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ViewSearch{
             vc.mainController = self
@@ -38,10 +34,12 @@ class ViewController: UIViewController, CardDelegate {
     }
     
     func addCard(cardObject: Card){
-        print("Conforming")
-        print("Adding card object from VC: \(cardObject.getCarName())")
         cards.append(cardObject)
-        print("Cards array size = \(cards.count)")
+        
+        //update table view to add cell
+        tableView.beginUpdates()
+        tableView.insertRows(at: [IndexPath(row: cards.count-1, section: 0)], with: .automatic)
+        tableView.endUpdates()
     }
 
 }
@@ -50,22 +48,30 @@ extension ViewController: UITableViewDelegate{
     //When a cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "cardCivic", sender: self)
-        
-        print("Tapped Card")
+        dispCardAct(indexPath.row)
+    }
+    
+    func dispCardAct(_ x: Int){
+        //Dismiss
+        self.dismiss(animated: false, completion: {
+            //Segue
+            self.present(self.cards[x], animated: true)
+        })
     }
     
 }
 
 extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1 + cards.count
+        return cards.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "sampleCar")
-        tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath)
         
-        return cell!
+        let cellLblCar = cell.contentView.viewWithTag(11) as! UILabel
+        cellLblCar.text = "\(cards[indexPath.row].getCarName())"
+        
+        return cell
     }
 }
