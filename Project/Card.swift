@@ -24,6 +24,7 @@ class Card: UIViewController {
     var fuelEffStr: String = " "
     var fuelCapStr: String = " "
     var latestLaunchStr: String = " "
+    var carImgPath: String = " "
     
     //Definition of the labels
     @IBOutlet weak var carName: UILabel?
@@ -36,6 +37,7 @@ class Card: UIViewController {
     @IBOutlet weak var fuelEff: UILabel?
     @IBOutlet weak var fuelCap: UILabel?
     @IBOutlet weak var latestLaunch: UILabel?
+    @IBOutlet weak var carImg: UIImageView?
     
     @IBOutlet weak var addCarBtn: UIButton!
     
@@ -56,7 +58,7 @@ class Card: UIViewController {
     }
     
     //Constructor of the object
-    init(carName name: String, carSales sales: String, carType type: String, carPrice price: String, carHP horsepower: String, carEngine engineSize: String, carWB wheelbase: String, carFuel fuelEff: String, carCap fuelCap: String, carLaunch latestLaunch: String){
+    init(carName name: String, carSales sales: String, carType type: String, carPrice price: String, carHP horsepower: String, carEngine engineSize: String, carWB wheelbase: String, carFuel fuelEff: String, carCap fuelCap: String, carLaunch latestLaunch: String, carImg imgPath: String){
         
         super.init(nibName: nil, bundle: nil)
         
@@ -70,6 +72,7 @@ class Card: UIViewController {
         self.fuelEffStr = fuelEff
         self.fuelCapStr = fuelCap
         self.latestLaunchStr = latestLaunch
+        self.carImgPath = String(imgPath.filter { !"\r".contains($0) })
         
         print("card object created: \(getCarName())")
 //        commonInit()
@@ -92,6 +95,10 @@ class Card: UIViewController {
         return carNameStr
     }
     
+    func getImgPath() -> String{
+        return carImgPath
+    }
+    
     func setDisplayText(){
         self.carName?.text = self.carNameStr
         self.sales?.text = self.salesStr
@@ -103,6 +110,8 @@ class Card: UIViewController {
         self.fuelEff?.text = self.fuelEffStr
         self.fuelCap?.text = self.fuelCapStr
         self.latestLaunch?.text = self.latestLaunchStr
+        
+        self.carImg?.image = UIImage(named: self.carImgPath)
         
         if self.carName?.text == "Car not found" {
             addCarBtn.removeFromSuperview()

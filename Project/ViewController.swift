@@ -72,6 +72,9 @@ extension ViewController: UITableViewDataSource{
         let cellLblCar = cell.contentView.viewWithTag(11) as! UILabel
         cellLblCar.text = "\(cards[indexPath.row].getCarName())"
         
+        let cellImgCar = cell.contentView.viewWithTag(12) as! UIImageView
+        cellImgCar.image = UIImage(named: cards[indexPath.row].getImgPath())
+        
         return cell
     }
 }
