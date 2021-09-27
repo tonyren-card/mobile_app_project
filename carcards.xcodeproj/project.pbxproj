@@ -20,6 +20,7 @@
 		B0D288F4259E23BC0099CE6E /* ViewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D288F3259E23BC0099CE6E /* ViewCard.swift */; };
 		B0DEE17124D361EC006439D9 /* my19_civic_sedan_gallery_exterior_08.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B0DEE17024D361EC006439D9 /* my19_civic_sedan_gallery_exterior_08.jpg */; };
 		B0E5FE9E26585EBE00F70EDB /* Car_sales.csv in Resources */ = {isa = PBXBuildFile; fileRef = B0E5FE9D26585EBE00F70EDB /* Car_sales.csv */; };
+		B0EF000227021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B0EF000127021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg */; };
 		B0F7D1B925C7009A00E6647D /* ViewSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F7D1B825C7009A00E6647D /* ViewSearch.swift */; };
 		B0FEC14225583B3A000A90D8 /* Card.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0FEC14025583B3A000A90D8 /* Card.storyboard */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		B0D288F3259E23BC0099CE6E /* ViewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCard.swift; sourceTree = "<group>"; };
 		B0DEE17024D361EC006439D9 /* my19_civic_sedan_gallery_exterior_08.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = my19_civic_sedan_gallery_exterior_08.jpg; path = images/my19_civic_sedan_gallery_exterior_08.jpg; sourceTree = SOURCE_ROOT; };
 		B0E5FE9D26585EBE00F70EDB /* Car_sales.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Car_sales.csv; sourceTree = "<group>"; };
+		B0EF000127021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "2021-Honda-Accord-Hybrid-1-1.jpeg"; path = "images/2021-Honda-Accord-Hybrid-1-1.jpeg"; sourceTree = SOURCE_ROOT; };
 		B0F7D1B825C7009A00E6647D /* ViewSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSearch.swift; sourceTree = "<group>"; };
 		B0FEC14125583B3A000A90D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Card.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +92,7 @@
 				B0B3A21D24AE7EA900403182 /* Info.plist */,
 				B0BD9FB225F520DC00AD1819 /* Scrape.swift */,
 				B0E5FE9D26585EBE00F70EDB /* Car_sales.csv */,
+				B0EF000127021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 				B0DEE17124D361EC006439D9 /* my19_civic_sedan_gallery_exterior_08.jpg in Resources */,
 				B0B3A21924AE7EA900403182 /* Assets.xcassets in Resources */,
 				B0B3A21724AE7EA600403182 /* Main.storyboard in Resources */,
+				B0EF000227021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg in Resources */,
 				B00D777A268656A00094C4CF /* 03C_my22_civic_sedan_features_exterior_01.webp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
