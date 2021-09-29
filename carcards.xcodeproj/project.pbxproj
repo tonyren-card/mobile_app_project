@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		B00D777A268656A00094C4CF /* 03C_my22_civic_sedan_features_exterior_01.webp in Resources */ = {isa = PBXBuildFile; fileRef = B00D7779268656A00094C4CF /* 03C_my22_civic_sedan_features_exterior_01.webp */; };
+		B0505BD627050FFF00997A53 /* 1200px-2019_Toyota_RAV4_Excel_HEV_CVT_2.5_Front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B0505BD227050FFE00997A53 /* 1200px-2019_Toyota_RAV4_Excel_HEV_CVT_2.5_Front.jpg */; };
+		B0505BD727050FFF00997A53 /* 2022_toyota_corolla_angularfront.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B0505BD327050FFE00997A53 /* 2022_toyota_corolla_angularfront.jpeg */; };
+		B0505BD827050FFF00997A53 /* 2021-toyota-camry-hybrid-xle-mmp-1-1603215410.png in Resources */ = {isa = PBXBuildFile; fileRef = B0505BD427050FFF00997A53 /* 2021-toyota-camry-hybrid-xle-mmp-1-1603215410.png */; };
+		B0505BD927050FFF00997A53 /* 2020_honda_cr-v_4dr-suv_touring_fq_oem_1_1600.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B0505BD527050FFF00997A53 /* 2020_honda_cr-v_4dr-suv_touring_fq_oem_1_1600.jpeg */; };
+		B0505BDB2705100600997A53 /* 1594220287585.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B0505BDA2705100600997A53 /* 1594220287585.jpeg */; };
+		B0505BDD2705110F00997A53 /* ordinary_car.png in Resources */ = {isa = PBXBuildFile; fileRef = B0505BDC2705110F00997A53 /* ordinary_car.png */; };
 		B055CC9A2677FD4200384282 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = B055CC982677FD4200384282 /* Card.swift */; };
 		B055CC9B2677FD4200384282 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = B055CC992677FD4200384282 /* Card.xib */; };
 		B0B3A21024AE7EA600403182 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B3A20F24AE7EA600403182 /* AppDelegate.swift */; };
@@ -27,6 +33,12 @@
 
 /* Begin PBXFileReference section */
 		B00D7779268656A00094C4CF /* 03C_my22_civic_sedan_features_exterior_01.webp */ = {isa = PBXFileReference; lastKnownFileType = file; name = 03C_my22_civic_sedan_features_exterior_01.webp; path = images/03C_my22_civic_sedan_features_exterior_01.webp; sourceTree = SOURCE_ROOT; };
+		B0505BD227050FFE00997A53 /* 1200px-2019_Toyota_RAV4_Excel_HEV_CVT_2.5_Front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "1200px-2019_Toyota_RAV4_Excel_HEV_CVT_2.5_Front.jpg"; path = "images/1200px-2019_Toyota_RAV4_Excel_HEV_CVT_2.5_Front.jpg"; sourceTree = SOURCE_ROOT; };
+		B0505BD327050FFE00997A53 /* 2022_toyota_corolla_angularfront.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 2022_toyota_corolla_angularfront.jpeg; path = images/2022_toyota_corolla_angularfront.jpeg; sourceTree = SOURCE_ROOT; };
+		B0505BD427050FFF00997A53 /* 2021-toyota-camry-hybrid-xle-mmp-1-1603215410.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "2021-toyota-camry-hybrid-xle-mmp-1-1603215410.png"; path = "images/2021-toyota-camry-hybrid-xle-mmp-1-1603215410.png"; sourceTree = SOURCE_ROOT; };
+		B0505BD527050FFF00997A53 /* 2020_honda_cr-v_4dr-suv_touring_fq_oem_1_1600.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "2020_honda_cr-v_4dr-suv_touring_fq_oem_1_1600.jpeg"; path = "images/2020_honda_cr-v_4dr-suv_touring_fq_oem_1_1600.jpeg"; sourceTree = SOURCE_ROOT; };
+		B0505BDA2705100600997A53 /* 1594220287585.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1594220287585.jpeg; path = images/1594220287585.jpeg; sourceTree = SOURCE_ROOT; };
+		B0505BDC2705110F00997A53 /* ordinary_car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ordinary_car.png; path = images/ordinary_car.png; sourceTree = SOURCE_ROOT; };
 		B055CC982677FD4200384282 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		B055CC992677FD4200384282 /* Card.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
 		B0B3A20C24AE7EA600403182 /* CARD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CARD.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +105,12 @@
 				B0BD9FB225F520DC00AD1819 /* Scrape.swift */,
 				B0E5FE9D26585EBE00F70EDB /* Car_sales.csv */,
 				B0EF000127021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg */,
+				B0505BD227050FFE00997A53 /* 1200px-2019_Toyota_RAV4_Excel_HEV_CVT_2.5_Front.jpg */,
+				B0505BD527050FFF00997A53 /* 2020_honda_cr-v_4dr-suv_touring_fq_oem_1_1600.jpeg */,
+				B0505BD427050FFF00997A53 /* 2021-toyota-camry-hybrid-xle-mmp-1-1603215410.png */,
+				B0505BD327050FFE00997A53 /* 2022_toyota_corolla_angularfront.jpeg */,
+				B0505BDA2705100600997A53 /* 1594220287585.jpeg */,
+				B0505BDC2705110F00997A53 /* ordinary_car.png */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -160,9 +178,15 @@
 				B055CC9B2677FD4200384282 /* Card.xib in Resources */,
 				B0FEC14225583B3A000A90D8 /* Card.storyboard in Resources */,
 				B0DEE17124D361EC006439D9 /* my19_civic_sedan_gallery_exterior_08.jpg in Resources */,
+				B0505BD827050FFF00997A53 /* 2021-toyota-camry-hybrid-xle-mmp-1-1603215410.png in Resources */,
+				B0505BDB2705100600997A53 /* 1594220287585.jpeg in Resources */,
+				B0505BDD2705110F00997A53 /* ordinary_car.png in Resources */,
+				B0505BD727050FFF00997A53 /* 2022_toyota_corolla_angularfront.jpeg in Resources */,
 				B0B3A21924AE7EA900403182 /* Assets.xcassets in Resources */,
 				B0B3A21724AE7EA600403182 /* Main.storyboard in Resources */,
+				B0505BD627050FFF00997A53 /* 1200px-2019_Toyota_RAV4_Excel_HEV_CVT_2.5_Front.jpg in Resources */,
 				B0EF000227021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg in Resources */,
+				B0505BD927050FFF00997A53 /* 2020_honda_cr-v_4dr-suv_touring_fq_oem_1_1600.jpeg in Resources */,
 				B00D777A268656A00094C4CF /* 03C_my22_civic_sedan_features_exterior_01.webp in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

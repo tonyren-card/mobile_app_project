@@ -14,7 +14,7 @@ class Card: UIViewController {
     
     @IBOutlet weak var cardView: UIView!
     //Definition of the variables
-    var carNameStr: String = " "
+    private var carNameStr: String = " "
     var salesStr: String = " "
     var carTypeStr: String = " "
     var priceStr: String = " "
@@ -111,6 +111,10 @@ class Card: UIViewController {
         self.fuelCap?.text = self.fuelCapStr
         self.latestLaunch?.text = self.latestLaunchStr
         
+        if (self.carImgPath == ""){
+            self.carImgPath = "ordinary_car.png"
+        }
+            
         self.carImg?.image = UIImage(named: self.carImgPath)
         
         if self.carName?.text == "Car not found" {
