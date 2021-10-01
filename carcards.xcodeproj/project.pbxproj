@@ -24,7 +24,6 @@
 		B0B3A21C24AE7EA900403182 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B3A21A24AE7EA900403182 /* LaunchScreen.storyboard */; };
 		B0BD9FB325F520DC00AD1819 /* Scrape.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BD9FB225F520DC00AD1819 /* Scrape.swift */; };
 		B0D288F4259E23BC0099CE6E /* ViewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D288F3259E23BC0099CE6E /* ViewCard.swift */; };
-		B0DEE17124D361EC006439D9 /* my19_civic_sedan_gallery_exterior_08.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B0DEE17024D361EC006439D9 /* my19_civic_sedan_gallery_exterior_08.jpg */; };
 		B0E5FE9E26585EBE00F70EDB /* Car_sales.csv in Resources */ = {isa = PBXBuildFile; fileRef = B0E5FE9D26585EBE00F70EDB /* Car_sales.csv */; };
 		B0EF000227021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B0EF000127021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg */; };
 		B0F7D1B925C7009A00E6647D /* ViewSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F7D1B825C7009A00E6647D /* ViewSearch.swift */; };
@@ -51,7 +50,6 @@
 		B0B3A21D24AE7EA900403182 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Project/Info.plist; sourceTree = SOURCE_ROOT; };
 		B0BD9FB225F520DC00AD1819 /* Scrape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scrape.swift; sourceTree = "<group>"; };
 		B0D288F3259E23BC0099CE6E /* ViewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCard.swift; sourceTree = "<group>"; };
-		B0DEE17024D361EC006439D9 /* my19_civic_sedan_gallery_exterior_08.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = my19_civic_sedan_gallery_exterior_08.jpg; path = images/my19_civic_sedan_gallery_exterior_08.jpg; sourceTree = SOURCE_ROOT; };
 		B0E5FE9D26585EBE00F70EDB /* Car_sales.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Car_sales.csv; sourceTree = "<group>"; };
 		B0EF000127021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "2021-Honda-Accord-Hybrid-1-1.jpeg"; path = "images/2021-Honda-Accord-Hybrid-1-1.jpeg"; sourceTree = SOURCE_ROOT; };
 		B0F7D1B825C7009A00E6647D /* ViewSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSearch.swift; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 				B055CC982677FD4200384282 /* Card.swift */,
 				B055CC992677FD4200384282 /* Card.xib */,
 				B0FEC14025583B3A000A90D8 /* Card.storyboard */,
-				B0DEE17024D361EC006439D9 /* my19_civic_sedan_gallery_exterior_08.jpg */,
 				B00D7779268656A00094C4CF /* 03C_my22_civic_sedan_features_exterior_01.webp */,
 				B0B3A21824AE7EA900403182 /* Assets.xcassets */,
 				B0B3A21A24AE7EA900403182 /* LaunchScreen.storyboard */,
@@ -177,7 +174,6 @@
 				B0B3A21C24AE7EA900403182 /* LaunchScreen.storyboard in Resources */,
 				B055CC9B2677FD4200384282 /* Card.xib in Resources */,
 				B0FEC14225583B3A000A90D8 /* Card.storyboard in Resources */,
-				B0DEE17124D361EC006439D9 /* my19_civic_sedan_gallery_exterior_08.jpg in Resources */,
 				B0505BD827050FFF00997A53 /* 2021-toyota-camry-hybrid-xle-mmp-1-1603215410.png in Resources */,
 				B0505BDB2705100600997A53 /* 1594220287585.jpeg in Resources */,
 				B0505BDD2705110F00997A53 /* ordinary_car.png in Resources */,

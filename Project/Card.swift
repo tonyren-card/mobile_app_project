@@ -15,16 +15,17 @@ class Card: UIViewController {
     @IBOutlet weak var cardView: UIView!
     //Definition of the variables
     private var carNameStr: String = " "
-    var salesStr: String = " "
-    var carTypeStr: String = " "
-    var priceStr: String = " "
-    var horsepowerStr: String = " "
-    var engineSizeStr: String = " "
-    var wheelbaseStr: String = " "
-    var fuelEffStr: String = " "
-    var fuelCapStr: String = " "
-    var latestLaunchStr: String = " "
-    var carImgPath: String = " "
+    private var salesStr: String = " "
+    private var carTypeStr: String = " "
+    private var priceStr: String = " "
+    private var horsepowerStr: String = " "
+    private var engineSizeStr: String = " "
+    private var wheelbaseStr: String = " "
+    private var fuelEffStr: String = " "
+    private var fuelCapStr: String = " "
+    private var latestLaunchStr: String = " "
+    private var carImgPath: String = " "
+    var index: Int? = -1
     
     //Definition of the labels
     @IBOutlet weak var carName: UILabel?
@@ -125,10 +126,11 @@ class Card: UIViewController {
     @IBAction func addCard(_ sender: Any) {
         
         if self.addCarBtn.titleLabel?.text == "Add Card to Library"{
-            print("Add card pressed")
-            self.addCarBtn.setTitle("Card added to Library", for: .normal)
+            self.addCarBtn.setTitle("Delete Card from Library", for: .normal)
             delegate?.addCard(cardObject: self)
-            print("Passed delegate point")
+        }else{
+            self.addCarBtn.setTitle("Add Card to Library", for: .normal)
+            delegate?.deleteCard(at: self.index!)
         }
     }
     
