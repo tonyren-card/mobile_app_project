@@ -10,6 +10,7 @@ import UIKit
 
 protocol CardDelegate {
     func addCard(cardObject: Card)
+    func deleteCard(at index: Int)
 }
 
 class ViewController: UIViewController, CardDelegate {
@@ -34,12 +35,31 @@ class ViewController: UIViewController, CardDelegate {
     }
     
     func addCard(cardObject: Card){
+        cardObject.index = cards.count
         cards.append(cardObject)
         
         //update table view to add cell
         tableView.beginUpdates()
         tableView.insertRows(at: [IndexPath(row: cards.count-1, section: 0)], with: .automatic)
         tableView.endUpdates()
+    }
+    
+    func deleteCard(at index: Int){
+        cards.remove(at: index)
+        updateCardsIndices(at: index)
+        
+        tableView.beginUpdates()
+        tableView.deleteRows(at: [IndexPath(row: index, section: 0)], with: .automatic)
+        tableView.endUpdates()
+    }
+    
+    private func updateCardsIndices(at index: Int){
+        if index > cards.count-1 {
+            return
+        }
+        for i in index...cards.count-1{
+            cards[i].index = i
+        }
     }
 
 }
@@ -76,5 +96,13 @@ extension ViewController: UITableViewDataSource{
         cellImgCar.image = UIImage(named: cards[indexPath.row].getImgPath())
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            cards.remove(at: indexPath.row)
+            updateCardsIndices(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+        }
     }
 }
