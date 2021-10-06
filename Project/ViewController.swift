@@ -17,7 +17,6 @@ class ViewController: UIViewController, CardDelegate {
     
     //Outlets for the Honda Civic Sample Card
     @IBOutlet var tableView: UITableView!
-    @IBOutlet var msCarImg: UIImageView!
     
     var cards: [Card] = []
     

@@ -53,9 +53,6 @@ class Card: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.carNameStr = "Car not found"
         self.carTypeStr = "There may be a typo in your search"
-        
-        print("From Card object: \(getCarName())")
-//        commonInit()
     }
     
     //Constructor of the object
@@ -74,22 +71,10 @@ class Card: UIViewController {
         self.fuelCapStr = fuelCap
         self.latestLaunchStr = latestLaunch
         self.carImgPath = String(imgPath.filter { !"\r".contains($0) })
-        
-        print("card object created: \(getCarName())")
-//        commonInit()
-//        print(self.carName.text ?? "variable not assigned")
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-//        commonInit()
-    }
-    
-    private func commonInit() {
-        Bundle.main.loadNibNamed("Card", owner: self, options: nil)
-//        addSubview(cardView)
-//        cardView.frame = self.bounds
-//        cardView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
     func getCarName() -> String{
