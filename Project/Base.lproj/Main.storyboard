@@ -13,15 +13,17 @@
         <scene sceneID="rTs-pJ-Suv">
             <objects>
                 <navigationController id="hiu-i8-2zt" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="21Z-nM-t43">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="21Z-nM-t43">
+                        <rect key="frame" x="0.0" y="44" width="428" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                            <color key="textColor" systemColor="labelColor"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                         </textAttributes>
+                        <navigationBarAppearance key="standardAppearance"/>
                     </navigationBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="baL-Ll-l2r"/>
@@ -39,17 +41,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CARD" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AR4-zY-BOI">
-                                <rect key="frame" x="0.0" y="117" width="428" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="s86-UV-HYd"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b0M-Kj-D4O" userLabel="MainMenuList">
-                                <rect key="frame" x="0.0" y="177" width="428" height="715"/>
+                                <rect key="frame" x="0.0" y="88" width="428" height="804"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cardCell" rowHeight="82" id="Ua8-Rb-uWG">
                                         <rect key="frame" x="0.0" y="44.666666030883789" width="428" height="82"/>
@@ -92,14 +85,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="b0M-Kj-D4O" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="0qY-MN-ALZ"/>
                             <constraint firstItem="b0M-Kj-D4O" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6on-5Q-B2P"/>
                             <constraint firstItem="b0M-Kj-D4O" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="7Uu-bw-ysQ"/>
-                            <constraint firstItem="b0M-Kj-D4O" firstAttribute="top" secondItem="AR4-zY-BOI" secondAttribute="bottom" constant="24" id="H47-T7-qDg"/>
-                            <constraint firstItem="AR4-zY-BOI" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Oeh-8f-45X"/>
-                            <constraint firstItem="b0M-Kj-D4O" firstAttribute="top" secondItem="AR4-zY-BOI" secondAttribute="bottom" constant="24" id="QoZ-ua-Nuw"/>
                             <constraint firstItem="b0M-Kj-D4O" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dsZ-Jq-I0g"/>
-                            <constraint firstItem="AR4-zY-BOI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="29" id="iOZ-cn-6eA"/>
-                            <constraint firstItem="AR4-zY-BOI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="m16-eT-OXi"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ecy-Hv-wbI">
@@ -598,6 +587,9 @@
     </scenes>
     <resources>
         <image name="03C_my22_civic_sedan_features_exterior_01.webp" width="128" height="128"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

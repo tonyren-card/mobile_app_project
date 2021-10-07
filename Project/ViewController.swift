@@ -22,6 +22,7 @@ class ViewController: UIViewController, CardDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "CARD"
         
         tableView.delegate = self
         tableView.dataSource = self

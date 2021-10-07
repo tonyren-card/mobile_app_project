@@ -19,6 +19,7 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Search"
         
         self.mySearchController = ({
             let controller = UISearchController(searchResultsController: nil)
@@ -48,7 +49,11 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
     }
     
     func updateSearchResults(for searchController: UISearchController) {
-
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        
+        print(text)
     }
     
     func scrapeData(){
