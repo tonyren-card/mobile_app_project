@@ -10,16 +10,22 @@ import UIKit
 
 class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
     
+    @IBOutlet var tableViewCont: UITableView!
+    
     var searchText:String = ""
     var mySearchController = UISearchController()
     var mySearchBar: UISearchBar?
     
     var mainController: ViewController?
-    var scrapeCard: Card? = nil
+    
+    var filteredcards: [Card] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Search"
+        
+        tableViewCont.delegate = self
+        tableViewCont.dataSource = self
         
         self.mySearchController = ({
             let controller = UISearchController(searchResultsController: nil)
@@ -42,11 +48,11 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
         self.mySearchController.searchBar.becomeFirstResponder()
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.searchText = searchBar.text!
-        
-        self.scrapeData()
-    }
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        self.searchText = searchBar.text!
+//
+//        self.scrapeData()
+//    }
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else {
@@ -54,6 +60,8 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
         }
         
         print(text)
+        self.searchText = text
+        scrapeData()
     }
     
     func scrapeData(){
@@ -72,54 +80,63 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
             
             let lines = contents.components(separatedBy: "\n")
             var firstLine = true
+            var donefounding = false
             
             var foundCarInfo: [String]? = nil
             
+            self.filteredcards.removeAll()
             //Data gets collected
             for line in lines{
                 if firstLine{
                     firstLine = false
                     continue
                 }
-                let blocks = line.components(separatedBy: ",")
-                let lineSpaced = blocks.joined(separator: " ")
+                foundCarInfo = line.components(separatedBy: ",")
+                let lineSpaced = foundCarInfo!.joined(separator: " ")
                 
-                if (lineSpaced.range(of: self.searchText, options: .caseInsensitive) != nil){
-                    print(line)
-                    foundCarInfo = blocks
+                if (lineSpaced.starts(with: self.searchText)){
+                    donefounding = true
+                    createcard(foundCarInfo!)
+                }else if (donefounding == true) {
                     break
                 }
             }
             
             //If no car found
-            guard let checkString = foundCarInfo, !checkString.isEmpty else{
+            /*guard let checkString = foundCarInfo, !checkString.isEmpty else{
                 self.scrapeCard = Card()
                 self.dispCardAct()
                 return
-            }
+            }*/
             
-            //Data gets presented
-            var sales = ""
-            if let floatSales = Float(String((foundCarInfo?[2])!)){
-                sales = String(format: "%.0f units", floatSales*1000)
-            }else{
-                sales = String((foundCarInfo?[2])!)
-            }
             
-            var price = ""
-            if let floatPrice = Float(String((foundCarInfo?[5])!)){
-                price = String(format: "$%.2f", floatPrice*1000)
-            }else{
-                price = String((foundCarInfo?[5])!)
-            }
-            
-            self.scrapeCard = Card(carName: "\(String((foundCarInfo?[0])!)) \(String((foundCarInfo?[1])!))", carSales: sales, carType: String((foundCarInfo?[4])!), carPrice: price, carHP: String((foundCarInfo?[7])!), carEngine: String((foundCarInfo?[6])!), carWB: String((foundCarInfo?[8])!), carFuel: "\(String((foundCarInfo?[13])!)) mpg", carCap: String((foundCarInfo?[12])!), carLaunch: String((foundCarInfo?[14])!), carImg: String((foundCarInfo?[16])!))
             
             self.dispCardAct()
             
         }catch{
             print("File read error for file \(filepath)")
         }
+    }
+    
+    private func createcard(_ data: [String]){
+        //Data gets presented
+        var sales = ""
+        if let floatSales = Float(String((data[2]))){
+            sales = String(format: "%.0f units", floatSales*1000)
+        }else{
+            sales = String((data[2]))
+        }
+        
+        var price = ""
+        if let floatPrice = Float(String((data[5]))){
+            price = String(format: "$%.2f", floatPrice*1000)
+        }else{
+            price = String((data[5]))
+        }
+        
+        let card = Card(carName: "\(String((data[0]))) \(String((data[1])))", carSales: sales, carType: String((data[4])), carPrice: price, carHP: String((data[7])), carEngine: String((data[6])), carWB: String((data[8])), carFuel: "\(String((data[13]))) mpg", carCap: String((data[12])), carLaunch: String((data[14])), carImg: String((data[16])))
+        
+        self.filteredcards.append(card)
     }
     
     func dispCardAct(){
