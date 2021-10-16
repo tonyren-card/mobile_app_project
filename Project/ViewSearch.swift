@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
+class ViewSearch: UITableViewController {
     
     @IBOutlet var tableViewCont: UITableView!
     
@@ -44,27 +44,31 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
         self.mySearchBar?.delegate = self
     }
     
-    func didPresentSearchController(_ searchController: UISearchController) {
-        self.mySearchController.searchBar.becomeFirstResponder()
+    //UITableViewController override definitions
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        dispCardAct(indexPath.row)
     }
     
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        self.searchText = searchBar.text!
-//
-//        self.scrapeData()
-//    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else {
-            return
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchText.isEmpty {
+            return 0
         }
-        
-        print(text)
-        self.searchText = text
-        scrapeData()
+        return filteredcards.count
     }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = filteredcards[indexPath.row].getCarName()
+        return cell
+    }
+    
     
     func scrapeData(){
+        if searchText.isEmpty{
+            tableViewCont.reloadData()
+            return
+        }
         //CSV file opens
         let file = "Car_sales"
         
@@ -94,13 +98,15 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
                 foundCarInfo = line.components(separatedBy: ",")
                 let lineSpaced = foundCarInfo!.joined(separator: " ")
                 
-                if (lineSpaced.starts(with: self.searchText)){
+                if (lineSpaced.lowercased().starts(with: self.searchText.lowercased())){
                     donefounding = true
                     createcard(foundCarInfo!)
                 }else if (donefounding == true) {
                     break
                 }
             }
+            
+            tableViewCont.reloadData()
             
             //If no car found
             /*guard let checkString = foundCarInfo, !checkString.isEmpty else{
@@ -111,7 +117,6 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
             
             
             
-            self.dispCardAct()
             
         }catch{
             print("File read error for file \(filepath)")
@@ -139,18 +144,45 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
         self.filteredcards.append(card)
     }
     
-    func dispCardAct(){
+    func dispCardAct(_ x: Int){
         if mySearchController.isActive{
             //Dismiss
             self.mySearchController.dismiss(animated: false, completion: {
                 //Segue
-                self.present(self.scrapeCard!, animated: true)
+                self.present(self.filteredcards[x], animated: true)
                 //Delegate
-                self.scrapeCard?.delegate = self.mainController
+                self.filteredcards[x].delegate = self.mainController
                 //Display
-                self.scrapeCard?.setDisplayText()
+                self.filteredcards[x].setDisplayText()
             })
         }
+    }
+    
+}
+
+extension ViewSearch: UISearchControllerDelegate{
+    func didPresentSearchController(_ searchController: UISearchController) {
+        self.mySearchController.searchBar.becomeFirstResponder()
+    }
+    
+}
+
+extension ViewSearch: UISearchBarDelegate{
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        self.searchText = searchBar.text!
+//
+//        self.scrapeData()
+//    }
+        
+}
+
+extension ViewSearch: UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        self.searchText = text
+        scrapeData()
     }
     
 }
