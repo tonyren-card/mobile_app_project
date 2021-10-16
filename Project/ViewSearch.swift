@@ -8,18 +8,24 @@
 
 import UIKit
 
-class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
+class ViewSearch: UITableViewController {
+    
+    @IBOutlet var tableViewCont: UITableView!
     
     var searchText:String = ""
     var mySearchController = UISearchController()
     var mySearchBar: UISearchBar?
     
     var mainController: ViewController?
-    var scrapeCard: Card? = nil
+    
+    var filteredcards: [Card] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Search"
+        
+        tableViewCont.delegate = self
+        tableViewCont.dataSource = self
         
         self.mySearchController = ({
             let controller = UISearchController(searchResultsController: nil)
@@ -38,25 +44,31 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
         self.mySearchBar?.delegate = self
     }
     
-    func didPresentSearchController(_ searchController: UISearchController) {
-        self.mySearchController.searchBar.becomeFirstResponder()
+    //UITableViewController override definitions
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        dispCardAct(indexPath.row)
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        self.searchText = searchBar.text!
-        
-        self.scrapeData()
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else {
-            return
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchText.isEmpty {
+            return 0
         }
-        
-        print(text)
+        return filteredcards.count
     }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = filteredcards[indexPath.row].getCarName()
+        return cell
+    }
+    
     
     func scrapeData(){
+        if searchText.isEmpty{
+            tableViewCont.reloadData()
+            return
+        }
         //CSV file opens
         let file = "Car_sales"
         
@@ -72,68 +84,105 @@ class ViewSearch: UITableViewController, UISearchControllerDelegate, UISearchBar
             
             let lines = contents.components(separatedBy: "\n")
             var firstLine = true
+            var donefounding = false
             
             var foundCarInfo: [String]? = nil
             
+            self.filteredcards.removeAll()
             //Data gets collected
             for line in lines{
                 if firstLine{
                     firstLine = false
                     continue
                 }
-                let blocks = line.components(separatedBy: ",")
-                let lineSpaced = blocks.joined(separator: " ")
+                foundCarInfo = line.components(separatedBy: ",")
+                let lineSpaced = foundCarInfo!.joined(separator: " ")
                 
-                if (lineSpaced.range(of: self.searchText, options: .caseInsensitive) != nil){
-                    print(line)
-                    foundCarInfo = blocks
+                if (lineSpaced.lowercased().starts(with: self.searchText.lowercased())){
+                    donefounding = true
+                    createcard(foundCarInfo!)
+                }else if (donefounding == true) {
                     break
                 }
             }
             
+            tableViewCont.reloadData()
+            
             //If no car found
-            guard let checkString = foundCarInfo, !checkString.isEmpty else{
+            /*guard let checkString = foundCarInfo, !checkString.isEmpty else{
                 self.scrapeCard = Card()
                 self.dispCardAct()
                 return
-            }
+            }*/
             
-            //Data gets presented
-            var sales = ""
-            if let floatSales = Float(String((foundCarInfo?[2])!)){
-                sales = String(format: "%.0f units", floatSales*1000)
-            }else{
-                sales = String((foundCarInfo?[2])!)
-            }
             
-            var price = ""
-            if let floatPrice = Float(String((foundCarInfo?[5])!)){
-                price = String(format: "$%.2f", floatPrice*1000)
-            }else{
-                price = String((foundCarInfo?[5])!)
-            }
             
-            self.scrapeCard = Card(carName: "\(String((foundCarInfo?[0])!)) \(String((foundCarInfo?[1])!))", carSales: sales, carType: String((foundCarInfo?[4])!), carPrice: price, carHP: String((foundCarInfo?[7])!), carEngine: String((foundCarInfo?[6])!), carWB: String((foundCarInfo?[8])!), carFuel: "\(String((foundCarInfo?[13])!)) mpg", carCap: String((foundCarInfo?[12])!), carLaunch: String((foundCarInfo?[14])!), carImg: String((foundCarInfo?[16])!))
-            
-            self.dispCardAct()
             
         }catch{
             print("File read error for file \(filepath)")
         }
     }
     
-    func dispCardAct(){
+    private func createcard(_ data: [String]){
+        //Data gets presented
+        var sales = ""
+        if let floatSales = Float(String((data[2]))){
+            sales = String(format: "%.0f units", floatSales*1000)
+        }else{
+            sales = String((data[2]))
+        }
+        
+        var price = ""
+        if let floatPrice = Float(String((data[5]))){
+            price = String(format: "$%.2f", floatPrice*1000)
+        }else{
+            price = String((data[5]))
+        }
+        
+        let card = Card(carName: "\(String((data[0]))) \(String((data[1])))", carSales: sales, carType: String((data[4])), carPrice: price, carHP: String((data[7])), carEngine: String((data[6])), carWB: String((data[8])), carFuel: "\(String((data[13]))) mpg", carCap: String((data[12])), carLaunch: String((data[14])), carImg: String((data[16])))
+        
+        self.filteredcards.append(card)
+    }
+    
+    func dispCardAct(_ x: Int){
         if mySearchController.isActive{
             //Dismiss
             self.mySearchController.dismiss(animated: false, completion: {
                 //Segue
-                self.present(self.scrapeCard!, animated: true)
+                self.present(self.filteredcards[x], animated: true)
                 //Delegate
-                self.scrapeCard?.delegate = self.mainController
+                self.filteredcards[x].delegate = self.mainController
                 //Display
-                self.scrapeCard?.setDisplayText()
+                self.filteredcards[x].setDisplayText()
             })
         }
+    }
+    
+}
+
+extension ViewSearch: UISearchControllerDelegate{
+    func didPresentSearchController(_ searchController: UISearchController) {
+        self.mySearchController.searchBar.becomeFirstResponder()
+    }
+    
+}
+
+extension ViewSearch: UISearchBarDelegate{
+//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+//        self.searchText = searchBar.text!
+//
+//        self.scrapeData()
+//    }
+        
+}
+
+extension ViewSearch: UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        self.searchText = text
+        scrapeData()
     }
     
 }
