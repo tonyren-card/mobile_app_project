@@ -38,6 +38,7 @@ class ViewSearch: UITableViewController {
             return controller
         })()
         mySearchBar = mySearchController.searchBar
+        mySearchBar?.placeholder = "e.g. \"honda\", \"civic\", \"honda civic\""
         
         self.mySearchController.isActive = true
         self.mySearchController.delegate = self
@@ -84,7 +85,6 @@ class ViewSearch: UITableViewController {
             
             let lines = contents.components(separatedBy: "\n")
             var firstLine = true
-            var donefounding = false
             
             var foundCarInfo: [String]? = nil
             
@@ -96,13 +96,14 @@ class ViewSearch: UITableViewController {
                     continue
                 }
                 foundCarInfo = line.components(separatedBy: ",")
-                let lineSpaced = foundCarInfo!.joined(separator: " ")
+                let make = foundCarInfo![0]
+                let model = foundCarInfo![1]
+                let makemodel = "\(make) \(model)"
                 
-                if (lineSpaced.lowercased().starts(with: self.searchText.lowercased())){
-                    donefounding = true
+                if (make.lowercased().starts(with: self.searchText.lowercased())
+                    || model.lowercased().starts(with: self.searchText.lowercased())
+                    || makemodel.lowercased().starts(with: self.searchText.lowercased())){
                     createcard(foundCarInfo!)
-                }else if (donefounding == true) {
-                    break
                 }
             }
             
