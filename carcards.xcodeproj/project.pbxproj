@@ -22,7 +22,6 @@
 		B0B3A21724AE7EA600403182 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B3A21524AE7EA600403182 /* Main.storyboard */; };
 		B0B3A21924AE7EA900403182 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0B3A21824AE7EA900403182 /* Assets.xcassets */; };
 		B0B3A21C24AE7EA900403182 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0B3A21A24AE7EA900403182 /* LaunchScreen.storyboard */; };
-		B0BD9FB325F520DC00AD1819 /* Scrape.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BD9FB225F520DC00AD1819 /* Scrape.swift */; };
 		B0D288F4259E23BC0099CE6E /* ViewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D288F3259E23BC0099CE6E /* ViewCard.swift */; };
 		B0E5FE9E26585EBE00F70EDB /* Car_sales.csv in Resources */ = {isa = PBXBuildFile; fileRef = B0E5FE9D26585EBE00F70EDB /* Car_sales.csv */; };
 		B0EF000227021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B0EF000127021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg */; };
@@ -48,7 +47,6 @@
 		B0B3A21824AE7EA900403182 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B0B3A21B24AE7EA900403182 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B0B3A21D24AE7EA900403182 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Project/Info.plist; sourceTree = SOURCE_ROOT; };
-		B0BD9FB225F520DC00AD1819 /* Scrape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scrape.swift; sourceTree = "<group>"; };
 		B0D288F3259E23BC0099CE6E /* ViewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCard.swift; sourceTree = "<group>"; };
 		B0E5FE9D26585EBE00F70EDB /* Car_sales.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Car_sales.csv; sourceTree = "<group>"; };
 		B0EF000127021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "2021-Honda-Accord-Hybrid-1-1.jpeg"; path = "images/2021-Honda-Accord-Hybrid-1-1.jpeg"; sourceTree = SOURCE_ROOT; };
@@ -99,7 +97,6 @@
 				B0B3A21824AE7EA900403182 /* Assets.xcassets */,
 				B0B3A21A24AE7EA900403182 /* LaunchScreen.storyboard */,
 				B0B3A21D24AE7EA900403182 /* Info.plist */,
-				B0BD9FB225F520DC00AD1819 /* Scrape.swift */,
 				B0E5FE9D26585EBE00F70EDB /* Car_sales.csv */,
 				B0EF000127021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg */,
 				B0505BD227050FFE00997A53 /* 1200px-2019_Toyota_RAV4_Excel_HEV_CVT_2.5_Front.jpg */,
@@ -195,7 +192,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0B3A21424AE7EA600403182 /* ViewController.swift in Sources */,
-				B0BD9FB325F520DC00AD1819 /* Scrape.swift in Sources */,
 				B0B3A21024AE7EA600403182 /* AppDelegate.swift in Sources */,
 				B0D288F4259E23BC0099CE6E /* ViewCard.swift in Sources */,
 				B0B3A21224AE7EA600403182 /* SceneDelegate.swift in Sources */,

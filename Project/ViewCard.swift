@@ -36,11 +36,11 @@ class ViewCard: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let send = segue.destination as? Scrape{
-            send.searchCar = self.searchCar ?? "Rand"
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let send = segue.destination as? Scrape{
+//            send.searchCar = self.searchCar ?? "Rand"
+//        }
+//    }
     
     @IBAction func competitorTapped(_ sender: UIButton!){
         
