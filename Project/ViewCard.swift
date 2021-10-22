@@ -10,6 +10,7 @@ import UIKit
 
 class ViewCard: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var lblCar: UILabel!
     
     @IBOutlet weak var carImage: UIImageView!
@@ -33,7 +34,7 @@ class ViewCard: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.view.frame.height + 1)
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
