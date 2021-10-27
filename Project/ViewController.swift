@@ -75,6 +75,8 @@ extension ViewController: UITableViewDelegate{
         self.dismiss(animated: false, completion: {
             //Segue
             self.present(self.cards[x], animated: true)
+            //Display
+            self.cards[x].setDisplayText()
         })
     }
     

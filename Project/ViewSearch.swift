@@ -16,7 +16,7 @@ class ViewSearch: UITableViewController {
     var mySearchController = UISearchController()
     var mySearchBar: UISearchBar?
     
-    var mainController: ViewController?
+    var mainController: CardDelegate?
     
     var filteredcards: [Card] = []
     
@@ -46,11 +46,13 @@ class ViewSearch: UITableViewController {
     }
     
     //UITableViewController override definitions
+    //Touch up cell
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         dispCardAct(indexPath.row)
     }
     
+    //Set up number of rows
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchText.isEmpty {
             return 0
@@ -58,10 +60,22 @@ class ViewSearch: UITableViewController {
         return filteredcards.count
     }
     
+    //Set up cell appearance
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = filteredcards[indexPath.row].getCarName()
         return cell
+    }
+    
+    //Swipe to left action
+    override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        self.defCard(indexPath.row)
+        let action = UIContextualAction(style: .normal, title: "Add to Library") { [weak self] (action, view, completionHandler) in self?.mainController?.addCard(cardObject: (self?.filteredcards[indexPath.row])!)
+            completionHandler(true)
+        }
+        action.backgroundColor = .systemBlue
+        
+        return UISwipeActionsConfiguration(actions: [action])
     }
     
     
@@ -96,13 +110,11 @@ class ViewSearch: UITableViewController {
                     continue
                 }
                 foundCarInfo = line.components(separatedBy: ",")
-                let make = foundCarInfo![0]
                 let model = foundCarInfo![1]
-                let makemodel = "\(make) \(model)"
+                let makemodel = "\(foundCarInfo![0]) \(model)"
                 
-                if (make.lowercased().starts(with: self.searchText.lowercased())
-                    || model.lowercased().starts(with: self.searchText.lowercased())
-                    || makemodel.lowercased().starts(with: self.searchText.lowercased())){
+                if (makemodel.lowercased().starts(with: self.searchText.lowercased())
+                    || model.lowercased().starts(with: self.searchText.lowercased())){
                     createcard(foundCarInfo!)
                 }
             }
@@ -145,16 +157,21 @@ class ViewSearch: UITableViewController {
         self.filteredcards.append(card)
     }
     
+    func defCard(_ x: Int){
+        //Delegate
+        self.filteredcards[x].delegate = self.mainController
+        //Display
+        self.filteredcards[x].setDisplayText()
+    }
+    
     func dispCardAct(_ x: Int){
         if mySearchController.isActive{
             //Dismiss
             self.mySearchController.dismiss(animated: false, completion: {
                 //Segue
                 self.present(self.filteredcards[x], animated: true)
-                //Delegate
-                self.filteredcards[x].delegate = self.mainController
-                //Display
-                self.filteredcards[x].setDisplayText()
+                //Define
+                self.defCard(x)
             })
         }
     }
