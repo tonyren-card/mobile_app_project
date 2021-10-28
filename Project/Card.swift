@@ -26,6 +26,8 @@ class Card: UIViewController {
     private var latestLaunchStr: String = " "
     private var carImgPath: String = " "
     var index: Int? = -1
+    var visited: Bool = false
+    var added: Bool = false
     
     //Definition of the labels
     @IBOutlet weak var carName: UILabel?
@@ -40,7 +42,7 @@ class Card: UIViewController {
     @IBOutlet weak var latestLaunch: UILabel?
     @IBOutlet weak var carImg: UIImageView?
     
-    @IBOutlet weak var addCarBtn: UIButton!
+    @IBOutlet weak var addCarBtn: UIButton?
     
     var delegate: CardDelegate?
     
@@ -103,20 +105,27 @@ class Card: UIViewController {
             
         self.carImg?.image = UIImage(named: self.carImgPath)
         
+        updateAddDelButton()
+        
         if self.carName?.text == "Car not found" {
-            addCarBtn.removeFromSuperview()
+            addCarBtn?.removeFromSuperview()
         }
+    }
+    
+    func updateAddDelButton(){
+        self.addCarBtn?.setTitle(self.added ? "Delete Card from Library" : "Add Card to Library", for: .normal)
     }
     
     @IBAction func addCard(_ sender: Any) {
         
-        if self.addCarBtn.titleLabel?.text == "Add Card to Library"{
-            self.addCarBtn.setTitle("Delete Card from Library", for: .normal)
+        if !self.added{
+            self.added = true
             delegate?.addCard(cardObject: self)
         }else{
-            self.addCarBtn.setTitle("Add Card to Library", for: .normal)
+            self.added = false
             delegate?.deleteCard(at: self.index!)
         }
+        updateAddDelButton()
     }
     
 
