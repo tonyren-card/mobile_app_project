@@ -69,11 +69,13 @@ class ViewSearch: UITableViewController {
     
     //Swipe to left action
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        self.defCard(indexPath.row)
         let action = UIContextualAction(style: .normal, title: "Add to Library") { [weak self] (action, view, completionHandler) in self?.mainController?.addCard(cardObject: (self?.filteredcards[indexPath.row])!)
             completionHandler(true)
         }
         action.backgroundColor = .systemBlue
+        
+        self.defCard(indexPath.row)
+        self.filteredcards[indexPath.row].added = true
         
         return UISwipeActionsConfiguration(actions: [action])
     }
@@ -170,6 +172,8 @@ class ViewSearch: UITableViewController {
             self.mySearchController.dismiss(animated: false, completion: {
                 //Segue
                 self.present(self.filteredcards[x], animated: true)
+                //Set variable
+                self.filteredcards[x].visited = true
                 //Define
                 self.defCard(x)
             })

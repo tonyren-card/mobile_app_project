@@ -76,7 +76,10 @@ extension ViewController: UITableViewDelegate{
             //Segue
             self.present(self.cards[x], animated: true)
             //Display
-            self.cards[x].setDisplayText()
+            if !self.cards[x].visited {
+                self.cards[x].visited = true
+                self.cards[x].setDisplayText()
+            }
         })
     }
     
