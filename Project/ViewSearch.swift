@@ -50,6 +50,7 @@ class ViewSearch: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         dispCardAct(indexPath.row)
+        filteredcards[indexPath.row].updateAddDelButton()
     }
     
     //Set up number of rows
@@ -69,16 +70,20 @@ class ViewSearch: UITableViewController {
     
     //Swipe to left action
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let action = UIContextualAction(style: .normal, title: "Add to Library") { [weak self] (action, view, completionHandler) in self?.mainController?.addCard(cardObject: (self?.filteredcards[indexPath.row])!)
-            completionHandler(true)
+        if !self.filteredcards[indexPath.row].added {
+            let action = UIContextualAction(style: .normal, title: "Add to Library") { [weak self] (action, view, completionHandler) in self?.mainController?.addCard(cardObject: (self?.filteredcards[indexPath.row])!)
+                completionHandler(true)
+            }
+            action.backgroundColor = .systemBlue
+        
+            self.defCard(indexPath.row)
+        
+            return UISwipeActionsConfiguration(actions: [action])
         }
-        action.backgroundColor = .systemBlue
-        
-        self.defCard(indexPath.row)
-        self.filteredcards[indexPath.row].added = true
-        
-        return UISwipeActionsConfiguration(actions: [action])
+        return nil
     }
+    
+    
     
     
     func scrapeData(){
@@ -115,7 +120,9 @@ class ViewSearch: UITableViewController {
                 let model = foundCarInfo![1]
                 let makemodel = "\(foundCarInfo![0]) \(model)"
                 
-                if (makemodel.lowercased().starts(with: self.searchText.lowercased())
+                if let existing = mainController?.getCard(equals: makemodel) {
+                    self.filteredcards.append(existing)
+                }else if (makemodel.lowercased().starts(with: self.searchText.lowercased())
                     || model.lowercased().starts(with: self.searchText.lowercased())){
                     createcard(foundCarInfo!)
                 }
@@ -141,20 +148,20 @@ class ViewSearch: UITableViewController {
     private func createcard(_ data: [String]){
         //Data gets presented
         var sales = ""
-        if let floatSales = Float(String((data[2]))){
+        if let floatSales = Float(data[2]){
             sales = String(format: "%.0f units", floatSales*1000)
         }else{
-            sales = String((data[2]))
+            sales = data[2]
         }
         
         var price = ""
-        if let floatPrice = Float(String((data[5]))){
+        if let floatPrice = Float(data[5]){
             price = String(format: "$%.2f", floatPrice*1000)
         }else{
-            price = String((data[5]))
+            price = data[5]
         }
         
-        let card = Card(carName: "\(String((data[0]))) \(String((data[1])))", carSales: sales, carType: String((data[4])), carPrice: price, carHP: String((data[7])), carEngine: String((data[6])), carWB: String((data[8])), carFuel: "\(String((data[13]))) mpg", carCap: String((data[12])), carLaunch: String((data[14])), carImg: String((data[16])))
+        let card = Card(carName: "\(data[0]) \(data[1])", carSales: sales, carType: data[4], carPrice: price, carHP: data[7], carEngine: data[6], carWB: data[8], carFuel: "\(data[13]) mpg", carCap: data[12], carLaunch: data[14], carImg: data[16])
         
         self.filteredcards.append(card)
     }
@@ -173,9 +180,11 @@ class ViewSearch: UITableViewController {
                 //Segue
                 self.present(self.filteredcards[x], animated: true)
                 //Set variable
-                self.filteredcards[x].visited = true
-                //Define
-                self.defCard(x)
+                if !self.filteredcards[x].visited {
+                    self.filteredcards[x].visited = true
+                    //Define
+                    self.defCard(x)
+                }
             })
         }
     }

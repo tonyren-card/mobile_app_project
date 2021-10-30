@@ -11,6 +11,7 @@ import UIKit
 protocol CardDelegate {
     func addCard(cardObject: Card)
     func deleteCard(at index: Int)
+    func getCard(equals car: String) -> Card?
 }
 
 class ViewController: UIViewController, CardDelegate {
@@ -34,6 +35,7 @@ class ViewController: UIViewController, CardDelegate {
     }
     
     func addCard(cardObject: Card){
+        cardObject.added = true
         cardObject.index = cards.count
         cards.append(cardObject)
         
@@ -52,6 +54,16 @@ class ViewController: UIViewController, CardDelegate {
         tableView.endUpdates()
     }
     
+    func getCard(equals car: String) -> Card?{
+        for card in cards {
+            if (card.getCarName() == car){
+                return card
+            }
+        }
+        
+        return nil
+    }
+    
     private func updateCardsIndices(at index: Int){
         if index > cards.count-1 {
             return
@@ -68,6 +80,7 @@ extension ViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         dispCardAct(indexPath.row)
+        cards[indexPath.row].updateAddDelButton()
     }
     
     func dispCardAct(_ x: Int){
@@ -104,6 +117,7 @@ extension ViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if editingStyle == UITableViewCell.EditingStyle.delete {
+            cards[indexPath.row].added = false
             cards.remove(at: indexPath.row)
             updateCardsIndices(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)

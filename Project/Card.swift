@@ -105,8 +105,6 @@ class Card: UIViewController {
             
         self.carImg?.image = UIImage(named: self.carImgPath)
         
-        updateAddDelButton()
-        
         if self.carName?.text == "Car not found" {
             addCarBtn?.removeFromSuperview()
         }
@@ -119,7 +117,6 @@ class Card: UIViewController {
     @IBAction func addCard(_ sender: Any) {
         
         if !self.added{
-            self.added = true
             delegate?.addCard(cardObject: self)
         }else{
             self.added = false
