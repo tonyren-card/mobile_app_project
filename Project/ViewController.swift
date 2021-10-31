@@ -80,7 +80,6 @@ extension ViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         dispCardAct(indexPath.row)
-        cards[indexPath.row].updateAddDelButton()
     }
     
     func dispCardAct(_ x: Int){
@@ -93,6 +92,7 @@ extension ViewController: UITableViewDelegate{
                 self.cards[x].visited = true
                 self.cards[x].setDisplayText()
             }
+            self.cards[x].updateAddDelButton()
         })
     }
     
