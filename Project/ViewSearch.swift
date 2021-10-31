@@ -50,7 +50,6 @@ class ViewSearch: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         dispCardAct(indexPath.row)
-        filteredcards[indexPath.row].updateAddDelButton()
     }
     
     //Set up number of rows
@@ -185,6 +184,7 @@ class ViewSearch: UITableViewController {
                     //Define
                     self.defCard(x)
                 }
+                self.filteredcards[x].updateAddDelButton()
             })
         }
     }
