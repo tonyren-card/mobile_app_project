@@ -27,6 +27,8 @@
 		B0E5FE9E26585EBE00F70EDB /* Car_sales.csv in Resources */ = {isa = PBXBuildFile; fileRef = B0E5FE9D26585EBE00F70EDB /* Car_sales.csv */; };
 		B0EF000227021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B0EF000127021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg */; };
 		B0F7D1B925C7009A00E6647D /* ViewSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F7D1B825C7009A00E6647D /* ViewSearch.swift */; };
+		B0FC05162731D3F30054D62B /* WelcomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC05152731D3F30054D62B /* WelcomeContentViewController.swift */; };
+		B0FC05182731D6540054D62B /* WelcomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0FC05172731D6540054D62B /* WelcomePageViewController.swift */; };
 		B0FEC14225583B3A000A90D8 /* Card.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0FEC14025583B3A000A90D8 /* Card.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +55,8 @@
 		B0E5FE9D26585EBE00F70EDB /* Car_sales.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Car_sales.csv; sourceTree = "<group>"; };
 		B0EF000127021B7500AE7E1C /* 2021-Honda-Accord-Hybrid-1-1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "2021-Honda-Accord-Hybrid-1-1.jpeg"; path = "images/2021-Honda-Accord-Hybrid-1-1.jpeg"; sourceTree = SOURCE_ROOT; };
 		B0F7D1B825C7009A00E6647D /* ViewSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSearch.swift; sourceTree = "<group>"; };
+		B0FC05152731D3F30054D62B /* WelcomeContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeContentViewController.swift; sourceTree = "<group>"; };
+		B0FC05172731D6540054D62B /* WelcomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageViewController.swift; sourceTree = "<group>"; };
 		B0FEC14125583B3A000A90D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Card.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +101,8 @@
 				B0FEC14025583B3A000A90D8 /* Card.storyboard */,
 				B00D7779268656A00094C4CF /* 03C_my22_civic_sedan_features_exterior_01.webp */,
 				B0B3A21824AE7EA900403182 /* Assets.xcassets */,
+				B0FC05152731D3F30054D62B /* WelcomeContentViewController.swift */,
+				B0FC05172731D6540054D62B /* WelcomePageViewController.swift */,
 				B0B3A21A24AE7EA900403182 /* LaunchScreen.storyboard */,
 				B0B3A21D24AE7EA900403182 /* Info.plist */,
 				B0E5FE9D26585EBE00F70EDB /* Car_sales.csv */,
@@ -197,7 +203,9 @@
 			files = (
 				B0B3A21424AE7EA600403182 /* ViewController.swift in Sources */,
 				B0B3A21024AE7EA600403182 /* AppDelegate.swift in Sources */,
+				B0FC05182731D6540054D62B /* WelcomePageViewController.swift in Sources */,
 				B0D288F4259E23BC0099CE6E /* ViewCard.swift in Sources */,
+				B0FC05162731D3F30054D62B /* WelcomeContentViewController.swift in Sources */,
 				B0B3A21224AE7EA600403182 /* SceneDelegate.swift in Sources */,
 				B0F7D1B925C7009A00E6647D /* ViewSearch.swift in Sources */,
 				B055CC9A2677FD4200384282 /* Card.swift in Sources */,

@@ -9,6 +9,76 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Welcome Page View Controller-->
+        <scene sceneID="PJZ-G4-Xy5">
+            <objects>
+                <pageViewController storyboardIdentifier="WelcomeController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="jgj-bU-0mp" customClass="WelcomePageViewController" customModule="CARD" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vjb-ot-cet" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2973" y="-1097"/>
+        </scene>
+        <!--Welcome Content View Controller-->
+        <scene sceneID="cP8-a2-M0s">
+            <objects>
+                <viewController storyboardIdentifier="WelcomeContentViewController" id="bfZ-0j-ZcG" customClass="WelcomeContentViewController" customModule="CARD" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vZA-vP-I5a">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xMM-43-p8M">
+                                <rect key="frame" x="60" y="129.33333333333331" width="308" height="667.33333333333348"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="xMM-43-p8M" secondAttribute="height" multiplier="9:19.5" id="IsI-0c-Ae1"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iv1-7a-3am">
+                                <rect key="frame" x="348" y="839" width="54" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Next"/>
+                                <connections>
+                                    <action selector="nextButtonTapped:" destination="bfZ-0j-ZcG" eventType="touchUpInside" id="dxe-ZQ-yz9"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xax-PR-7E7">
+                                <rect key="frame" x="147" y="84" width="134" height="40.666666666666657"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="wYf-ii-UrZ">
+                                <rect key="frame" x="127.66666666666667" y="826.66666666666663" width="172.66666666666663" height="25"/>
+                                <color key="pageIndicatorTintColor" systemColor="systemFillColor"/>
+                                <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
+                            </pageControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="xv8-gr-9kw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xMM-43-p8M" firstAttribute="centerY" secondItem="vZA-vP-I5a" secondAttribute="centerY" id="4VO-mV-hgF"/>
+                            <constraint firstItem="wYf-ii-UrZ" firstAttribute="centerX" secondItem="vZA-vP-I5a" secondAttribute="centerX" id="51m-gu-npL"/>
+                            <constraint firstItem="Xax-PR-7E7" firstAttribute="centerX" secondItem="vZA-vP-I5a" secondAttribute="centerX" id="8lu-Mq-2ZS"/>
+                            <constraint firstItem="Xax-PR-7E7" firstAttribute="top" secondItem="xv8-gr-9kw" secondAttribute="top" constant="40" id="Pav-z2-laP"/>
+                            <constraint firstItem="xv8-gr-9kw" firstAttribute="bottom" secondItem="Iv1-7a-3am" secondAttribute="bottom" constant="22" id="Wmg-sy-6Mp"/>
+                            <constraint firstItem="xMM-43-p8M" firstAttribute="centerY" secondItem="vZA-vP-I5a" secondAttribute="centerY" id="arL-b6-Fsd"/>
+                            <constraint firstItem="Iv1-7a-3am" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xv8-gr-9kw" secondAttribute="leading" symbolic="YES" id="d6z-mp-AHF"/>
+                            <constraint firstItem="xv8-gr-9kw" firstAttribute="trailing" secondItem="Iv1-7a-3am" secondAttribute="trailing" constant="26" id="h9x-0X-Y2x"/>
+                            <constraint firstItem="xv8-gr-9kw" firstAttribute="trailing" secondItem="xMM-43-p8M" secondAttribute="trailing" constant="60" id="lt1-Fs-KFN"/>
+                            <constraint firstItem="wYf-ii-UrZ" firstAttribute="top" secondItem="xMM-43-p8M" secondAttribute="bottom" constant="30" id="pR4-y0-aO1"/>
+                            <constraint firstItem="xMM-43-p8M" firstAttribute="leading" secondItem="xv8-gr-9kw" secondAttribute="leading" constant="60" id="rLi-J3-n5o"/>
+                            <constraint firstItem="xMM-43-p8M" firstAttribute="centerX" secondItem="vZA-vP-I5a" secondAttribute="centerX" id="vuh-WC-bnq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentImageView" destination="xMM-43-p8M" id="R9G-Pt-2dF"/>
+                        <outlet property="forwardButton" destination="Iv1-7a-3am" id="VEy-nb-7NG"/>
+                        <outlet property="headingLabel" destination="Xax-PR-7E7" id="6Ig-h0-4bH"/>
+                        <outlet property="pageControl" destination="wYf-ii-UrZ" id="nV5-wd-eD4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Gm-mK-8LG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2181.3084112149531" y="-1098.2721382289417"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="rTs-pJ-Suv">
             <objects>
@@ -391,6 +461,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemFillColor">
+            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
