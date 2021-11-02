@@ -28,6 +28,19 @@ class ViewController: UIViewController, CardDelegate {
         tableView.dataSource = self
     }
     
+    //for first time users displaying welcome screen
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let defaults = UserDefaults.standard
+        let hasViewedWelcome = defaults.bool(forKey: "hasViewedWelcome")
+        if hasViewedWelcome { return }
+        
+        if let pageViewController = storyboard?.instantiateViewController(withIdentifier: "WelcomeController") as? WelcomePageViewController {
+            present(pageViewController, animated: true, completion: nil)
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ViewSearch{
             vc.mainController = self
