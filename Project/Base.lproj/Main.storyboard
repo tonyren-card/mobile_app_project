@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hiu-i8-2zt">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hiu-i8-2zt">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,7 +32,11 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iv1-7a-3am">
-                                <rect key="frame" x="348" y="839" width="54" height="31"/>
+                                <rect key="frame" x="337.33333333333331" y="839" width="64.666666666666686" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64.670000000000002" id="2ds-7O-VRC"/>
+                                    <constraint firstAttribute="height" constant="31" id="57L-xd-evp"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Next"/>
                                 <connections>
@@ -40,13 +44,16 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Heading" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xax-PR-7E7">
-                                <rect key="frame" x="147" y="84" width="134" height="40.666666666666657"/>
+                                <rect key="frame" x="147" y="66" width="134" height="40.666666666666657"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40.670000000000002" id="zbC-uq-KLE"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="wYf-ii-UrZ">
-                                <rect key="frame" x="127.66666666666667" y="826.66666666666663" width="172.66666666666663" height="25"/>
+                                <rect key="frame" x="127.66666666666667" y="811.66666666666663" width="172.66666666666663" height="25"/>
                                 <color key="pageIndicatorTintColor" systemColor="systemFillColor"/>
                                 <color key="currentPageIndicatorTintColor" systemColor="labelColor"/>
                             </pageControl>
@@ -56,15 +63,14 @@
                         <constraints>
                             <constraint firstItem="xMM-43-p8M" firstAttribute="centerY" secondItem="vZA-vP-I5a" secondAttribute="centerY" id="4VO-mV-hgF"/>
                             <constraint firstItem="wYf-ii-UrZ" firstAttribute="centerX" secondItem="vZA-vP-I5a" secondAttribute="centerX" id="51m-gu-npL"/>
+                            <constraint firstItem="Xax-PR-7E7" firstAttribute="top" secondItem="xv8-gr-9kw" secondAttribute="top" constant="22" id="7fR-Wh-ypg"/>
+                            <constraint firstItem="xMM-43-p8M" firstAttribute="top" secondItem="Xax-PR-7E7" secondAttribute="bottom" constant="22.670000000000002" id="8J5-7U-bMG"/>
                             <constraint firstItem="Xax-PR-7E7" firstAttribute="centerX" secondItem="vZA-vP-I5a" secondAttribute="centerX" id="8lu-Mq-2ZS"/>
-                            <constraint firstItem="Xax-PR-7E7" firstAttribute="top" secondItem="xv8-gr-9kw" secondAttribute="top" constant="40" id="Pav-z2-laP"/>
                             <constraint firstItem="xv8-gr-9kw" firstAttribute="bottom" secondItem="Iv1-7a-3am" secondAttribute="bottom" constant="22" id="Wmg-sy-6Mp"/>
                             <constraint firstItem="xMM-43-p8M" firstAttribute="centerY" secondItem="vZA-vP-I5a" secondAttribute="centerY" id="arL-b6-Fsd"/>
-                            <constraint firstItem="Iv1-7a-3am" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xv8-gr-9kw" secondAttribute="leading" symbolic="YES" id="d6z-mp-AHF"/>
                             <constraint firstItem="xv8-gr-9kw" firstAttribute="trailing" secondItem="Iv1-7a-3am" secondAttribute="trailing" constant="26" id="h9x-0X-Y2x"/>
-                            <constraint firstItem="xv8-gr-9kw" firstAttribute="trailing" secondItem="xMM-43-p8M" secondAttribute="trailing" constant="60" id="lt1-Fs-KFN"/>
-                            <constraint firstItem="wYf-ii-UrZ" firstAttribute="top" secondItem="xMM-43-p8M" secondAttribute="bottom" constant="30" id="pR4-y0-aO1"/>
-                            <constraint firstItem="xMM-43-p8M" firstAttribute="leading" secondItem="xv8-gr-9kw" secondAttribute="leading" constant="60" id="rLi-J3-n5o"/>
+                            <constraint firstItem="xv8-gr-9kw" firstAttribute="bottom" secondItem="wYf-ii-UrZ" secondAttribute="bottom" constant="55.329999999999998" id="hVj-VD-l8X"/>
+                            <constraint firstItem="wYf-ii-UrZ" firstAttribute="top" secondItem="xMM-43-p8M" secondAttribute="bottom" constant="15" id="pR4-y0-aO1"/>
                             <constraint firstItem="xMM-43-p8M" firstAttribute="centerX" secondItem="vZA-vP-I5a" secondAttribute="centerX" id="vuh-WC-bnq"/>
                         </constraints>
                     </view>

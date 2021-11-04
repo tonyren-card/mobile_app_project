@@ -11,7 +11,6 @@ import UIKit
 class WelcomePageViewController: UIPageViewController {
     
     var pageHeadings = ["Getting Started", "Search Page", "Car in a Card", "All Set"]
-    var pageContent = ["A", "B", "C", "D"]
     var pageImages = ["Welcome_1", "Welcome_2", "Welcome_3", "Welcome_4"]
 
     override func viewDidLoad() {
@@ -36,7 +35,6 @@ class WelcomePageViewController: UIPageViewController {
         if let pageContentViewController = storyboard?.instantiateViewController(withIdentifier: "WelcomeContentViewController") as? WelcomeContentViewController {
             
             pageContentViewController.heading = self.pageHeadings[index]
-            pageContentViewController.content = self.pageContent[index]
             pageContentViewController.imageFile = self.pageImages[index]
             pageContentViewController.index = index
             

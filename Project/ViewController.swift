@@ -123,7 +123,7 @@ extension ViewController: UITableViewDataSource{
         cellLblCar.text = "\(cards[indexPath.row].getCarName())"
         
         let cellImgCar = cell.contentView.viewWithTag(12) as! UIImageView
-        cellImgCar.image = UIImage(named: cards[indexPath.row].getImgPath())
+        cellImgCar.load(url: URL(string: cards[indexPath.row].getImgPath())!)
         
         return cell
     }

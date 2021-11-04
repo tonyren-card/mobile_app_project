@@ -11,7 +11,6 @@ import UIKit
 class WelcomeContentViewController: UIViewController {
     
     @IBOutlet weak var headingLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var contentImageView: UIImageView!
     
     var index = 0
