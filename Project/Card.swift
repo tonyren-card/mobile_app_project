@@ -10,6 +10,14 @@
 
 import UIKit
 
+struct APIResponse: Codable {
+    let images_results: [Result]
+}
+
+struct Result: Codable{
+    let original: String
+}
+
 class Card: UIViewController {
     
     @IBOutlet weak var cardView: UIView!
@@ -28,6 +36,7 @@ class Card: UIViewController {
     var index: Int? = -1
     var visited: Bool = false
     var added: Bool = false
+    var hasLoadedAPI: Bool = false
     
     //Definition of the labels
     @IBOutlet weak var carName: UILabel?
@@ -99,11 +108,14 @@ class Card: UIViewController {
         self.fuelCap?.text = self.fuelCapStr
         self.latestLaunch?.text = self.latestLaunchStr
         
-        if (self.carImgPath == ""){
-            self.carImgPath = "ordinary_car.png"
-        }
+//        if (self.carImgPath == ""){
+//            self.carImgPath = "ordinary_car.png"
+//        }
             
-        self.carImg?.image = UIImage(named: self.carImgPath)
+//        self.carImg?.image = UIImage(named: self.carImgPath)
+        loadAPIImageLink()
+        
+        self.carImg?.load(url: URL(string: self.carImgPath)!)
         
         if self.carName?.text == "Car not found" {
             addCarBtn?.removeFromSuperview()
@@ -125,5 +137,58 @@ class Card: UIViewController {
         updateAddDelButton()
     }
     
+    func loadAPIImageLink(){
+        if self.hasLoadedAPI {
+            return
+        }
+        
+        self.hasLoadedAPI = true
+        
+        print("Loading API...")
+        let carNameStrip = self.carNameStr.replacingOccurrences(of: " ", with: "+")
+        let apiString = "https:serpapi.com/search.json?q=\(carNameStrip)&tbm=isch&ijn=0&api_key=8aa8f4d59b7bead3ea8e23f2a1b321ceff9e0e4d2678d33107ca876e632638e0"
+        
+        guard let api = URL(string: apiString) else{
+            print("API failed!")
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: api) { [weak self] data, _, error in
+            guard let data = data, error == nil else{
+                print("api failed!")
+                return
+            }
+            
+            print("Found API!")
+            
+            do {
+                let jsonResult = try JSONDecoder().decode(APIResponse.self, from: data)
+                DispatchQueue.main.async {
+                    self?.carImgPath = jsonResult.images_results[0].original
+                    print(self!.carImgPath)
+                }
+            } catch  {
+                print(error)
+            }
+        }
+        
+        task.resume()
+        
+        
+    }
 
+}
+
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
 }
