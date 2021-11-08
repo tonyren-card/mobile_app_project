@@ -12,6 +12,7 @@ protocol CardDelegate {
     func addCard(cardObject: Card)
     func deleteCard(at index: Int)
     func getCard(equals car: String) -> Card?
+    func reloadTableView()
 }
 
 class ViewController: UIViewController, CardDelegate {
@@ -75,6 +76,10 @@ class ViewController: UIViewController, CardDelegate {
         }
         
         return nil
+    }
+    
+    func reloadTableView(){
+        self.tableView.reloadData()
     }
     
     private func updateCardsIndices(at index: Int){
