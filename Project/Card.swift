@@ -108,12 +108,14 @@ class Card: UIViewController {
         self.fuelCap?.text = self.fuelCapStr
         self.latestLaunch?.text = self.latestLaunchStr
         
-//        if (self.carImgPath == ""){
-//            self.carImgPath = "ordinary_car.png"
-//        }
+        if (self.carImgPath == ""){
+            self.carImgPath = "ordinary_car.png"
+        }
             
 //        self.carImg?.image = UIImage(named: self.carImgPath)
         loadAPIImageLink()
+        print("Loading from setDisplayText(): \(self.carImgPath)")
+        
         
         self.carImg?.load(url: URL(string: self.carImgPath)!)
         
@@ -146,6 +148,7 @@ class Card: UIViewController {
         
         print("Loading API...")
         let carNameStrip = self.carNameStr.replacingOccurrences(of: " ", with: "+")
+        print(carNameStrip)
         let apiString = "https:serpapi.com/search.json?q=\(carNameStrip)&tbm=isch&ijn=0&api_key=8aa8f4d59b7bead3ea8e23f2a1b321ceff9e0e4d2678d33107ca876e632638e0"
         
         guard let api = URL(string: apiString) else{
@@ -153,7 +156,7 @@ class Card: UIViewController {
             return
         }
         
-        let task = URLSession.shared.dataTask(with: api) { [weak self] data, _, error in
+        URLSession.shared.dataTask(with: api){ [weak self] data, _, error in
             guard let data = data, error == nil else{
                 print("api failed!")
                 return
@@ -166,13 +169,13 @@ class Card: UIViewController {
                 DispatchQueue.main.async {
                     self?.carImgPath = jsonResult.images_results[0].original
                     print(self!.carImgPath)
+                    self!.carImg?.load(url: URL(string: self!.carImgPath)!)
+                    self!.delegate?.reloadTableView()
                 }
             } catch  {
                 print(error)
             }
-        }
-        
-        task.resume()
+        }.resume()
         
         
     }
