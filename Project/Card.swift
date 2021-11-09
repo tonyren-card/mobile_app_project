@@ -34,9 +34,9 @@ class Card: UIViewController {
     private var latestLaunchStr: String = " "
     private var carImgPath: String = " "
     var index: Int? = -1
-    var visited: Bool = false
     var added: Bool = false
     var hasLoadedAPI: Bool = false
+    var hasLoadedImage: Bool = false
     
     //Definition of the labels
     @IBOutlet weak var carName: UILabel?
@@ -56,8 +56,13 @@ class Card: UIViewController {
     var delegate: CardDelegate?
     
     override func viewDidLoad() {
+        setDisplayText()
         super.viewDidLoad()
         definesPresentationContext = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     init(){
@@ -113,11 +118,11 @@ class Card: UIViewController {
         }
             
 //        self.carImg?.image = UIImage(named: self.carImgPath)
+        
         loadAPIImageLink()
-        print("Loading from setDisplayText(): \(self.carImgPath)")
+//        print("Loading from setDisplayText(): \(self.carImgPath)")
         
-        
-        self.carImg?.load(url: URL(string: self.carImgPath)!)
+//        self.carImg?.load(url: URL(string: self.carImgPath)!)
         
         if self.carName?.text == "Car not found" {
             addCarBtn?.removeFromSuperview()
@@ -141,6 +146,9 @@ class Card: UIViewController {
     
     func loadAPIImageLink(){
         if self.hasLoadedAPI {
+            if !hasLoadedImage {
+                loadImageView()
+            }
             return
         }
         
@@ -169,8 +177,9 @@ class Card: UIViewController {
                 DispatchQueue.main.async {
                     self?.carImgPath = jsonResult.images_results[0].original
                     print(self!.carImgPath)
-                    self!.carImg?.load(url: URL(string: self!.carImgPath)!)
-                    self!.delegate?.reloadTableView()
+                    if self!.isBeingPresented {
+                        self?.loadImageView()
+                    }
                 }
             } catch  {
                 print(error)
@@ -179,19 +188,21 @@ class Card: UIViewController {
         
         
     }
-
-}
-
-extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
-                }
-            }
+    
+    func loadImageView(){
+        guard let url = URL(string: self.carImgPath) else {
+            return
         }
+        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            DispatchQueue.main.async {
+                let image = UIImage(data: data)
+                self?.carImg?.image = image
+                self?.hasLoadedImage = true
+            }
+        }.resume()
     }
+
 }

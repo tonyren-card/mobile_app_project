@@ -75,7 +75,11 @@ class ViewSearch: UITableViewController {
             }
             action.backgroundColor = .systemBlue
         
-            self.defCard(indexPath.row)
+            //Delegate
+            self.filteredcards[indexPath.row].delegate = self.mainController
+            
+            //Load API
+            self.filteredcards[indexPath.row].loadAPIImageLink()
         
             return UISwipeActionsConfiguration(actions: [action])
         }
@@ -119,11 +123,13 @@ class ViewSearch: UITableViewController {
                 let model = foundCarInfo![1]
                 let makemodel = "\(foundCarInfo![0]) \(model)"
                 
-                if let existing = mainController?.getCard(equals: makemodel) {
-                    self.filteredcards.append(existing)
-                }else if (makemodel.lowercased().starts(with: self.searchText.lowercased())
-                    || model.lowercased().starts(with: self.searchText.lowercased())){
-                    createcard(foundCarInfo!)
+                if (makemodel.lowercased().starts(with: self.searchText.lowercased())
+                      || model.lowercased().starts(with: self.searchText.lowercased())){
+                    if let existing = mainController?.getCard(equals: makemodel) {
+                        self.filteredcards.append(existing)
+                    }else{
+                        createcard(foundCarInfo!)
+                    }
                 }
             }
             
@@ -165,25 +171,14 @@ class ViewSearch: UITableViewController {
         self.filteredcards.append(card)
     }
     
-    func defCard(_ x: Int){
-        //Delegate
-        self.filteredcards[x].delegate = self.mainController
-        //Display
-        self.filteredcards[x].setDisplayText()
-    }
-    
     func dispCardAct(_ x: Int){
         if mySearchController.isActive{
             //Dismiss
             self.mySearchController.dismiss(animated: false, completion: {
                 //Segue
                 self.present(self.filteredcards[x], animated: true)
-                //Set variable
-                if !self.filteredcards[x].visited {
-                    self.filteredcards[x].visited = true
-                    //Define
-                    self.defCard(x)
-                }
+                //Delegate
+                self.filteredcards[x].delegate = self.mainController
                 self.filteredcards[x].updateAddDelButton()
             })
         }
