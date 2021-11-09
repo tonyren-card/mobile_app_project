@@ -106,10 +106,10 @@ extension ViewController: UITableViewDelegate{
             //Segue
             self.present(self.cards[x], animated: true)
             //Display
-            if !self.cards[x].visited {
-                self.cards[x].visited = true
-                self.cards[x].setDisplayText()
-            }
+//            if !self.cards[x].visited {
+//                self.cards[x].visited = true
+//                self.cards[x].setDisplayText()
+//            }
             self.cards[x].updateAddDelButton()
         })
     }
@@ -128,7 +128,7 @@ extension ViewController: UITableViewDataSource{
         cellLblCar.text = "\(cards[indexPath.row].getCarName())"
         
         let cellImgCar = cell.contentView.viewWithTag(12) as! UIImageView
-        cellImgCar.load(url: URL(string: cards[indexPath.row].getImgPath())!)
+        cellImgCar.load(url: cards[indexPath.row].getImgPath())
         
         return cell
     }
@@ -140,5 +140,22 @@ extension ViewController: UITableViewDataSource{
             updateCardsIndices(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
+    }
+}
+
+extension UIImageView {
+    func load(url path: String) {
+        guard let url = URL(string: path) else {
+            return
+        }
+        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            DispatchQueue.main.async {
+                let image = UIImage(data: data)
+                self?.image = image
+            }
+        }.resume()
     }
 }
