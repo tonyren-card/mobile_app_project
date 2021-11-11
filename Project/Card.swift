@@ -63,6 +63,9 @@ class Card: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if self.hasLoadedAPI && self.carImg?.image==nil{
+            loadImageView()
+        }
     }
     
     init(){
@@ -120,6 +123,7 @@ class Card: UIViewController {
 //        self.carImg?.image = UIImage(named: self.carImgPath)
         
         loadAPIImageLink()
+//        loadImageView()
 //        print("Loading from setDisplayText(): \(self.carImgPath)")
         
 //        self.carImg?.load(url: URL(string: self.carImgPath)!)
@@ -146,13 +150,8 @@ class Card: UIViewController {
     
     func loadAPIImageLink(){
         if self.hasLoadedAPI {
-            if !hasLoadedImage {
-                loadImageView()
-            }
             return
         }
-        
-        self.hasLoadedAPI = true
         
         print("Loading API...")
         let carNameStrip = self.carNameStr.replacingOccurrences(of: " ", with: "+")
@@ -177,8 +176,12 @@ class Card: UIViewController {
                 DispatchQueue.main.async {
                     self?.carImgPath = jsonResult.images_results[0].original
                     print(self!.carImgPath)
-                    if self!.isBeingPresented {
+                    self?.hasLoadedAPI = true
+                    if self?.carImg?.image == nil {
+                        print("Presenting")
                         self?.loadImageView()
+                    } else {
+                        print("Image not empty")
                     }
                 }
             } catch  {
@@ -190,16 +193,20 @@ class Card: UIViewController {
     }
     
     func loadImageView(){
+        print("Loading image...")
         guard let url = URL(string: self.carImgPath) else {
+            print("Image url failed")
             return
         }
         URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
             guard let data = data, error == nil else {
+                print("Image load failure")
                 return
             }
             DispatchQueue.main.async {
                 let image = UIImage(data: data)
                 self?.carImg?.image = image
+                print("Image loaded!")
                 self?.hasLoadedImage = true
             }
         }.resume()
