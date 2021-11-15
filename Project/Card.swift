@@ -50,12 +50,15 @@ class Card: UIViewController {
     @IBOutlet weak var fuelCap: UILabel?
     @IBOutlet weak var latestLaunch: UILabel?
     @IBOutlet weak var carImg: UIImageView?
+    @IBOutlet weak var carImgSpinner: UIActivityIndicatorView?
     
     @IBOutlet weak var addCarBtn: UIButton?
     
     var delegate: CardDelegate?
     
     override func viewDidLoad() {
+        self.carImgSpinner?.hidesWhenStopped = true
+        self.carImgSpinner?.startAnimating()
         setDisplayText()
         super.viewDidLoad()
         definesPresentationContext = true
@@ -208,6 +211,7 @@ class Card: UIViewController {
                 self?.carImg?.image = image
                 print("Image loaded!")
                 self?.hasLoadedImage = true
+                self?.carImgSpinner?.stopAnimating()
             }
         }.resume()
     }

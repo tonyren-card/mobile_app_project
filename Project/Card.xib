@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="addCarBtn" destination="hFi-Oq-XG8" id="KR8-70-V9y"/>
                 <outlet property="carImg" destination="dLn-7i-lfp" id="vVq-df-1P5"/>
+                <outlet property="carImgSpinner" destination="ain-YH-4Iw" id="WBl-IG-T72"/>
                 <outlet property="carName" destination="djM-kW-S9I" id="9Gi-xz-ruq"/>
                 <outlet property="carType" destination="jno-8G-Oy4" id="sdI-P0-VZ8"/>
                 <outlet property="cardView" destination="i5M-Pr-FkT" id="eo8-rc-Fks"/>
@@ -152,6 +153,9 @@
                                         <constraint firstAttribute="height" constant="171" id="eqJ-bL-Hwe"/>
                                     </constraints>
                                 </imageView>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ain-YH-4Iw">
+                                    <rect key="frame" x="195.66666666666666" y="92" width="37" height="37"/>
+                                </activityIndicatorView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
@@ -169,6 +173,7 @@
                                 <constraint firstItem="hRL-W7-KPm" firstAttribute="top" secondItem="iGU-ya-3aW" secondAttribute="bottom" constant="8" symbolic="YES" id="KfE-Gt-UO0"/>
                                 <constraint firstItem="bj5-tp-0P8" firstAttribute="top" secondItem="E3Y-OQ-QgX" secondAttribute="bottom" constant="8" symbolic="YES" id="LgA-QP-ymO"/>
                                 <constraint firstItem="LDD-cu-reI" firstAttribute="leading" secondItem="APu-zn-7q0" secondAttribute="leading" constant="15" id="M7a-A3-eZj"/>
+                                <constraint firstItem="ain-YH-4Iw" firstAttribute="centerX" secondItem="dLn-7i-lfp" secondAttribute="centerX" id="Nci-3J-t8j"/>
                                 <constraint firstItem="YFD-Qs-iZa" firstAttribute="leading" secondItem="APu-zn-7q0" secondAttribute="leading" constant="15" id="Ofz-Xu-cpt"/>
                                 <constraint firstItem="iGU-ya-3aW" firstAttribute="leading" secondItem="APu-zn-7q0" secondAttribute="leading" constant="15" id="Oit-2Y-2Tm"/>
                                 <constraint firstAttribute="trailing" secondItem="xcU-BC-RxF" secondAttribute="trailing" constant="15" id="RSd-4a-awL"/>
@@ -197,6 +202,7 @@
                                 <constraint firstItem="YFD-Qs-iZa" firstAttribute="top" secondItem="LDD-cu-reI" secondAttribute="bottom" constant="8" symbolic="YES" id="rSK-aT-Paz"/>
                                 <constraint firstItem="bj5-tp-0P8" firstAttribute="leading" secondItem="APu-zn-7q0" secondAttribute="leading" constant="15" id="sYd-UE-AQ5"/>
                                 <constraint firstAttribute="trailing" secondItem="Nbo-97-AeZ" secondAttribute="trailing" constant="15" id="teS-HM-hql"/>
+                                <constraint firstItem="ain-YH-4Iw" firstAttribute="centerY" secondItem="dLn-7i-lfp" secondAttribute="centerY" id="udF-ak-91n"/>
                             </constraints>
                         </view>
                     </subviews>

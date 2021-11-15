@@ -143,14 +143,19 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <activityIndicatorView opaque="NO" tag="13" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="zqT-fH-ydx">
+                                                    <rect key="frame" x="63" y="31" width="20" height="20"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="EFR-Kj-bpy" firstAttribute="leading" secondItem="xUV-x6-hNi" secondAttribute="trailing" constant="8" id="4iV-oa-Bch"/>
                                                 <constraint firstItem="xUV-x6-hNi" firstAttribute="top" secondItem="I5e-7z-XvO" secondAttribute="top" id="C4K-UC-Znc"/>
                                                 <constraint firstItem="EFR-Kj-bpy" firstAttribute="top" secondItem="I5e-7z-XvO" secondAttribute="top" constant="11" id="CQj-ZG-Xux"/>
                                                 <constraint firstAttribute="bottom" secondItem="xUV-x6-hNi" secondAttribute="bottom" id="Ins-SY-zIF"/>
+                                                <constraint firstItem="zqT-fH-ydx" firstAttribute="centerY" secondItem="xUV-x6-hNi" secondAttribute="centerY" id="eCZ-JV-VYn"/>
                                                 <constraint firstAttribute="trailing" secondItem="EFR-Kj-bpy" secondAttribute="trailing" constant="8" id="eLp-VR-GMu"/>
                                                 <constraint firstItem="xUV-x6-hNi" firstAttribute="leading" secondItem="I5e-7z-XvO" secondAttribute="leading" id="hDB-fH-zrR"/>
+                                                <constraint firstItem="zqT-fH-ydx" firstAttribute="centerX" secondItem="xUV-x6-hNi" secondAttribute="centerX" id="k0a-pb-JNQ"/>
                                                 <constraint firstAttribute="bottom" secondItem="EFR-Kj-bpy" secondAttribute="bottom" constant="11" id="rEc-6m-erl"/>
                                             </constraints>
                                         </tableViewCellContentView>
