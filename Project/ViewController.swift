@@ -127,17 +127,17 @@ extension ViewController: UITableViewDataSource{
         let cellLblCar = cell.contentView.viewWithTag(11) as! UILabel
         cellLblCar.text = "\(cards[indexPath.row].getCarName())"
         
-        let cellImgSpin = cell.contentView.viewWithTag(13) as! UIActivityIndicatorView
-        cellImgSpin.hidesWhenStopped = true
+//        let cellImgSpin = cell.contentView.viewWithTag(13) as! UIActivityIndicatorView
+//        cellImgSpin.hidesWhenStopped = true
         
         let cellImgCar = cell.contentView.viewWithTag(12) as! UIImageView
         cellImgCar.load(url: cards[indexPath.row].getImgPath())
         
-        if (cellImgCar.image == nil){
-            cellImgSpin.startAnimating()
-        }else{
-            cellImgSpin.stopAnimating()
-        }
+//        if (cellImgCar.image == nil){
+//            cellImgSpin.startAnimating()
+//        }else{
+//            cellImgSpin.stopAnimating()
+//        }
         
         return cell
     }
