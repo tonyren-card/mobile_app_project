@@ -18,6 +18,8 @@ struct Result: Codable{
     let original: String
 }
 
+//Card object defining variables for Realm storage
+
 class Card: UIViewController {
     
     @IBOutlet weak var cardView: UIView!
