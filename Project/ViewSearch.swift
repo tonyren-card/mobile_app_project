@@ -69,7 +69,7 @@ class ViewSearch: UITableViewController {
     
     //Swipe to left action
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if !self.filteredcards[indexPath.row].added {
+        if !self.filteredcards[indexPath.row].isAdded() {
             let action = UIContextualAction(style: .normal, title: "Add to Library") { [weak self] (action, view, completionHandler) in self?.mainController?.addCard(cardObject: (self?.filteredcards[indexPath.row])!)
                 completionHandler(true)
             }

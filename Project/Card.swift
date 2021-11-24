@@ -8,6 +8,7 @@
 //  Copyright © 2021 TonyRen. All rights reserved.
 //
 
+import RealmSwift
 import UIKit
 
 struct APIResponse: Codable {
@@ -18,28 +19,47 @@ struct Result: Codable{
     let original: String
 }
 
-//Card object defining variables for Realm storage (installed)
-
+//Card object defining variables for Realm storage (requires installation)
+class CardObject: Object {
+    //Definition of the variables
+    @objc dynamic var carNameStr: String = " "
+    @objc dynamic var salesStr: String = " "
+    @objc dynamic var carTypeStr: String = " "
+    @objc dynamic var priceStr: String = " "
+    @objc dynamic var horsepowerStr: String = " "
+    @objc dynamic var engineSizeStr: String = " "
+    @objc dynamic var wheelbaseStr: String = " "
+    @objc dynamic var fuelEffStr: String = " "
+    @objc dynamic var fuelCapStr: String = " "
+    @objc dynamic var latestLaunchStr: String = " "
+    @objc dynamic var carImgPath: String = " "
+    @objc dynamic var index: Int = -1
+    @objc dynamic var added: Bool = false
+    @objc dynamic var hasLoadedAPI: Bool = false
+    @objc dynamic var hasLoadedImage: Bool = false
+}
 
 class Card: UIViewController {
     
     @IBOutlet weak var cardView: UIView!
     //Definition of the variables
-    private var carNameStr: String = " "
-    private var salesStr: String = " "
-    private var carTypeStr: String = " "
-    private var priceStr: String = " "
-    private var horsepowerStr: String = " "
-    private var engineSizeStr: String = " "
-    private var wheelbaseStr: String = " "
-    private var fuelEffStr: String = " "
-    private var fuelCapStr: String = " "
-    private var latestLaunchStr: String = " "
-    private var carImgPath: String = " "
-    var index: Int? = -1
-    var added: Bool = false
-    var hasLoadedAPI: Bool = false
-    var hasLoadedImage: Bool = false
+//    private var carNameStr: String = " "
+//    private var salesStr: String = " "
+//    private var carTypeStr: String = " "
+//    private var priceStr: String = " "
+//    private var horsepowerStr: String = " "
+//    private var engineSizeStr: String = " "
+//    private var wheelbaseStr: String = " "
+//    private var fuelEffStr: String = " "
+//    private var fuelCapStr: String = " "
+//    private var latestLaunchStr: String = " "
+//    private var carImgPath: String = " "
+//    var index: Int? = -1
+//    var added: Bool = false
+//    var hasLoadedAPI: Bool = false
+//    var hasLoadedImage: Bool = false
+    
+    private var cardObj: CardObject? = nil
     
     //Definition of the labels
     @IBOutlet weak var carName: UILabel?
@@ -69,15 +89,15 @@ class Card: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if self.hasLoadedAPI && self.carImg?.image==nil{
+        if self.cardObj!.hasLoadedAPI && self.carImg?.image==nil{
             loadImageView()
         }
     }
     
     init(){
         super.init(nibName: nil, bundle: nil)
-        self.carNameStr = "Car not found"
-        self.carTypeStr = "There may be a typo in your search"
+//        self.carNameStr = "Car not found"
+//        self.carTypeStr = "There may be a typo in your search"
     }
     
     //Constructor of the object
@@ -85,17 +105,25 @@ class Card: UIViewController {
         
         super.init(nibName: nil, bundle: nil)
         
-        self.carNameStr = name
-        self.salesStr = sales
-        self.carTypeStr = type
-        self.priceStr = price
-        self.horsepowerStr = horsepower
-        self.engineSizeStr = engineSize
-        self.wheelbaseStr = wheelbase
-        self.fuelEffStr = fuelEff
-        self.fuelCapStr = fuelCap
-        self.latestLaunchStr = latestLaunch
-        self.carImgPath = String(imgPath.filter { !"\r".contains($0) })
+        self.cardObj = CardObject()
+        
+        self.cardObj!.carNameStr = name
+        self.cardObj!.salesStr = sales
+        self.cardObj!.carTypeStr = type
+        self.cardObj!.priceStr = price
+        self.cardObj!.horsepowerStr = horsepower
+        self.cardObj!.engineSizeStr = engineSize
+        self.cardObj!.wheelbaseStr = wheelbase
+        self.cardObj!.fuelEffStr = fuelEff
+        self.cardObj!.fuelCapStr = fuelCap
+        self.cardObj!.latestLaunchStr = latestLaunch
+        self.cardObj!.carImgPath = String(imgPath.filter { !"\r".contains($0) })
+    }
+    
+    //Constructor for existing card objects (copy ctor)
+    init(cardObj: CardObject){
+        super.init(nibName: nil, bundle: nil)
+        self.cardObj = cardObj
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -103,27 +131,43 @@ class Card: UIViewController {
     }
     
     func getCarName() -> String{
-        return carNameStr
+        return self.cardObj!.carNameStr
     }
     
     func getImgPath() -> String{
-        return carImgPath
+        return self.cardObj!.carImgPath
+    }
+    
+    func setIndex(to val: Int) {
+        self.cardObj!.index = val
+    }
+    
+    func isAdded() -> Bool {
+        return self.cardObj!.added
+    }
+    
+    func setAdded(to val: Bool) {
+        self.cardObj!.added = val
+    }
+    
+    func getCardObj() -> CardObject{
+        return self.cardObj!
     }
     
     func setDisplayText(){
-        self.carName?.text = self.carNameStr
-        self.sales?.text = self.salesStr
-        self.carType?.text = self.carTypeStr
-        self.price?.text = self.priceStr
-        self.horsepower?.text = self.horsepowerStr
-        self.engineSize?.text = self.engineSizeStr
-        self.wheelbase?.text = self.wheelbaseStr
-        self.fuelEff?.text = self.fuelEffStr
-        self.fuelCap?.text = self.fuelCapStr
-        self.latestLaunch?.text = self.latestLaunchStr
+        self.carName?.text = self.cardObj!.carNameStr
+        self.sales?.text = self.cardObj!.salesStr
+        self.carType?.text = self.cardObj!.carTypeStr
+        self.price?.text = self.cardObj!.priceStr
+        self.horsepower?.text = self.cardObj!.horsepowerStr
+        self.engineSize?.text = self.cardObj!.engineSizeStr
+        self.wheelbase?.text = self.cardObj!.wheelbaseStr
+        self.fuelEff?.text = self.cardObj!.fuelEffStr
+        self.fuelCap?.text = self.cardObj!.fuelCapStr
+        self.latestLaunch?.text = self.cardObj!.latestLaunchStr
         
-        if (self.carImgPath == ""){
-            self.carImgPath = "ordinary_car.png"
+        if (self.cardObj!.carImgPath == ""){
+            self.cardObj!.carImgPath = "ordinary_car.png"
         }
             
 //        self.carImg?.image = UIImage(named: self.carImgPath)
@@ -140,27 +184,27 @@ class Card: UIViewController {
     }
     
     func updateAddDelButton(){
-        self.addCarBtn?.setTitle(self.added ? "Delete Card from Library" : "Add Card to Library", for: .normal)
+        self.addCarBtn?.setTitle(self.cardObj!.added ? "Delete Card from Library" : "Add Card to Library", for: .normal)
     }
     
     @IBAction func addCard(_ sender: Any) {
         
-        if !self.added{
+        if !self.cardObj!.added{
             delegate?.addCard(cardObject: self)
         }else{
-            self.added = false
-            delegate?.deleteCard(at: self.index!)
+            self.cardObj!.added = false
+            delegate?.deleteCard(at: self.cardObj!.index)
         }
         updateAddDelButton()
     }
     
     func loadAPIImageLink(){
-        if self.hasLoadedAPI {
+        if self.cardObj!.hasLoadedAPI {
             return
         }
         
         print("Loading API...")
-        let carNameStrip = self.carNameStr.replacingOccurrences(of: " ", with: "+")
+        let carNameStrip = self.cardObj!.carNameStr.replacingOccurrences(of: " ", with: "+")
         print(carNameStrip)
         let apiString = "https:serpapi.com/search.json?q=\(carNameStrip)&tbm=isch&ijn=0&api_key=8aa8f4d59b7bead3ea8e23f2a1b321ceff9e0e4d2678d33107ca876e632638e0"
         
@@ -180,9 +224,9 @@ class Card: UIViewController {
             do {
                 let jsonResult = try JSONDecoder().decode(APIResponse.self, from: data)
                 DispatchQueue.main.async {
-                    self?.carImgPath = jsonResult.images_results[0].original
-                    print(self!.carImgPath)
-                    self?.hasLoadedAPI = true
+                    self?.cardObj!.carImgPath = jsonResult.images_results[0].original
+                    print(self!.cardObj!.carImgPath)
+                    self?.cardObj!.hasLoadedAPI = true
                     if self?.carImg?.image == nil {
                         print("Presenting")
                         self?.loadImageView()
@@ -200,7 +244,7 @@ class Card: UIViewController {
     
     func loadImageView(){
         print("Loading image...")
-        guard let url = URL(string: self.carImgPath) else {
+        guard let url = URL(string: self.cardObj!.carImgPath) else {
             print("Image url failed")
             return
         }
@@ -213,7 +257,7 @@ class Card: UIViewController {
                 let image = UIImage(data: data)
                 self?.carImg?.image = image
                 print("Image loaded!")
-                self?.hasLoadedImage = true
+                self?.cardObj!.hasLoadedImage = true
                 self?.carImgSpinner?.stopAnimating()
             }
         }.resume()
