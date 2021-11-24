@@ -18,7 +18,7 @@ struct Result: Codable{
     let original: String
 }
 
-//Card object defining variables for Realm storage
+//Card object defining variables for Realm storage (installed)
 
 
 class Card: UIViewController {
