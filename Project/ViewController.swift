@@ -6,6 +6,7 @@
 //  Copyright © 2020 TonyRen. All rights reserved.
 //
 
+import RealmSwift
 import UIKit
 
 protocol CardDelegate {
@@ -21,12 +22,19 @@ class ViewController: UIViewController, CardDelegate {
     
     var cards: [Card] = []
     
+    let realm = try! Realm()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "CARD"
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+//        realm.beginWrite()
+//        realm.delete(realm.objects(CardObject.self))
+//        try! realm.commitWrite()
+        render()
     }
     
     //for first time users displaying welcome screen
@@ -48,18 +56,41 @@ class ViewController: UIViewController, CardDelegate {
         }
     }
     
+    func render() {
+        let cards = realm.objects(CardObject.self)
+        
+        tableView.beginUpdates()
+        for card in cards {
+            self.cards.append(Card(cardObj: card, delegate: self))
+            tableView.insertRows(at: [IndexPath(row: self.cards.count-1, section: 0)], with: .automatic)
+        }
+        tableView.endUpdates()
+    }
+    
     func addCard(cardObject: Card){
-        cardObject.added = true
-        cardObject.index = cards.count
+        cardObject.setAdded(to: true)
+        cardObject.setIndex(to: cards.count)
         cards.append(cardObject)
         
         //update table view to add cell
         tableView.beginUpdates()
         tableView.insertRows(at: [IndexPath(row: cards.count-1, section: 0)], with: .automatic)
         tableView.endUpdates()
+        
+        //add to realm
+        realm.beginWrite()
+        realm.add(cardObject.getCardObj())
+        try! realm.commitWrite()
     }
     
     func deleteCard(at index: Int){
+        //update realm
+        realm.beginWrite()
+            cards[index].setAdded(to: false)
+            let delete: [CardObject] = [cards[index].getCardObj()]
+            realm.delete(delete)
+        try! realm.commitWrite()
+        
         cards.remove(at: index)
         updateCardsIndices(at: index)
         
@@ -87,7 +118,7 @@ class ViewController: UIViewController, CardDelegate {
             return
         }
         for i in index...cards.count-1{
-            cards[i].index = i
+            cards[i].setIndex(to: i)
         }
     }
 
@@ -144,10 +175,12 @@ extension ViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            cards[indexPath.row].added = false
-            cards.remove(at: indexPath.row)
-            updateCardsIndices(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            deleteCard(at: indexPath.row)
+            
+//            cards[indexPath.row].setAdded(to: false)
+//            cards.remove(at: indexPath.row)
+//            updateCardsIndices(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
 }

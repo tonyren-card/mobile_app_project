@@ -69,7 +69,7 @@ class ViewSearch: UITableViewController {
     
     //Swipe to left action
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if !self.filteredcards[indexPath.row].added {
+        if !self.filteredcards[indexPath.row].isAdded() {
             let action = UIContextualAction(style: .normal, title: "Add to Library") { [weak self] (action, view, completionHandler) in self?.mainController?.addCard(cardObject: (self?.filteredcards[indexPath.row])!)
                 completionHandler(true)
             }
@@ -166,7 +166,7 @@ class ViewSearch: UITableViewController {
             price = data[5]
         }
         
-        let card = Card(carName: "\(data[0]) \(data[1])", carSales: sales, carType: data[4], carPrice: price, carHP: data[7], carEngine: data[6], carWB: data[8], carFuel: "\(data[13]) mpg", carCap: data[12], carLaunch: data[14], carImg: data[16])
+        let card = Card(carName: "\(data[0]) \(data[1])", carSales: sales, carType: data[4], carPrice: price, carHP: data[7], carEngine: data[6], carWB: data[8], carFuel: "\(data[13]) mpg", carCap: data[12], carLaunch: data[14])
         
         self.filteredcards.append(card)
     }
