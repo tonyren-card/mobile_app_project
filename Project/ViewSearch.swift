@@ -166,7 +166,7 @@ class ViewSearch: UITableViewController {
             price = data[5]
         }
         
-        let card = Card(carName: "\(data[0]) \(data[1])", carSales: sales, carType: data[4], carPrice: price, carHP: data[7], carEngine: data[6], carWB: data[8], carFuel: "\(data[13]) mpg", carCap: data[12], carLaunch: data[14], carImg: data[16])
+        let card = Card(carName: "\(data[0]) \(data[1])", carSales: sales, carType: data[4], carPrice: price, carHP: data[7], carEngine: data[6], carWB: data[8], carFuel: "\(data[13]) mpg", carCap: data[12], carLaunch: data[14])
         
         self.filteredcards.append(card)
     }

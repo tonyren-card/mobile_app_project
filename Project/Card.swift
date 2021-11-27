@@ -42,22 +42,6 @@ class CardObject: Object {
 class Card: UIViewController {
     
     @IBOutlet weak var cardView: UIView!
-    //Definition of the variables
-//    private var carNameStr: String = " "
-//    private var salesStr: String = " "
-//    private var carTypeStr: String = " "
-//    private var priceStr: String = " "
-//    private var horsepowerStr: String = " "
-//    private var engineSizeStr: String = " "
-//    private var wheelbaseStr: String = " "
-//    private var fuelEffStr: String = " "
-//    private var fuelCapStr: String = " "
-//    private var latestLaunchStr: String = " "
-//    private var carImgPath: String = " "
-//    var index: Int? = -1
-//    var added: Bool = false
-//    var hasLoadedAPI: Bool = false
-//    var hasLoadedImage: Bool = false
     
     private var cardObj: CardObject? = nil
     
@@ -94,14 +78,8 @@ class Card: UIViewController {
         }
     }
     
-    init(){
-        super.init(nibName: nil, bundle: nil)
-//        self.carNameStr = "Car not found"
-//        self.carTypeStr = "There may be a typo in your search"
-    }
-    
     //Constructor of the object
-    init(carName name: String, carSales sales: String, carType type: String, carPrice price: String, carHP horsepower: String, carEngine engineSize: String, carWB wheelbase: String, carFuel fuelEff: String, carCap fuelCap: String, carLaunch latestLaunch: String, carImg imgPath: String){
+    init(carName name: String, carSales sales: String, carType type: String, carPrice price: String, carHP horsepower: String, carEngine engineSize: String, carWB wheelbase: String, carFuel fuelEff: String, carCap fuelCap: String, carLaunch latestLaunch: String){
         
         super.init(nibName: nil, bundle: nil)
         
@@ -117,13 +95,13 @@ class Card: UIViewController {
         self.cardObj!.fuelEffStr = fuelEff
         self.cardObj!.fuelCapStr = fuelCap
         self.cardObj!.latestLaunchStr = latestLaunch
-        self.cardObj!.carImgPath = String(imgPath.filter { !"\r".contains($0) })
     }
     
     //Constructor for existing card objects (copy ctor)
-    init(cardObj: CardObject){
+    init(cardObj: CardObject, delegate: CardDelegate){
         super.init(nibName: nil, bundle: nil)
         self.cardObj = cardObj
+        self.delegate = delegate
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -139,7 +117,9 @@ class Card: UIViewController {
     }
     
     func setIndex(to val: Int) {
-        self.cardObj!.index = val
+        try! Realm().write{
+            self.cardObj!.index = val
+        }
     }
     
     func isAdded() -> Bool {
@@ -166,21 +146,7 @@ class Card: UIViewController {
         self.fuelCap?.text = self.cardObj!.fuelCapStr
         self.latestLaunch?.text = self.cardObj!.latestLaunchStr
         
-        if (self.cardObj!.carImgPath == ""){
-            self.cardObj!.carImgPath = "ordinary_car.png"
-        }
-            
-//        self.carImg?.image = UIImage(named: self.carImgPath)
-        
         loadAPIImageLink()
-//        loadImageView()
-//        print("Loading from setDisplayText(): \(self.carImgPath)")
-        
-//        self.carImg?.load(url: URL(string: self.carImgPath)!)
-        
-        if self.carName?.text == "Car not found" {
-            addCarBtn?.removeFromSuperview()
-        }
     }
     
     func updateAddDelButton(){
@@ -188,14 +154,14 @@ class Card: UIViewController {
     }
     
     @IBAction func addCard(_ sender: Any) {
-        
         if !self.cardObj!.added{
             delegate?.addCard(cardObject: self)
+            updateAddDelButton()
         }else{
-            self.cardObj!.added = false
-            delegate?.deleteCard(at: self.cardObj!.index)
+            dismiss(animated: true, completion: {
+                self.delegate?.deleteCard(at: self.cardObj!.index)
+            })
         }
-        updateAddDelButton()
     }
     
     func loadAPIImageLink(){
@@ -224,9 +190,11 @@ class Card: UIViewController {
             do {
                 let jsonResult = try JSONDecoder().decode(APIResponse.self, from: data)
                 DispatchQueue.main.async {
-                    self?.cardObj!.carImgPath = jsonResult.images_results[0].original
-                    print(self!.cardObj!.carImgPath)
-                    self?.cardObj!.hasLoadedAPI = true
+                    try! Realm().write{
+                        self?.cardObj!.carImgPath = jsonResult.images_results[0].original
+                        print(self!.cardObj!.carImgPath)
+                        self?.cardObj!.hasLoadedAPI = true
+                    }
                     if self?.carImg?.image == nil {
                         print("Presenting")
                         self?.loadImageView()
@@ -257,7 +225,9 @@ class Card: UIViewController {
                 let image = UIImage(data: data)
                 self?.carImg?.image = image
                 print("Image loaded!")
-                self?.cardObj!.hasLoadedImage = true
+                try! Realm().write {
+                    self?.cardObj!.hasLoadedImage = true
+                }
                 self?.carImgSpinner?.stopAnimating()
             }
         }.resume()

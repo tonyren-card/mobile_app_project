@@ -31,6 +31,9 @@ class ViewController: UIViewController, CardDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         
+//        realm.beginWrite()
+//        realm.delete(realm.objects(CardObject.self))
+//        try! realm.commitWrite()
         render()
     }
     
@@ -58,8 +61,7 @@ class ViewController: UIViewController, CardDelegate {
         
         tableView.beginUpdates()
         for card in cards {
-            let cardView = Card(cardObj: card)
-            self.cards.append(cardView)
+            self.cards.append(Card(cardObj: card, delegate: self))
             tableView.insertRows(at: [IndexPath(row: self.cards.count-1, section: 0)], with: .automatic)
         }
         tableView.endUpdates()
@@ -84,7 +86,10 @@ class ViewController: UIViewController, CardDelegate {
     func deleteCard(at index: Int){
         //update realm
         realm.beginWrite()
-        realm.delete(cards[index])
+            cards[index].setAdded(to: false)
+            let delete: [CardObject] = [cards[index].getCardObj()]
+            realm.delete(delete)
+        try! realm.commitWrite()
         
         cards.remove(at: index)
         updateCardsIndices(at: index)
@@ -170,10 +175,12 @@ extension ViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if editingStyle == UITableViewCell.EditingStyle.delete {
-            cards[indexPath.row].setAdded(to: false)
-            cards.remove(at: indexPath.row)
-            updateCardsIndices(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
+            deleteCard(at: indexPath.row)
+            
+//            cards[indexPath.row].setAdded(to: false)
+//            cards.remove(at: indexPath.row)
+//            updateCardsIndices(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
     }
 }
