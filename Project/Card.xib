@@ -153,7 +153,7 @@
                                         <constraint firstAttribute="width" secondItem="dLn-7i-lfp" secondAttribute="height" multiplier="428:215" id="BZ7-M2-GYe"/>
                                     </constraints>
                                 </imageView>
-                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ain-YH-4Iw">
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="ain-YH-4Iw">
                                     <rect key="frame" x="195.66666666666666" y="114" width="37" height="37"/>
                                 </activityIndicatorView>
                             </subviews>
@@ -181,6 +181,7 @@
                                 <constraint firstItem="E3Y-OQ-QgX" firstAttribute="top" secondItem="YvC-ha-g5j" secondAttribute="bottom" constant="8" symbolic="YES" id="Uyy-dW-CRh"/>
                                 <constraint firstItem="5sX-Zb-4o4" firstAttribute="top" secondItem="xcU-BC-RxF" secondAttribute="bottom" constant="8" symbolic="YES" id="VFI-Z6-pu8"/>
                                 <constraint firstItem="dLn-7i-lfp" firstAttribute="leading" secondItem="APu-zn-7q0" secondAttribute="leading" id="Vze-0I-MSI"/>
+                                <constraint firstItem="Nbo-97-AeZ" firstAttribute="bottom" secondItem="YFD-Qs-iZa" secondAttribute="bottom" id="WFE-if-BBQ"/>
                                 <constraint firstItem="YvC-ha-g5j" firstAttribute="leading" secondItem="APu-zn-7q0" secondAttribute="leading" constant="15" id="Xwb-dZ-hJK"/>
                                 <constraint firstItem="LDD-cu-reI" firstAttribute="top" secondItem="bj5-tp-0P8" secondAttribute="bottom" constant="8" symbolic="YES" id="Yyv-6y-ANn"/>
                                 <constraint firstItem="8EV-ao-4P8" firstAttribute="top" secondItem="YOm-ao-XQN" secondAttribute="bottom" constant="8" symbolic="YES" id="aGZ-7p-eWV"/>
@@ -191,7 +192,6 @@
                                 <constraint firstItem="5nX-tc-JcM" firstAttribute="top" secondItem="5sX-Zb-4o4" secondAttribute="bottom" constant="8" symbolic="YES" id="fe4-Xz-0Ax"/>
                                 <constraint firstItem="Nbo-97-AeZ" firstAttribute="top" secondItem="5nX-tc-JcM" secondAttribute="bottom" constant="8" symbolic="YES" id="hR0-Pc-WPZ"/>
                                 <constraint firstAttribute="trailing" secondItem="QYV-GG-1c5" secondAttribute="trailing" constant="15" id="hqA-3n-y2s"/>
-                                <constraint firstAttribute="height" constant="635" id="kOg-iN-u6G"/>
                                 <constraint firstItem="E3Y-OQ-QgX" firstAttribute="leading" secondItem="APu-zn-7q0" secondAttribute="leading" constant="15" id="m5M-of-oPK"/>
                                 <constraint firstAttribute="trailing" secondItem="dLn-7i-lfp" secondAttribute="trailing" id="m74-5I-6V8"/>
                                 <constraint firstItem="YOm-ao-XQN" firstAttribute="top" secondItem="QYV-GG-1c5" secondAttribute="bottom" constant="8" symbolic="YES" id="mQk-h5-aHH"/>
@@ -203,6 +203,7 @@
                                 <constraint firstItem="bj5-tp-0P8" firstAttribute="leading" secondItem="APu-zn-7q0" secondAttribute="leading" constant="15" id="sYd-UE-AQ5"/>
                                 <constraint firstAttribute="trailing" secondItem="Nbo-97-AeZ" secondAttribute="trailing" constant="15" id="teS-HM-hql"/>
                                 <constraint firstItem="ain-YH-4Iw" firstAttribute="centerY" secondItem="dLn-7i-lfp" secondAttribute="centerY" id="udF-ak-91n"/>
+                                <constraint firstAttribute="bottom" secondItem="YFD-Qs-iZa" secondAttribute="bottom" constant="20" symbolic="YES" id="w5p-33-4aG"/>
                             </constraints>
                         </view>
                     </subviews>

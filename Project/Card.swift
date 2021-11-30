@@ -64,8 +64,6 @@ class Card: UIViewController {
     var delegate: CardDelegate?
     
     override func viewDidLoad() {
-        self.carImgSpinner?.hidesWhenStopped = true
-        self.carImgSpinner?.startAnimating()
         setDisplayText()
         super.viewDidLoad()
         definesPresentationContext = true
