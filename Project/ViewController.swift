@@ -73,7 +73,16 @@ class ViewController: UIViewController, CardDelegate {
             self.cards.append(Card(cardObj: card, delegate: self))
             tableView.insertRows(at: [IndexPath(row: self.cards.count-1, section: 0)], with: .automatic)
         }
+//        self.cards.sort
         tableView.endUpdates()
+        
+//        try! realm.write{
+//            realm.deleteAll()
+//        }
+    }
+    
+    static func save() {
+        
     }
     
     func addCard(cardObject: Card){
@@ -195,8 +204,8 @@ extension ViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         self.cards.swapAt(sourceIndexPath.row, destinationIndexPath.row)
-        
         updateCardsIndices(at: sourceIndexPath.row)
+        realm.refresh()
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
