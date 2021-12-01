@@ -19,6 +19,8 @@ protocol CardDelegate {
 class ViewController: UIViewController, CardDelegate {
     
     @IBOutlet var tableView: UITableView!
+//    @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var addButton: UIBarButtonItem!
     
     var cards: [Card] = []
     
@@ -27,6 +29,7 @@ class ViewController: UIViewController, CardDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "CARD"
+        navigationItem.rightBarButtonItems = [addButton, editButtonItem]
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -54,6 +57,12 @@ class ViewController: UIViewController, CardDelegate {
         if let vc = segue.destination as? ViewSearch{
             vc.mainController = self
         }
+    }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        tableView.setEditing(editing, animated: animated)
     }
     
     func render() {
@@ -122,6 +131,13 @@ class ViewController: UIViewController, CardDelegate {
         }
     }
 
+    @IBAction func triggerEditMode(_ sender: Any) {
+//        if (!self.isEditing){
+//            self.setEditing(true, animated: true)
+//        }else{
+//            self.setEditing(false, animated: true)
+//        }
+    }
 }
 
 extension ViewController: UITableViewDelegate{
@@ -171,6 +187,16 @@ extension ViewController: UITableViewDataSource{
 //        }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        self.cards.swapAt(sourceIndexPath.row, destinationIndexPath.row)
+        
+        updateCardsIndices(at: sourceIndexPath.row)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
