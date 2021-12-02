@@ -181,6 +181,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="kAY-bJ-NWK" id="TPi-Uf-w8C"/>
                         <outlet property="tableView" destination="b0M-Kj-D4O" id="bdh-da-Pf0"/>
                     </connections>
                 </viewController>
