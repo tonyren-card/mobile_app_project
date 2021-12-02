@@ -15,8 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let realm = try! Realm()
     
     func applicationWillTerminate(_ application: UIApplication) {
-        print("Application closed")
-//        ViewController.save()
+        
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

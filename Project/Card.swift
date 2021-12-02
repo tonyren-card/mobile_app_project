@@ -71,6 +71,7 @@ class Card: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print("\(self.getCarName()), index \(self.cardObj!.index)")
         if self.cardObj!.hasLoadedAPI && self.carImg?.image==nil{
             loadImageView()
         }
@@ -232,4 +233,16 @@ class Card: UIViewController {
         }.resume()
     }
 
+}
+
+extension Card: Comparable{
+    static func < (lhs: Card, rhs: Card) -> Bool{
+        return lhs.cardObj!.index < rhs.cardObj!.index
+    }
+    static func == (lhs: Card, rhs: Card) -> Bool{
+        return lhs.cardObj!.index == rhs.cardObj!.index
+    }
+    static func > (lhs: Card, rhs: Card) -> Bool{
+        return lhs.cardObj!.index > rhs.cardObj!.index
+    }
 }

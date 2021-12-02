@@ -61,8 +61,12 @@ class ViewController: UIViewController, CardDelegate {
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
-        
         tableView.setEditing(editing, animated: animated)
+        
+        if (!editing){
+            updateCardsIndices(at: 0)
+            realm.refresh()
+        }
     }
     
     func render() {
@@ -70,10 +74,11 @@ class ViewController: UIViewController, CardDelegate {
         
         tableView.beginUpdates()
         for card in cards {
+            print("\(card.index). \(card.carNameStr)")
             self.cards.append(Card(cardObj: card, delegate: self))
             tableView.insertRows(at: [IndexPath(row: self.cards.count-1, section: 0)], with: .automatic)
         }
-//        self.cards.sort
+        self.cards.sort()
         tableView.endUpdates()
         
 //        try! realm.write{
@@ -203,9 +208,8 @@ extension ViewController: UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        self.cards.swapAt(sourceIndexPath.row, destinationIndexPath.row)
-        updateCardsIndices(at: sourceIndexPath.row)
-        realm.refresh()
+        let item = self.cards.remove(at: sourceIndexPath.row)
+        self.cards.insert(item, at: destinationIndexPath.row)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
