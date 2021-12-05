@@ -28,7 +28,6 @@ class ViewController: UIViewController, CardDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "CARD"
         navigationItem.rightBarButtonItems = [addButton, editButtonItem]
         
         tableView.delegate = self

@@ -22,7 +22,6 @@ class ViewSearch: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Search"
         
         tableViewCont.delegate = self
         tableViewCont.dataSource = self
