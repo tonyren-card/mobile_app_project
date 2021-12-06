@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,8 @@
 		B0505BDD2705110F00997A53 /* ordinary_car.png in Resources */ = {isa = PBXBuildFile; fileRef = B0505BDC2705110F00997A53 /* ordinary_car.png */; };
 		B055CC9A2677FD4200384282 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = B055CC982677FD4200384282 /* Card.swift */; };
 		B055CC9B2677FD4200384282 /* Card.xib in Resources */ = {isa = PBXBuildFile; fileRef = B055CC992677FD4200384282 /* Card.xib */; };
+		B0A6FF49275EAB600005C4D8 /* ViewCompare.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A6FF48275EAB600005C4D8 /* ViewCompare.swift */; };
+		B0A6FF4B275EB34A0005C4D8 /* ViewCompareSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0A6FF4A275EB34A0005C4D8 /* ViewCompareSearch.swift */; };
 		B0B3A21024AE7EA600403182 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B3A20F24AE7EA600403182 /* AppDelegate.swift */; };
 		B0B3A21224AE7EA600403182 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B3A21124AE7EA600403182 /* SceneDelegate.swift */; };
 		B0B3A21424AE7EA600403182 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B3A21324AE7EA600403182 /* ViewController.swift */; };
@@ -44,6 +46,8 @@
 		B0505BDC2705110F00997A53 /* ordinary_car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ordinary_car.png; path = images/ordinary_car.png; sourceTree = SOURCE_ROOT; };
 		B055CC982677FD4200384282 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		B055CC992677FD4200384282 /* Card.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Card.xib; sourceTree = "<group>"; };
+		B0A6FF48275EAB600005C4D8 /* ViewCompare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCompare.swift; sourceTree = "<group>"; };
+		B0A6FF4A275EB34A0005C4D8 /* ViewCompareSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCompareSearch.swift; sourceTree = "<group>"; };
 		B0B3A20C24AE7EA600403182 /* CARD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CARD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0B3A20F24AE7EA600403182 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B0B3A21124AE7EA600403182 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,7 +86,6 @@
 				F8DF3C8C28C84403103E6FC4 /* Pods-iosCard.debug.xcconfig */,
 				6248389E45F69CB9FD11F2CA /* Pods-iosCard.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -121,6 +124,8 @@
 				B0B3A21324AE7EA600403182 /* ViewController.swift */,
 				B0F7D1B825C7009A00E6647D /* ViewSearch.swift */,
 				B0B3A21524AE7EA600403182 /* Main.storyboard */,
+				B0A6FF4A275EB34A0005C4D8 /* ViewCompareSearch.swift */,
+				B0A6FF48275EAB600005C4D8 /* ViewCompare.swift */,
 				B055CC982677FD4200384282 /* Card.swift */,
 				B055CC992677FD4200384282 /* Card.xib */,
 				B0FEC14025583B3A000A90D8 /* Card.storyboard */,
@@ -270,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0A6FF4B275EB34A0005C4D8 /* ViewCompareSearch.swift in Sources */,
 				B0B3A21424AE7EA600403182 /* ViewController.swift in Sources */,
 				B0B3A21024AE7EA600403182 /* AppDelegate.swift in Sources */,
 				B0FC05182731D6540054D62B /* WelcomePageViewController.swift in Sources */,
@@ -277,6 +283,7 @@
 				B0FC05162731D3F30054D62B /* WelcomeContentViewController.swift in Sources */,
 				B0B3A21224AE7EA600403182 /* SceneDelegate.swift in Sources */,
 				B0F7D1B925C7009A00E6647D /* ViewSearch.swift in Sources */,
+				B0A6FF49275EAB600005C4D8 /* ViewCompare.swift in Sources */,
 				B055CC9A2677FD4200384282 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

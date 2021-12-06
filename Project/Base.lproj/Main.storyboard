@@ -137,7 +137,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b0M-Kj-D4O" userLabel="MainMenuList">
-                                <rect key="frame" x="0.0" y="140" width="428" height="703"/>
+                                <rect key="frame" x="0.0" y="88" width="428" height="755"/>
                                 <inset key="separatorInset" minX="146" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cardCell" rowHeight="82" id="Ua8-Rb-uWG">
@@ -211,7 +211,7 @@
         <!--Compare-->
         <scene sceneID="sTp-k5-Vju">
             <objects>
-                <viewController id="wqm-U2-w5q" sceneMemberID="viewController">
+                <viewController id="wqm-U2-w5q" customClass="ViewCompare" customModule="CARD" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NX2-9l-xE3">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -223,19 +223,19 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c90-YT-ijt">
-                                <rect key="frame" x="85" y="224" width="44" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
+                                <rect key="frame" x="86.666666666666671" y="224" width="41" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Car 2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OjD-0e-vTr">
-                                <rect key="frame" x="298" y="224" width="46" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="17"/>
+                                <rect key="frame" x="299.33333333333331" y="224" width="43.333333333333314" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wWi-9O-hL0">
-                                <rect key="frame" x="0.0" y="292" width="428" height="512"/>
+                                <rect key="frame" x="0.0" y="292" width="428" height="482"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CgA-ob-AO0">
                                         <rect key="frame" x="0.0" y="0.0" width="428" height="387"/>
@@ -426,7 +426,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="qFG-Df-0bO"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbM-ci-r1T">
-                                <rect key="frame" x="69" y="812" width="76" height="31"/>
+                                <rect key="frame" x="69" y="782" width="76" height="31"/>
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Remove"/>
@@ -435,7 +435,7 @@
                                 <rect key="frame" x="214" y="91" width="214" height="125"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BhY-6w-9PJ">
-                                <rect key="frame" x="283" y="812" width="76" height="31"/>
+                                <rect key="frame" x="283" y="782" width="76" height="31"/>
                                 <color key="tintColor" systemColor="systemRedColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Remove"/>
@@ -444,11 +444,17 @@
                                 <rect key="frame" x="82" y="253" width="50" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Add"/>
+                                <connections>
+                                    <segue destination="3qE-gi-PTf" kind="show" id="ldw-Hh-reD"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Lx-NR-Pek">
                                 <rect key="frame" x="296" y="253" width="50" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Add"/>
+                                <connections>
+                                    <segue destination="3qE-gi-PTf" kind="show" id="deX-tU-o3l"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HWG-vf-al5"/>
@@ -472,20 +478,69 @@
                             <constraint firstItem="KY1-1p-Vrk" firstAttribute="leading" secondItem="Tvf-Wn-NRE" secondAttribute="trailing" id="ac7-AH-MLm"/>
                             <constraint firstItem="JEp-hG-tyy" firstAttribute="centerX" secondItem="c90-YT-ijt" secondAttribute="centerX" id="coP-0a-hPe"/>
                             <constraint firstItem="KY1-1p-Vrk" firstAttribute="centerY" secondItem="Tvf-Wn-NRE" secondAttribute="centerY" id="fJL-Lz-Hy1"/>
+                            <constraint firstItem="HWG-vf-al5" firstAttribute="bottom" secondItem="vbM-ci-r1T" secondAttribute="bottom" constant="30" id="fuL-8w-dlD"/>
                             <constraint firstItem="2Lx-NR-Pek" firstAttribute="centerX" secondItem="OjD-0e-vTr" secondAttribute="centerX" id="gNl-aT-zBW"/>
                             <constraint firstItem="vbM-ci-r1T" firstAttribute="top" secondItem="wWi-9O-hL0" secondAttribute="bottom" constant="8" id="mdk-JV-0XO"/>
                             <constraint firstItem="BhY-6w-9PJ" firstAttribute="centerY" secondItem="vbM-ci-r1T" secondAttribute="centerY" id="o1U-AM-DaN"/>
-                            <constraint firstItem="vbM-ci-r1T" firstAttribute="bottom" secondItem="HWG-vf-al5" secondAttribute="bottom" id="pD2-1O-7Pn"/>
                             <constraint firstItem="wWi-9O-hL0" firstAttribute="trailing" secondItem="HWG-vf-al5" secondAttribute="trailing" id="t86-Sw-sJy"/>
                             <constraint firstItem="Tvf-Wn-NRE" firstAttribute="top" secondItem="HWG-vf-al5" secondAttribute="top" constant="47" id="tnT-Ov-N4N"/>
                             <constraint firstItem="KY1-1p-Vrk" firstAttribute="width" secondItem="Tvf-Wn-NRE" secondAttribute="width" id="xAS-cl-i1E"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Compare" image="square.split.2x1.fill" catalog="system" id="UUa-Pi-9sl"/>
+                    <connections>
+                        <outletCollection property="price" destination="tuV-4Q-gzC" collectionClass="NSMutableArray" id="XVg-za-eXz"/>
+                        <outletCollection property="price" destination="7Kh-l3-jFb" collectionClass="NSMutableArray" id="csj-40-7GB"/>
+                        <outletCollection property="engine" destination="OAV-BQ-ZuE" collectionClass="NSMutableArray" id="TpS-kI-sDx"/>
+                        <outletCollection property="horsepower" destination="TXx-SL-9ll" collectionClass="NSMutableArray" id="9AK-i1-WPJ"/>
+                        <outletCollection property="wheelbase" destination="LPr-XU-EjT" collectionClass="NSMutableArray" id="THi-KQ-dqX"/>
+                        <outletCollection property="efficiency" destination="If8-59-MQP" collectionClass="NSMutableArray" id="ZH7-0w-aix"/>
+                        <outletCollection property="capacity" destination="oKs-AD-HTX" collectionClass="NSMutableArray" id="7fP-fR-JDq"/>
+                        <outletCollection property="sales" destination="xfT-2m-Xls" collectionClass="NSMutableArray" id="OZw-9e-Xaw"/>
+                        <outletCollection property="engine" destination="KkO-rF-YK0" collectionClass="NSMutableArray" id="h73-Vs-Hi0"/>
+                        <outletCollection property="horsepower" destination="YPp-Yb-zJz" collectionClass="NSMutableArray" id="smA-Fk-3d7"/>
+                        <outletCollection property="wheelbase" destination="cZ9-Hq-06c" collectionClass="NSMutableArray" id="EbT-By-vYB"/>
+                        <outletCollection property="efficiency" destination="k3H-5Q-EJY" collectionClass="NSMutableArray" id="exk-P5-4AY"/>
+                        <outletCollection property="capacity" destination="5Cy-L2-gDY" collectionClass="NSMutableArray" id="sjb-uA-071"/>
+                        <outletCollection property="sales" destination="Zan-60-RuY" collectionClass="NSMutableArray" id="3xa-k7-OK8"/>
+                        <outletCollection property="removeBtn" destination="vbM-ci-r1T" collectionClass="NSMutableArray" id="FzX-qP-PkM"/>
+                        <outletCollection property="removeBtn" destination="BhY-6w-9PJ" collectionClass="NSMutableArray" id="2uY-4l-ph9"/>
+                        <outletCollection property="addBtn" destination="JEp-hG-tyy" collectionClass="NSMutableArray" id="HmU-aS-AOA"/>
+                        <outletCollection property="addBtn" destination="2Lx-NR-Pek" collectionClass="NSMutableArray" id="MWK-Gf-oj2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qb7-RT-5Gb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2973.3644859813085" y="378.40172786177106"/>
+        </scene>
+        <!--View Compare Search-->
+        <scene sceneID="GOa-va-zZQ">
+            <objects>
+                <tableViewController id="3qE-gi-PTf" customClass="ViewCompareSearch" customModule="CARD" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="sEJ-G0-gzO">
+                        <rect key="frame" x="0.0" y="0.0" width="428" height="872"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="mK5-Jc-nLC">
+                                <rect key="frame" x="0.0" y="44.666666030883789" width="428" height="43.666667938232422"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mK5-Jc-nLC" id="9SS-YQ-HVX">
+                                    <rect key="frame" x="0.0" y="0.0" width="428" height="43.666667938232422"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="3qE-gi-PTf" id="Lzi-BI-gER"/>
+                            <outlet property="delegate" destination="3qE-gi-PTf" id="tpp-JT-ium"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="D1z-Vz-8P5"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2g4-pp-aq4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2181" y="378"/>
         </scene>
         <!--View Card-->
         <scene sceneID="2w7-ll-YTL">
@@ -760,6 +815,9 @@
             <point key="canvasLocation" x="-1171" y="-717"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="ldw-Hh-reD"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="03C_my22_civic_sedan_features_exterior_01.webp" width="128" height="128"/>
         <image name="folder.fill" catalog="system" width="128" height="97"/>

@@ -16,7 +16,11 @@ protocol CardDelegate {
     func reloadTableView()
 }
 
-class ViewController: UIViewController, CardDelegate {
+protocol CompareDelegate {
+    func getLibrary() -> [Card]
+}
+
+class ViewController: UIViewController, CardDelegate, CompareDelegate {
     
     @IBOutlet var tableView: UITableView!
 //    @IBOutlet weak var editButton: UIBarButtonItem!
@@ -85,10 +89,6 @@ class ViewController: UIViewController, CardDelegate {
 //        }
     }
     
-    static func save() {
-        
-    }
-    
     func addCard(cardObject: Card){
         cardObject.setAdded(to: true)
         cardObject.setIndex(to: cards.count)
@@ -142,6 +142,11 @@ class ViewController: UIViewController, CardDelegate {
         for i in index...cards.count-1{
             cards[i].setIndex(to: i)
         }
+    }
+    
+    func getLibrary() -> [Card]{
+        print("got library")
+        return self.cards
     }
 
     @IBAction func triggerEditMode(_ sender: Any) {
