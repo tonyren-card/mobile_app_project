@@ -18,6 +18,7 @@ protocol CardDelegate {
 
 protocol CompareDelegate {
     func getLibrary() -> [Card]
+    func getLibrarySize() -> Int
 }
 
 class ViewController: UIViewController, CardDelegate, CompareDelegate {
@@ -131,6 +132,14 @@ class ViewController: UIViewController, CardDelegate, CompareDelegate {
         return nil
     }
     
+    func getLibrary() -> [Card]{
+        return self.cards
+    }
+    
+    func getLibrarySize() -> Int {
+        return self.cards.count
+    }
+
     func reloadTableView(){
         self.tableView.reloadData()
     }
@@ -144,11 +153,6 @@ class ViewController: UIViewController, CardDelegate, CompareDelegate {
         }
     }
     
-    func getLibrary() -> [Card]{
-        print("got library")
-        return self.cards
-    }
-
     @IBAction func triggerEditMode(_ sender: Any) {
 //        if (!self.isEditing){
 //            self.setEditing(true, animated: true)

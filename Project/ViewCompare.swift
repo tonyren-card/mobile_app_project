@@ -28,7 +28,8 @@ class ViewCompare: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vcs = segue.destination as? ViewCompareSearch{
-            vcs.vcDelegate = tabBarController?.viewControllers?[0] as? CompareDelegate
+            let firstTabController = tabBarController!.viewControllers![0] as! UINavigationController
+            vcs.vcDelegate = firstTabController.viewControllers.first as? CompareDelegate
         }
     }
     
