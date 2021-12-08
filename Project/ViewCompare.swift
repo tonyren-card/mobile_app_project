@@ -8,7 +8,16 @@
 
 import UIKit
 
-class ViewCompare: UIViewController {
+protocol QueryDelegate{
+    func setCard(for index: CChar, card: Card)
+}
+
+class ViewCompare: UIViewController, QueryDelegate {
+    var card = [Card?](repeating: nil, count: 2)
+    
+    var addIndex: CChar? = -1
+    
+    @IBOutlet var carName: [UILabel]!
     @IBOutlet var price: [UILabel]!
     @IBOutlet var engine: [UILabel]!
     @IBOutlet var horsepower: [UILabel]!
@@ -18,6 +27,7 @@ class ViewCompare: UIViewController {
     @IBOutlet var sales: [UILabel]!
     @IBOutlet var addBtn: [UIButton]!
     @IBOutlet var removeBtn: [UIButton]!
+    @IBOutlet var carImage: [UIImageView]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +40,8 @@ class ViewCompare: UIViewController {
         if let vcs = segue.destination as? ViewCompareSearch{
             let firstTabController = tabBarController!.viewControllers![0] as! UINavigationController
             vcs.vcDelegate = firstTabController.viewControllers.first as? CompareDelegate
+            vcs.compDelegate = self
+            vcs.addQuery = self.addIndex
         }
     }
     
@@ -44,5 +56,32 @@ class ViewCompare: UIViewController {
         
         self.addBtn[index].isHidden = !val
         self.removeBtn[index].isHidden = val
+    }
+    
+    func setCard(for index: CChar, card: Card){
+        let indexInt = Int(index)
+        self.card[indexInt] = card
+        setSpecsHidden(to: false, for: indexInt)
+        
+        self.carName[indexInt].text = self.card[indexInt]?.getCarName()
+        self.price[indexInt].text = self.card[indexInt]?.getPrice()
+        self.engine[indexInt].text = self.card[indexInt]?.getEngineSize()
+        self.horsepower[indexInt].text = self.card[indexInt]?.getHorsePower()
+        self.wheelbase[indexInt].text = self.card[indexInt]?.getWheelBase()
+        self.efficiency[indexInt].text = self.card[indexInt]?.getFuelEff()
+        self.capacity[indexInt].text = self.card[indexInt]?.getFuelCap()
+        self.sales[indexInt].text = self.card[indexInt]?.getSales()
+        
+        self.carImage[indexInt].image = self.card[indexInt]?.carImg?.image
+    }
+    
+    
+    @IBAction func addCar1(_ sender: Any) {
+        // Assign the add query before segue
+        addIndex = 0
+    }
+    
+    @IBAction func addCar2(_ sender: Any) {
+        addIndex = 1
     }
 }

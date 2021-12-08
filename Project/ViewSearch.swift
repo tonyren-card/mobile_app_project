@@ -1,6 +1,6 @@
 //
-//  SwiftUIView.swift
-//  Project
+//  ViewSearch.swift
+//  iosCard
 //
 //  Created by Tony Ren on 2021-01-31.
 //  Copyright © 2021 TonyRen. All rights reserved.

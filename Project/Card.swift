@@ -1,6 +1,6 @@
 //
 //  Card.swift
-//  Project
+//  iosCard
 //
 //  "CARD" object that consists variables which are its specifics
 //
@@ -109,6 +109,34 @@ class Card: UIViewController {
     
     func getCarName() -> String{
         return self.cardObj!.carNameStr
+    }
+    
+    func getSales() -> String {
+        return self.cardObj!.salesStr
+    }
+    
+    func getPrice() -> String {
+        return self.cardObj!.priceStr
+    }
+    
+    func getHorsePower() -> String {
+        return self.cardObj!.horsepowerStr
+    }
+    
+    func getEngineSize() -> String {
+        return self.cardObj!.engineSizeStr
+    }
+    
+    func getWheelBase() -> String {
+        return self.cardObj!.wheelbaseStr
+    }
+    
+    func getFuelEff() -> String {
+        return self.cardObj!.fuelEffStr
+    }
+    
+    func getFuelCap() -> String {
+        return self.cardObj!.fuelCapStr
     }
     
     func getImgPath() -> String{

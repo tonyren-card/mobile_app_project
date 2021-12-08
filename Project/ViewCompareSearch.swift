@@ -9,16 +9,19 @@
 import UIKit
 
 class ViewCompareSearch: UITableViewController {
+    var addQuery: CChar? = -1
+    var vcDelegate: CompareDelegate?
+    var compDelegate: QueryDelegate?
     
     @IBOutlet var tableViewCont: UITableView!
     
-    var vcDelegate: CompareDelegate?
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableViewCont.delegate = self
         tableViewCont.dataSource = self
+        
+        print("Add Query=\(addQuery!)")
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -34,10 +37,12 @@ class ViewCompareSearch: UITableViewController {
 //        return vcDelegate!.getLibrarySize()
 //    }
 
+    //Number of cells
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return vcDelegate!.getLibrarySize()
     }
 
+    //Cell Apperance
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellToCompare", for: indexPath)
 
@@ -46,8 +51,11 @@ class ViewCompareSearch: UITableViewController {
         return cell
     }
     
+    //Touch up cell
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        self.compDelegate?.setCard(for: self.addQuery!, card: (vcDelegate?.getLibrary()[indexPath.row])!)
+        self.dismiss(animated: true, completion: nil)
     }
 
     /*
