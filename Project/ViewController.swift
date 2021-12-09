@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  Project
+//  iosCard
 //
 //  Created by Tony Ren on 2020-07-02.
 //  Copyright © 2020 TonyRen. All rights reserved.
@@ -16,7 +16,12 @@ protocol CardDelegate {
     func reloadTableView()
 }
 
-class ViewController: UIViewController, CardDelegate {
+protocol CompareDelegate {
+    func getLibrary() -> [Card]
+    func getLibrarySize() -> Int
+}
+
+class ViewController: UIViewController, CardDelegate, CompareDelegate {
     
     @IBOutlet var tableView: UITableView!
 //    @IBOutlet weak var editButton: UIBarButtonItem!
@@ -28,7 +33,6 @@ class ViewController: UIViewController, CardDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "CARD"
         navigationItem.rightBarButtonItems = [addButton, editButtonItem]
         
         tableView.delegate = self
@@ -86,10 +90,6 @@ class ViewController: UIViewController, CardDelegate {
 //        }
     }
     
-    static func save() {
-        
-    }
-    
     func addCard(cardObject: Card){
         cardObject.setAdded(to: true)
         cardObject.setIndex(to: cards.count)
@@ -132,6 +132,14 @@ class ViewController: UIViewController, CardDelegate {
         return nil
     }
     
+    func getLibrary() -> [Card]{
+        return self.cards
+    }
+    
+    func getLibrarySize() -> Int {
+        return self.cards.count
+    }
+
     func reloadTableView(){
         self.tableView.reloadData()
     }
@@ -144,7 +152,7 @@ class ViewController: UIViewController, CardDelegate {
             cards[i].setIndex(to: i)
         }
     }
-
+    
     @IBAction func triggerEditMode(_ sender: Any) {
 //        if (!self.isEditing){
 //            self.setEditing(true, animated: true)
