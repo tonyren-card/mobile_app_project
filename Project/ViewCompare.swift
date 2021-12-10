@@ -10,6 +10,7 @@ import UIKit
 import SwiftUI
 
 protocol QueryDelegate{
+    func setCard(card: Card)
     func setCard(for index: CChar, card: Card)
 }
 
@@ -39,16 +40,19 @@ class ViewCompare: UIViewController, QueryDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vcs = segue.destination as? ViewCompareSearch{
-            let firstTabController = tabBarController!.viewControllers![0] as! UINavigationController
-            vcs.vcDelegate = firstTabController.viewControllers.first as? CompareDelegate
-            vcs.compDelegate = self
-            vcs.addQuery = self.addIndex
+            prepareVCS(vcs)
         }
     }
     
+    private func prepareVCS(_ vcs: ViewCompareSearch){
+        let firstTabController = tabBarController!.viewControllers![0] as! UINavigationController
+        vcs.vcDelegate = firstTabController.viewControllers.first as? CompareDelegate
+        vcs.compDelegate = self
+        vcs.addQuery = self.addIndex
+    }
+    
     func setSpecsHidden(to val: Bool, index: Int){
-        self.carImage[index].image = nil
-        self.carImage[index].isHidden = val
+        if (val) {self.carImage[index].image = nil}
         self.price[index].isHidden = val
         self.engine[index].isHidden = val
         self.horsepower[index].isHidden = val
@@ -59,6 +63,19 @@ class ViewCompare: UIViewController, QueryDelegate {
         
         self.addBtn[index].isHidden = !val
         self.removeBtn[index].isHidden = val
+    }
+    
+    func setCard(card: Card){
+        if (self.card[0] != nil) {removeCar(index: 0)}
+        if (self.card[1] != nil) {removeCar(index: 1)}
+        
+        setCard(for: 0, card: card)
+        
+        if let searchController = storyboard?.instantiateViewController(withIdentifier: "CompareSearchPage") as? ViewCompareSearch {
+            self.addIndex = 1
+            prepareVCS(searchController)
+            present(searchController, animated: true, completion: nil)
+        }
     }
     
     func setCard(for index: CChar, card: Card){
@@ -124,6 +141,15 @@ class ViewCompare: UIViewController, QueryDelegate {
         label.font = UIFont.boldSystemFont(ofSize: label.font.pointSize)
     }
     
+    func removeCar(index: Int) {
+        if (self.card[0] != nil && self.card[1] != nil){
+            clearHighlights()
+        }
+        setSpecsHidden(to: true, index: index)
+        card[index] = nil
+        carName[index].text = "Car \(index+1)"
+    }
+    
     func clearHighlights(){
         for i in 0..<2 {
             clearHighlight(for: price[i])
@@ -174,16 +200,10 @@ class ViewCompare: UIViewController, QueryDelegate {
     }
     
     @IBAction func removeCar1(_ sender: Any) {
-        clearHighlights()
-        setSpecsHidden(to: true, index: 0)
-        card[0] = nil
-        carName[0].text = "Car 1"
+        removeCar(index: 0)
     }
     
     @IBAction func removeCar2(_ sender: Any) {
-        clearHighlights()
-        setSpecsHidden(to: true, index: 1)
-        card[1] = nil
-        carName[1].text = "Car 2"
+        removeCar(index: 1)
     }
 }
