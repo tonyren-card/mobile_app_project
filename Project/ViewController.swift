@@ -14,6 +14,7 @@ protocol CardDelegate {
     func deleteCard(at index: Int)
     func getCard(equals car: String) -> Card?
     func reloadTableView()
+    func segueCompare(card: Card)
 }
 
 protocol CompareDelegate {
@@ -23,8 +24,9 @@ protocol CompareDelegate {
 
 class ViewController: UIViewController, CardDelegate, CompareDelegate {
     
+    var queryDelegate: QueryDelegate?
+    
     @IBOutlet var tableView: UITableView!
-//    @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     var cards: [Card] = []
@@ -38,9 +40,7 @@ class ViewController: UIViewController, CardDelegate, CompareDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         
-//        realm.beginWrite()
-//        realm.delete(realm.objects(CardObject.self))
-//        try! realm.commitWrite()
+        self.queryDelegate = tabBarController!.viewControllers![1] as? QueryDelegate
         render()
     }
     
@@ -132,6 +132,11 @@ class ViewController: UIViewController, CardDelegate, CompareDelegate {
         return nil
     }
     
+    func segueCompare(card: Card){
+        tabBarController?.selectedIndex = 1
+        queryDelegate?.setCard(card: card)
+    }
+    
     func getLibrary() -> [Card]{
         return self.cards
     }
@@ -152,14 +157,6 @@ class ViewController: UIViewController, CardDelegate, CompareDelegate {
             cards[i].setIndex(to: i)
         }
     }
-    
-    @IBAction func triggerEditMode(_ sender: Any) {
-//        if (!self.isEditing){
-//            self.setEditing(true, animated: true)
-//        }else{
-//            self.setEditing(false, animated: true)
-//        }
-    }
 }
 
 extension ViewController: UITableViewDelegate{
@@ -174,11 +171,7 @@ extension ViewController: UITableViewDelegate{
         self.dismiss(animated: false, completion: {
             //Segue
             self.present(self.cards[x], animated: true)
-            //Display
-//            if !self.cards[x].visited {
-//                self.cards[x].visited = true
-//                self.cards[x].setDisplayText()
-//            }
+            
             self.cards[x].updateAddDelButton()
         })
     }
@@ -223,12 +216,17 @@ extension ViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath){
         if editingStyle == UITableViewCell.EditingStyle.delete {
             deleteCard(at: indexPath.row)
-            
-//            cards[indexPath.row].setAdded(to: false)
-//            cards.remove(at: indexPath.row)
-//            updateCardsIndices(at: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: UITableView.RowAnimation.automatic)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .normal, title: "Compare")
+        { [weak self] (action, view, completionHandler) in
+            self?.segueCompare(card: (self?.cards[indexPath.row])!)
+            completionHandler(true)
+        }
+        action.backgroundColor = .systemBlue
+        return UISwipeActionsConfiguration(actions: [action])
     }
 }
 
@@ -246,7 +244,7 @@ extension UIImageView {
             DispatchQueue.main.async {
                 let image = UIImage(data: data)
                 self?.image = image
-                print("image loaded on library")
+                print("image loaded by UI")
             }
         }.resume()
     }

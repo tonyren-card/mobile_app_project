@@ -34,7 +34,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1I-ZH-8VM">
-                    <rect key="frame" x="0.0" y="44" width="428" height="796"/>
+                    <rect key="frame" x="0.0" y="44" width="428" height="795"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="APu-zn-7q0">
                             <rect key="frame" x="0.0" y="0.0" width="428" height="635"/>
@@ -216,27 +216,37 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="wla-EY-Zdi"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="ZrQ-eH-xsk"/>
                 </scrollView>
-                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFi-Oq-XG8">
-                    <rect key="frame" x="0.0" y="852" width="428" height="30"/>
-                    <state key="normal" title="Add Card to Library"/>
+                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="fill" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFi-Oq-XG8">
+                    <rect key="frame" x="14.999999999999993" y="851" width="115.33333333333331" height="31"/>
+                    <state key="normal" title="Add to Library"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Add to Library"/>
                     <connections>
                         <action selector="addCard:" destination="-1" eventType="touchUpInside" id="J1T-96-Nh6"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2n-Nw-8np">
+                    <rect key="frame" x="330" y="851" width="83" height="31"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Compare"/>
+                    <connections>
+                        <action selector="compare:" destination="-1" eventType="touchUpInside" id="G4Z-vS-XjQ"/>
                     </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="J2n-Nw-8np" secondAttribute="trailing" constant="15" id="1YC-9G-9lt"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="j1I-ZH-8VM" secondAttribute="trailing" id="7gL-9A-AUN"/>
-                <constraint firstItem="hFi-Oq-XG8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BjB-P7-Hug"/>
+                <constraint firstItem="hFi-Oq-XG8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="CX8-u5-09o"/>
                 <constraint firstItem="APu-zn-7q0" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="E1h-EK-hIr"/>
                 <constraint firstItem="j1I-ZH-8VM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="GEk-pG-ode"/>
-                <constraint firstItem="hFi-Oq-XG8" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="OEc-qx-6ZV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="hFi-Oq-XG8" secondAttribute="bottom" constant="10" id="V2H-uH-7FM"/>
+                <constraint firstItem="J2n-Nw-8np" firstAttribute="centerY" secondItem="hFi-Oq-XG8" secondAttribute="centerY" id="bNe-tY-61s"/>
                 <constraint firstItem="hFi-Oq-XG8" firstAttribute="top" secondItem="j1I-ZH-8VM" secondAttribute="bottom" constant="12" id="joS-I1-9Oz"/>
                 <constraint firstItem="j1I-ZH-8VM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="qrq-4s-9OL"/>
             </constraints>
-            <point key="canvasLocation" x="-10.4" y="57.121439280359823"/>
+            <point key="canvasLocation" x="-11.214953271028037" y="57.019438444924411"/>
         </view>
     </objects>
     <resources>

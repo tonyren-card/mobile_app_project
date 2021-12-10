@@ -177,7 +177,7 @@ class Card: UIViewController {
     }
     
     func updateAddDelButton(){
-        self.addCarBtn?.setTitle(self.cardObj!.added ? "Delete Card from Library" : "Add Card to Library", for: .normal)
+        self.addCarBtn?.setTitle(self.cardObj!.added ? "Delete from Library" : "Add to Library", for: .normal)
         self.addCarBtn?.setTitleColor(self.cardObj!.added ? .systemRed : .systemBlue, for: .normal)
     }
     
@@ -190,6 +190,12 @@ class Card: UIViewController {
                 self.delegate?.deleteCard(at: self.cardObj!.index)
             })
         }
+    }
+    
+    @IBAction func compare(_ sender: Any) {
+        self.dismiss(animated: true, completion: {
+            self.delegate?.segueCompare(card: self)
+        })
     }
     
     func loadAPIImageLink(){
