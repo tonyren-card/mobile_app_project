@@ -18,6 +18,7 @@ class ViewSearch: UITableViewController {
     
     var mainController: CardDelegate?
     
+    var cards: [Card] = []
     var filteredcards: [Card] = []
     
     override func viewDidLoad() {
@@ -42,6 +43,8 @@ class ViewSearch: UITableViewController {
         self.mySearchController.isActive = true
         self.mySearchController.delegate = self
         self.mySearchBar?.delegate = self
+        
+        loadData()
     }
     
     //UITableViewController override definitions
@@ -88,11 +91,7 @@ class ViewSearch: UITableViewController {
     
     
     
-    func scrapeData(){
-        if searchText.isEmpty{
-            tableViewCont.reloadData()
-            return
-        }
+    func loadData(){
         //CSV file opens
         let file = "Car_sales"
         
@@ -111,7 +110,6 @@ class ViewSearch: UITableViewController {
             
             var foundCarInfo: [String]? = nil
             
-            self.filteredcards.removeAll()
             //Data gets collected
             for line in lines{
                 if firstLine{
@@ -119,36 +117,13 @@ class ViewSearch: UITableViewController {
                     continue
                 }
                 foundCarInfo = line.components(separatedBy: ",")
-                let model = foundCarInfo![1]
-                let makemodel = "\(foundCarInfo![0]) \(model)"
-                
-                if (makemodel.lowercased().starts(with: self.searchText.lowercased())
-                      || model.lowercased().starts(with: self.searchText.lowercased())){
-                    if let existing = mainController?.getCard(equals: makemodel) {
-                        self.filteredcards.append(existing)
-                    }else{
-                        createcard(foundCarInfo!)
-                    }
-                }
+                createcard(foundCarInfo!)
             }
-            
-            tableViewCont.reloadData()
-            
-            //If no car found
-            /*guard let checkString = foundCarInfo, !checkString.isEmpty else{
-                self.scrapeCard = Card()
-                self.dispCardAct()
-                return
-            }*/
-            
-            
-            
-            
         }catch{
             print("File read error for file \(filepath)")
         }
     }
-    
+
     private func createcard(_ data: [String]){
         //Data gets presented
         var sales = ""
@@ -167,7 +142,33 @@ class ViewSearch: UITableViewController {
         
         let card = Card(carName: "\(data[0]) \(data[1])", carSales: sales, carType: data[4], carPrice: price, carHP: data[7], carEngine: data[6], carWB: data[8], carFuel: "\(data[13]) mpg", carCap: data[12], carLaunch: data[14])
         
-        self.filteredcards.append(card)
+        self.cards.append(card)
+    }
+
+    func scrapeData(){
+        if searchText.isEmpty{
+            tableViewCont.reloadData()
+            return
+        }
+        self.filteredcards.removeAll()
+        for card in cards{
+            var model = card.getCarName()
+            if let i = model.firstIndex(of: " "){
+                model.removeSubrange(...i)
+            }
+            
+            let makemodel = card.getCarName()
+                
+            if (makemodel.lowercased().starts(with: self.searchText.lowercased()) || model.lowercased().starts(with: self.searchText.lowercased())){
+                if let existing = mainController?.getCard(equals: makemodel) {
+                    self.filteredcards.append(existing)
+                }else{
+                    self.filteredcards.append(card)
+                }
+            }
+        }
+            
+        tableViewCont.reloadData()
     }
     
     func dispCardAct(_ x: Int){
