@@ -22,6 +22,8 @@ struct Result: Codable{
 //Card object defining variables for Realm storage (requires installation)
 class CardObject: Object {
     //Definition of the variables
+    @objc dynamic var carMakeStr: String = " " //New
+    @objc dynamic var carModelStr: String = " " //New
     @objc dynamic var carNameStr: String = " "
     @objc dynamic var salesStr: String = " "
     @objc dynamic var carTypeStr: String = " "
@@ -78,13 +80,15 @@ class Card: UIViewController {
     }
     
     //Constructor of the object
-    init(carName name: String, carSales sales: String, carType type: String, carPrice price: String, carHP horsepower: String, carEngine engineSize: String, carWB wheelbase: String, carFuel fuelEff: String, carCap fuelCap: String, carLaunch latestLaunch: String){
+    init(carMake make: String, carModel model: String, carSales sales: String, carType type: String, carPrice price: String, carHP horsepower: String, carEngine engineSize: String, carWB wheelbase: String, carFuel fuelEff: String, carCap fuelCap: String, carLaunch latestLaunch: String){
         
         super.init(nibName: nil, bundle: nil)
         
         self.cardObj = CardObject()
         
-        self.cardObj!.carNameStr = name
+        self.cardObj!.carMakeStr = make
+        self.cardObj!.carModelStr = model
+        self.cardObj!.carNameStr = "\(make) \(model)"
         self.cardObj!.salesStr = sales
         self.cardObj!.carTypeStr = type
         self.cardObj!.priceStr = price
@@ -101,10 +105,27 @@ class Card: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.cardObj = cardObj
         self.delegate = delegate
+        
+//        if (self.cardObj!.carMakeStr == " " || self.cardObj!.carModelStr == " "){
+//            var nameMake = self.cardObj!.carNameStr
+//            var nameModel = self.cardObj!.carNameStr
+//            if let i = nameMake.firstIndex(of: " "){
+//                nameMake.removeSubrange(i...)
+//                nameModel.removeSubrange(...i)
+//            }
+//            try! Realm().write {
+//                self.cardObj!.carMakeStr = nameMake
+//                self.cardObj!.carModelStr = nameModel
+//            }
+//        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    func getCarModel() -> String{
+        return self.cardObj!.carModelStr
     }
     
     func getCarName() -> String{

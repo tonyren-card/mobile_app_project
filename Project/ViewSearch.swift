@@ -140,7 +140,7 @@ class ViewSearch: UITableViewController {
             price = data[5]
         }
         
-        let card = Card(carName: "\(data[0]) \(data[1])", carSales: sales, carType: data[4], carPrice: price, carHP: data[7], carEngine: data[6], carWB: data[8], carFuel: "\(data[13]) mpg", carCap: data[12], carLaunch: data[14])
+        let card = Card(carMake: data[0], carModel: data[1], carSales: sales, carType: data[4], carPrice: price, carHP: data[7], carEngine: data[6], carWB: data[8], carFuel: "\(data[13]) mpg", carCap: data[12], carLaunch: data[14])
         
         self.cards.append(card)
     }
@@ -152,15 +152,8 @@ class ViewSearch: UITableViewController {
         }
         self.filteredcards.removeAll()
         for card in cards{
-            var model = card.getCarName()
-            if let i = model.firstIndex(of: " "){
-                model.removeSubrange(...i)
-            }
-            
-            let makemodel = card.getCarName()
-                
-            if (makemodel.lowercased().starts(with: self.searchText.lowercased()) || model.lowercased().starts(with: self.searchText.lowercased())){
-                if let existing = mainController?.getCard(equals: makemodel) {
+            if (card.getCarName().lowercased().starts(with: self.searchText.lowercased()) || card.getCarModel().lowercased().starts(with: self.searchText.lowercased())){
+                if let existing = mainController?.getCard(equals: card.getCarName()) {
                     self.filteredcards.append(existing)
                 }else{
                     self.filteredcards.append(card)
