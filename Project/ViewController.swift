@@ -12,9 +12,12 @@ import UIKit
 protocol CardDelegate {
     func addCard(cardObject: Card)
     func deleteCard(at index: Int)
-    func getCard(equals car: String) -> Card?
     func reloadTableView()
     func segueCompare(card: Card)
+}
+
+protocol SearchDelegate {
+    func getCard(equals car: String) -> Card?
 }
 
 protocol CompareDelegate {
@@ -22,7 +25,7 @@ protocol CompareDelegate {
     func getLibrarySize() -> Int
 }
 
-class ViewController: UIViewController, CardDelegate, CompareDelegate {
+class ViewController: UIViewController, CardDelegate, SearchDelegate, CompareDelegate {
     
     var queryDelegate: QueryDelegate?
     
@@ -60,6 +63,7 @@ class ViewController: UIViewController, CardDelegate, CompareDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? ViewSearch{
             vc.mainController = self
+            vc.cardDel = self
         }
     }
     

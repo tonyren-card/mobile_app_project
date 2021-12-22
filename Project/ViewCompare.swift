@@ -46,6 +46,7 @@ class ViewCompare: UIViewController, QueryDelegate {
     
     private func prepareVCS(_ vcs: ViewCompareSearch){
         let firstTabController = tabBarController!.viewControllers![0] as! UINavigationController
+        vcs.mainController = firstTabController.viewControllers.first as? SearchDelegate
         vcs.vcDelegate = firstTabController.viewControllers.first as? CompareDelegate
         vcs.compDelegate = self
         vcs.addQuery = self.addIndex

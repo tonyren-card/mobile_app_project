@@ -10,21 +10,30 @@ import UIKit
 
 class Search: UITableViewController {
     
+    @IBOutlet var tableViewCont: UITableView!
+    
     var searchText:String = ""
     var mySearchController = UISearchController()
     var mySearchBar: UISearchBar?
+    
+    var mainController: SearchDelegate?
     
     var cards: [Card] = []
     var filteredcards: [Card] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableViewCont.delegate = self
+        tableViewCont.dataSource = self
 
         self.mySearchController = ({
             let controller = UISearchController(searchResultsController: nil)
             controller.searchResultsUpdater = self
             controller.searchBar.sizeToFit()
             controller.searchBar.text = self.searchText
+//            controller.hidesNavigationBarDuringPresentation = false
+//            controller.automaticallyShowsCancelButton = false
             
             self.tableView.tableHeaderView = controller.searchBar
             
@@ -35,6 +44,7 @@ class Search: UITableViewController {
         self.mySearchController.isActive = true
         self.mySearchController.delegate = self
         self.mySearchBar?.delegate = self
+        self.tableViewCont.keyboardDismissMode = .onDrag
         
         loadData()
     }
@@ -43,64 +53,23 @@ class Search: UITableViewController {
     //Touch up cell
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        // behaviour when tapped for child class
     }
-
+    
+    //Cell count
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return filteredcards.count
     }
 
+    //Cell appearance
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = filteredcards[indexPath.row].getCarName()
         return cell
     }
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
+    
     func loadData(){
         //CSV file opens
         let file = "Car_sales"
@@ -156,22 +125,22 @@ class Search: UITableViewController {
     }
     
     func scrapeData(){
-//        if searchText.isEmpty{
-//            tableViewCont.reloadData()
-//            return
-//        }
-//        self.filteredcards.removeAll()
-//        for card in cards{
-//            if (card.getCarName().lowercased().starts(with: self.searchText.lowercased()) || card.getCarModel().lowercased().starts(with: self.searchText.lowercased())){
-//                if let existing = mainController?.getCard(equals: card.getCarName()) {
-//                    self.filteredcards.append(existing)
-//                }else{
-//                    self.filteredcards.append(card)
-//                }
-//            }
-//        }
-//
-//        tableViewCont.reloadData()
+        self.filteredcards.removeAll()
+        if searchText.isEmpty{
+            tableViewCont.reloadData()
+            return
+        }
+        for card in cards{
+            if (card.getCarName().lowercased().starts(with: self.searchText.lowercased()) || card.getCarModel().lowercased().starts(with: self.searchText.lowercased())){
+                if let existing = mainController?.getCard(equals: card.getCarName()) {
+                    self.filteredcards.append(existing)
+                }else{
+                    self.filteredcards.append(card)
+                }
+            }
+        }
+
+        tableViewCont.reloadData()
     }
 
 
@@ -179,17 +148,15 @@ class Search: UITableViewController {
 
 extension Search: UISearchControllerDelegate{
     func didPresentSearchController(_ searchController: UISearchController) {
-        self.mySearchController.searchBar.becomeFirstResponder()
+        //If a child class needs special start up
     }
     
 }
 
 extension Search: UISearchBarDelegate{
-//    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-//        self.searchText = searchBar.text!
-//
-//        self.scrapeData()
-//    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.mySearchBar?.endEditing(true)
+    }
         
 }
 
