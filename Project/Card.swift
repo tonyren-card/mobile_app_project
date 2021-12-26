@@ -178,6 +178,10 @@ class Card: UIViewController {
         self.cardObj!.added = val
     }
     
+    func hasLoadedAPI() -> Bool {
+        return self.cardObj!.hasLoadedAPI
+    }
+    
     func getCardObj() -> CardObject{
         return self.cardObj!
     }
@@ -219,9 +223,9 @@ class Card: UIViewController {
         })
     }
     
-    func loadAPIImageLink(){
+    func loadAPIImageLink() -> Bool{
         if self.cardObj!.hasLoadedAPI {
-            return
+            return true
         }
         
         print("Loading API...")
@@ -231,7 +235,7 @@ class Card: UIViewController {
         
         guard let api = URL(string: apiString) else{
             print("API failed!")
-            return
+            return false
         }
         
         URLSession.shared.dataTask(with: api){ [weak self] data, _, error in
@@ -259,10 +263,11 @@ class Card: UIViewController {
                 }
             } catch  {
                 print(error)
+                return
             }
         }.resume()
         
-        
+        return self.cardObj!.hasLoadedAPI
     }
     
     func loadImageView(){

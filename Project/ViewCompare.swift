@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftUI
+import AuthenticationServices
 
 protocol QueryDelegate{
     func setCard(card: Card)
@@ -30,6 +31,8 @@ class ViewCompare: UIViewController, QueryDelegate {
     @IBOutlet var addBtn: [UIButton]!
     @IBOutlet var removeBtn: [UIButton]!
     @IBOutlet var carImage: [UIImageView]!
+    @IBOutlet var imgSpinner: [UIActivityIndicatorView]!
+    @IBOutlet var loadImage: [UIButton]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,6 +67,11 @@ class ViewCompare: UIViewController, QueryDelegate {
         
         self.addBtn[index].isHidden = !val
         self.removeBtn[index].isHidden = val
+        self.loadImage[index].isHidden = val
+        
+        if val {
+            self.imgSpinner[index].stopAnimating()
+        }
     }
     
     func setCard(card: Card){
@@ -190,14 +198,37 @@ class ViewCompare: UIViewController, QueryDelegate {
         return effToInt(el)
     }
     
+    func loadApiImage(index: Int){
+        print("loading api image: \(index+1)")
+        if card[index]!.loadAPIImageLink() {
+            //Api has loaded
+            self.carImage[index].load(url: card[index]!.getImgPath())
+            imgSpinner[index].stopAnimating()
+        }
+    }
+    
     
     @IBAction func addCar1(_ sender: Any) {
-        // Assign the add query before segue
+        // Assigns the add query before segue
         addIndex = 0
     }
     
     @IBAction func addCar2(_ sender: Any) {
         addIndex = 1
+    }
+    
+    @IBAction func loadImg1(_ sender: Any) {
+        if (self.carImage[0].image == nil){
+            self.imgSpinner[0].startAnimating()
+            loadApiImage(index: 0)
+        }
+    }
+    
+    @IBAction func loadImg2(_ sender: Any) {
+        if (self.carImage[1].image == nil){
+            self.imgSpinner[1].startAnimating()
+            loadApiImage(index: 1)
+        }
     }
     
     @IBAction func removeCar1(_ sender: Any) {

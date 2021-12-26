@@ -193,17 +193,15 @@ extension ViewController: UITableViewDataSource{
         let cellLblCar = cell.contentView.viewWithTag(11) as! UILabel
         cellLblCar.text = "\(cards[indexPath.row].getCarName())"
         
-//        let cellImgSpin = cell.contentView.viewWithTag(13) as! UIActivityIndicatorView
-//        cellImgSpin.hidesWhenStopped = true
+        let cellImgSpin = cell.contentView.viewWithTag(13) as! UIActivityIndicatorView
         
         let cellImgCar = cell.contentView.viewWithTag(12) as! UIImageView
+        
         cellImgCar.load(url: cards[indexPath.row].getImgPath())
         
-//        if (cellImgCar.image == nil){
-//            cellImgSpin.startAnimating()
-//        }else{
-//            cellImgSpin.stopAnimating()
-//        }
+        if cards[indexPath.row].hasLoadedAPI() {
+            cellImgSpin.stopAnimating()
+        }
         
         return cell
     }
@@ -235,11 +233,14 @@ extension ViewController: UITableViewDataSource{
 }
 
 extension UIImageView {
-    func load(url path: String) {
+    func load(url path: String) -> Bool{
         guard let url = URL(string: path) else {
             print("image not loaded")
-            return
+            return false
         }
+        
+        var hasLoaded = false
+        
         URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
             guard let data = data, error == nil else {
                 print("image load fail")
@@ -249,7 +250,10 @@ extension UIImageView {
                 let image = UIImage(data: data)
                 self?.image = image
                 print("image loaded by UI")
+                hasLoaded = true
             }
         }.resume()
+        
+        return hasLoaded
     }
 }
