@@ -41,7 +41,7 @@ class Search: UITableViewController {
         })()
         mySearchBar = mySearchController.searchBar
         
-        self.mySearchController.isActive = true
+//        self.mySearchController.isActive = true
         self.mySearchController.delegate = self
         self.mySearchBar?.delegate = self
         self.tableViewCont.keyboardDismissMode = .onDrag

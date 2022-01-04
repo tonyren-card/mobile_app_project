@@ -62,7 +62,8 @@ class ViewSearch: Search {
     
     //Set search bar as first responder
     override func didPresentSearchController(_ searchController: UISearchController) {
-        self.mySearchController.searchBar.becomeFirstResponder()
+        // no longer keyboard appears on start
+//        self.mySearchController.searchBar.becomeFirstResponder()
     }
     
     
