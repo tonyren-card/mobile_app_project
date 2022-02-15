@@ -878,15 +878,15 @@
         <!--Advanced Search-->
         <scene sceneID="VkT-dY-FVx">
             <objects>
-                <viewController title="Advanced Search" id="UWh-N6-KKO" sceneMemberID="viewController">
+                <viewController title="Advanced Search" id="UWh-N6-KKO" customClass="AdvancedSearch" customModule="CARD" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3oE-3U-xCW">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KpT-ge-ity">
-                                <rect key="frame" x="0.0" y="140" width="428" height="703"/>
+                                <rect key="frame" x="0.0" y="140" width="428" height="652"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2U-dY-3aC">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p2U-dY-3aC" userLabel="ScrollViewContent">
                                         <rect key="frame" x="0.0" y="0.0" width="428" height="399.66666666666669"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="zE0-ju-Jlp">
@@ -1079,7 +1079,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Engine size range" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T5b-hy-LHF">
-                                                <rect key="frame" x="8" y="124.33333333333333" width="134.33333333333334" height="20.666666666666671"/>
+                                                <rect key="frame" x="8" y="124.66666666666667" width="134.33333333333334" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1094,7 +1094,7 @@
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2bD-qu-eXu">
-                                                <rect key="frame" x="383" y="124.33333333333333" width="10" height="20.666666666666671"/>
+                                                <rect key="frame" x="383" y="124.66666666666667" width="10" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1142,7 +1142,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9n0-vy-fTe">
-                                                <rect key="frame" x="287" y="124.33333333333333" width="16" height="20.666666666666671"/>
+                                                <rect key="frame" x="287" y="124.66666666666667" width="16" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -1302,19 +1302,48 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="Qn2-PP-vEH"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="VrT-0a-aGe"/>
                             </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfL-xy-RVT">
+                                <rect key="frame" x="179.66666666666666" y="799" width="69" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Search"/>
+                                <connections>
+                                    <action selector="searchPressedAction:" destination="UWh-N6-KKO" eventType="touchUpInside" id="rws-sD-NbD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dNE-O1-AQN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="KpT-ge-ity" firstAttribute="trailing" secondItem="dNE-O1-AQN" secondAttribute="trailing" id="Put-dT-yBL"/>
-                            <constraint firstItem="KpT-ge-ity" firstAttribute="bottom" secondItem="dNE-O1-AQN" secondAttribute="bottom" id="b4H-sL-Fy4"/>
+                            <constraint firstItem="KpT-ge-ity" firstAttribute="bottom" secondItem="wfL-xy-RVT" secondAttribute="top" constant="-7" id="b4H-sL-Fy4"/>
                             <constraint firstItem="KpT-ge-ity" firstAttribute="leading" secondItem="dNE-O1-AQN" secondAttribute="leading" id="baZ-uv-Rm5"/>
                             <constraint firstItem="KpT-ge-ity" firstAttribute="top" secondItem="dNE-O1-AQN" secondAttribute="top" id="dI9-TK-gax"/>
+                            <constraint firstItem="wfL-xy-RVT" firstAttribute="centerX" secondItem="3oE-3U-xCW" secondAttribute="centerX" id="mqc-Ex-PtZ"/>
+                            <constraint firstItem="dNE-O1-AQN" firstAttribute="bottom" secondItem="wfL-xy-RVT" secondAttribute="bottom" constant="13" id="wb5-U8-563"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Advanced Search" id="Z2i-KK-CJc">
                         <barButtonItem key="backBarButtonItem" title="Search" id="ini-jB-WHd"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="makeField" destination="ZBm-bn-SBh" id="WS7-cO-D3c"/>
+                        <outletCollection property="priceRange" destination="04O-yB-Os1" collectionClass="NSMutableArray" id="eSL-XY-dsQ"/>
+                        <outletCollection property="priceRange" destination="Bl4-OO-ge1" collectionClass="NSMutableArray" id="Jfd-Fd-bfR"/>
+                        <outletCollection property="engineRange" destination="h0L-ub-j2V" collectionClass="NSMutableArray" id="dF2-MV-b9G"/>
+                        <outletCollection property="engineRange" destination="zE0-ju-Jlp" collectionClass="NSMutableArray" id="xOM-5V-8W7"/>
+                        <outletCollection property="hpRange" destination="dmN-5Y-yQe" collectionClass="NSMutableArray" id="9XY-BY-mGb"/>
+                        <outletCollection property="hpRange" destination="Bnb-bk-04W" collectionClass="NSMutableArray" id="JBj-tt-BLZ"/>
+                        <outletCollection property="wbRange" destination="Jon-Vp-XlJ" collectionClass="NSMutableArray" id="GSy-ii-yWx"/>
+                        <outletCollection property="wbRange" destination="VJh-4X-feQ" collectionClass="NSMutableArray" id="FDZ-Od-jJd"/>
+                        <outletCollection property="feRange" destination="22r-nn-XVh" collectionClass="NSMutableArray" id="Otu-xM-zaR"/>
+                        <outletCollection property="feRange" destination="Cb4-2B-rOL" collectionClass="NSMutableArray" id="egq-a4-LxZ"/>
+                        <outletCollection property="fcRange" destination="KMh-ju-V3C" collectionClass="NSMutableArray" id="MuI-qX-Uje"/>
+                        <outletCollection property="fcRange" destination="nbp-Ku-rWp" collectionClass="NSMutableArray" id="ik9-TV-jFh"/>
+                        <outletCollection property="salesRange" destination="dqN-ep-BLw" collectionClass="NSMutableArray" id="vAb-hW-UW1"/>
+                        <outletCollection property="salesRange" destination="gF8-oS-MF6" collectionClass="NSMutableArray" id="fOe-y8-oof"/>
+                        <outletCollection property="launchRange" destination="2vE-hU-QsP" collectionClass="NSMutableArray" id="0VC-LJ-1RU"/>
+                        <outletCollection property="launchRange" destination="ugA-8A-M3z" collectionClass="NSMutableArray" id="Heh-ta-Ek7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LLv-7I-7hi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

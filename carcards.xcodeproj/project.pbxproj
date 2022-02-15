@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B00D777A268656A00094C4CF /* 03C_my22_civic_sedan_features_exterior_01.webp in Resources */ = {isa = PBXBuildFile; fileRef = B00D7779268656A00094C4CF /* 03C_my22_civic_sedan_features_exterior_01.webp */; };
+		B0162C6227AB363C00F69744 /* AdvancedSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0162C6127AB363C00F69744 /* AdvancedSearch.swift */; };
 		B0505BD627050FFF00997A53 /* 1200px-2019_Toyota_RAV4_Excel_HEV_CVT_2.5_Front.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B0505BD227050FFE00997A53 /* 1200px-2019_Toyota_RAV4_Excel_HEV_CVT_2.5_Front.jpg */; };
 		B0505BD727050FFF00997A53 /* 2022_toyota_corolla_angularfront.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B0505BD327050FFE00997A53 /* 2022_toyota_corolla_angularfront.jpeg */; };
 		B0505BD827050FFF00997A53 /* 2021-toyota-camry-hybrid-xle-mmp-1-1603215410.png in Resources */ = {isa = PBXBuildFile; fileRef = B0505BD427050FFF00997A53 /* 2021-toyota-camry-hybrid-xle-mmp-1-1603215410.png */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		6248389E45F69CB9FD11F2CA /* Pods-iosCard.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosCard.release.xcconfig"; path = "Target Support Files/Pods-iosCard/Pods-iosCard.release.xcconfig"; sourceTree = "<group>"; };
 		B00D7779268656A00094C4CF /* 03C_my22_civic_sedan_features_exterior_01.webp */ = {isa = PBXFileReference; lastKnownFileType = file; name = 03C_my22_civic_sedan_features_exterior_01.webp; path = images/03C_my22_civic_sedan_features_exterior_01.webp; sourceTree = SOURCE_ROOT; };
+		B0162C6127AB363C00F69744 /* AdvancedSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedSearch.swift; sourceTree = "<group>"; };
 		B0505BD227050FFE00997A53 /* 1200px-2019_Toyota_RAV4_Excel_HEV_CVT_2.5_Front.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "1200px-2019_Toyota_RAV4_Excel_HEV_CVT_2.5_Front.jpg"; path = "images/1200px-2019_Toyota_RAV4_Excel_HEV_CVT_2.5_Front.jpg"; sourceTree = SOURCE_ROOT; };
 		B0505BD327050FFE00997A53 /* 2022_toyota_corolla_angularfront.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 2022_toyota_corolla_angularfront.jpeg; path = images/2022_toyota_corolla_angularfront.jpeg; sourceTree = SOURCE_ROOT; };
 		B0505BD427050FFF00997A53 /* 2021-toyota-camry-hybrid-xle-mmp-1-1603215410.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "2021-toyota-camry-hybrid-xle-mmp-1-1603215410.png"; path = "images/2021-toyota-camry-hybrid-xle-mmp-1-1603215410.png"; sourceTree = SOURCE_ROOT; };
@@ -147,6 +149,7 @@
 				B0505BDA2705100600997A53 /* 1594220287585.jpeg */,
 				B0505BDC2705110F00997A53 /* ordinary_car.png */,
 				B0B9D9E1272EE0CB000CAA6B /* card_app_1024.jpg */,
+				B0162C6127AB363C00F69744 /* AdvancedSearch.swift */,
 			);
 			path = Project;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				B0F7D1B925C7009A00E6647D /* ViewSearch.swift in Sources */,
 				B0A6FF49275EAB600005C4D8 /* ViewCompare.swift in Sources */,
 				B055CC9A2677FD4200384282 /* Card.swift in Sources */,
+				B0162C6227AB363C00F69744 /* AdvancedSearch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
