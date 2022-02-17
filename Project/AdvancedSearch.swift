@@ -8,6 +8,18 @@
 
 import UIKit
 
+struct AdvancedSearchCriteria {
+    var make: String = " "
+    var priceRange: [Float] = Array(repeating: 0, count: 2)
+    var engineRange: [Float] = Array(repeating: 0, count: 2)
+    var hpRange: [Float] = Array(repeating: 0, count: 2)
+    var wbRange: [Float] = Array(repeating: 0, count: 2)
+    var feRange: [Float] = Array(repeating: 0, count: 2)
+    var fcRange: [Float] = Array(repeating: 0, count: 2)
+    var salesRange: [Float] = Array(repeating: 0, count: 2)
+    var launchRange: [Float] = Array(repeating: 0, count: 2)
+}
+
 class AdvancedSearch: UIViewController {
 
     @IBOutlet weak var makeField: UITextField!
@@ -22,7 +34,7 @@ class AdvancedSearch: UIViewController {
     
     var rangeField: [[UITextField]?]!
     
-//     var invalidLabel
+    @IBOutlet var invalidLabel: UILabel!
 //
 //    required init?(coder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
@@ -50,9 +62,37 @@ class AdvancedSearch: UIViewController {
         
         launchRange[0].isHidden = true
         launchRange[1].isHidden = true
+        
+        invalidLabel.isHidden = true
         addDoneExtensions()
 //        createDatePicker()
     }
+    
+    //Generate the struct
+    private func createStruct() -> AdvancedSearchCriteria{
+        var criteria = AdvancedSearchCriteria()
+        
+        criteria.make = self.makeField.text!
+        
+        var limit: Float
+        
+        for i in 0...1{
+            if (i==0) { limit = 0 }
+            else      { limit = Float(NSIntegerMax) }
+            
+            criteria.priceRange[i] = Float(self.priceRange[i].text!) ?? limit
+            criteria.engineRange[i] = Float(self.engineRange[i].text!) ?? limit
+            criteria.hpRange[i] = Float(self.hpRange[i].text!) ?? limit
+            criteria.wbRange[i] = Float(self.wbRange[i].text!) ?? limit
+            criteria.feRange[i] = Float(self.feRange[i].text!) ?? limit
+            criteria.fcRange[i] = Float(self.fcRange[i].text!) ?? limit
+            criteria.salesRange[i] = Float(self.salesRange[i].text!) ?? limit
+            criteria.launchRange[i] = Float(self.launchRange[i].text!) ?? limit
+        }
+        
+        return criteria
+    }
+    
     
     func addDoneExtensions(){
         let toolbar = UIToolbar()
@@ -93,18 +133,36 @@ class AdvancedSearch: UIViewController {
     
     @IBAction func searchPressedAction(_ sender: Any) {
         print("Search pressed")
-        checkValid()
+        print("Make: \(makeField.text!)")
+        if (checkValid()){
+            invalidLabel.isHidden = true
+            self.dismiss(animated: true, completion: {self.sendData()})
+        }else{
+            invalidLabel.isHidden = false
+        }
     }
     
-    func checkValid(){
-        //Pause
+    func checkValid() -> Bool{
+        var valid = true
         for field in rangeField {
-            if (field![0].text! > field![1].text!){
-                print("min is greater than max")
+            if (Float(field![0].text!) ?? 0 > Float(field![1].text!) ?? Float(NSIntegerMax)){
+                print("\(field![0].text!) is not less than \(field![1].text!)")
                 field![0].backgroundColor = .systemRed
                 field![1].backgroundColor = .systemRed
+                valid = false
+            }else{
+                print("\(field![0].text!) is less than \(field![1].text!)")
+                field![0].backgroundColor = .systemBackground
+                field![1].backgroundColor = .systemBackground
             }
         }
+        return valid
+    }
+    
+    func sendData() {
+        let structData = self.createStruct()
+        
+        print("Struct = \(structData)")
     }
     
     @objc func doneBtnHandler(){
