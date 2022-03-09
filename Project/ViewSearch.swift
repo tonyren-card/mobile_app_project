@@ -8,7 +8,11 @@
 
 import UIKit
 
-class ViewSearch: Search {
+protocol ViewSearchDelegate {
+    func advancedFilterData(struct criteria: AdvancedSearchCriteria)
+}
+
+class ViewSearch: Search, ViewSearchDelegate {
     
     var cardDel: CardDelegate?
     
@@ -27,12 +31,9 @@ class ViewSearch: Search {
     }
     
     //Set up number of rows
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if searchText.isEmpty {
-//            return 0
-//        }
-//        return filteredcards.count
-//    }
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return filteredcards.count
+    }
     
     //Set up cell appearance
 //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -40,6 +41,12 @@ class ViewSearch: Search {
 //        cell.textLabel?.text = filteredcards[indexPath.row].getCarName()
 //        return cell
 //    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let asc = segue.destination as? AdvancedSearch{
+            asc.searchDelegate = self
+        }
+    }
     
     //Swipe to left action
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -71,13 +78,38 @@ class ViewSearch: Search {
     func dispCardAct(_ x: Int){
         if mySearchController.isActive{
             //Dismiss
-            self.mySearchController.dismiss(animated: false, completion: {
-                //Segue
-                self.present(self.filteredcards[x], animated: true)
-                //Delegate
-                self.filteredcards[x].delegate = self.cardDel
-                self.filteredcards[x].updateAddDelButton()
-            })
+            self.mySearchController.dismiss(animated: false, completion: nil)
         }
+        //Segue
+        self.present(self.filteredcards[x], animated: true)
+        //Delegate
+        self.filteredcards[x].delegate = self.cardDel
+        self.filteredcards[x].updateAddDelButton()
+    }
+    
+    func advancedFilterData(struct criteria: AdvancedSearchCriteria){
+        self.filteredcards.removeAll()
+        
+        for card in cards{
+//            print(card.getPriceFloat())
+            if (card.getCarName().lowercased().starts(with: criteria.make.lowercased())
+                && (criteria.priceRange[0] <= card.getPriceFloat() && card.getPriceFloat() <= criteria.priceRange[1])
+                && (criteria.engineRange[0] <= card.getEngineSizeFloat() && card.getEngineSizeFloat() <= criteria.engineRange[1])
+                && (criteria.hpRange[0] <= card.getHorsePowerFloat() && card.getHorsePowerFloat() <=  criteria.hpRange[1])
+                && (criteria.wbRange[0] <= card.getWheelBaseFloat() && card.getWheelBaseFloat() <= criteria.wbRange[1])
+                && (criteria.feRange[0] <= card.getFuelEffFloat() && card.getFuelEffFloat() <= criteria.feRange[1])
+                && (criteria.fcRange[0] <= card.getFuelCapFloat() && card.getFuelCapFloat() <= criteria.fcRange[1])
+                && (criteria.salesRange[0] <= card.getSalesFloat() && card.getSalesFloat() <= criteria.salesRange[1]))
+            {
+                print(card.getCardObj())
+                if let existing = mainController?.getCard(equals: card.getCarName()) {
+                    self.filteredcards.append(existing)
+                }else{
+                    self.filteredcards.append(card)
+                }
+            }
+        }
+
+        tableViewCont.reloadData()
     }
 }

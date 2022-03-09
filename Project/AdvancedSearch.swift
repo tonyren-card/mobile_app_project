@@ -17,7 +17,7 @@ struct AdvancedSearchCriteria {
     var feRange: [Float] = Array(repeating: 0, count: 2)
     var fcRange: [Float] = Array(repeating: 0, count: 2)
     var salesRange: [Float] = Array(repeating: 0, count: 2)
-    var launchRange: [Float] = Array(repeating: 0, count: 2)
+//    var launchRange: [Float] = Array(repeating: 0, count: 2)
 }
 
 class AdvancedSearch: UIViewController {
@@ -35,6 +35,8 @@ class AdvancedSearch: UIViewController {
     var rangeField: [[UITextField]?]!
     
     @IBOutlet var invalidLabel: UILabel!
+    
+    var searchDelegate: ViewSearchDelegate?
 //
 //    required init?(coder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
@@ -87,7 +89,7 @@ class AdvancedSearch: UIViewController {
             criteria.feRange[i] = Float(self.feRange[i].text!) ?? limit
             criteria.fcRange[i] = Float(self.fcRange[i].text!) ?? limit
             criteria.salesRange[i] = Float(self.salesRange[i].text!) ?? limit
-            criteria.launchRange[i] = Float(self.launchRange[i].text!) ?? limit
+//            criteria.launchRange[i] = Float(self.launchRange[i].text!) ?? limit
         }
         
         return criteria
@@ -163,6 +165,8 @@ class AdvancedSearch: UIViewController {
         let structData = self.createStruct()
         
         print("Struct = \(structData)")
+        
+        searchDelegate?.advancedFilterData(struct: structData)
     }
     
     @objc func doneBtnHandler(){

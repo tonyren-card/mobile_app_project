@@ -136,28 +136,78 @@ class Card: UIViewController {
         return self.cardObj!.salesStr
     }
     
+    func getSalesFloat() -> Float {
+        let sales = self.cardObj!.salesStr
+        let output = Float(sales.replacingOccurrences(of: " units", with: ""))
+        if (output == nil) { return -1.0 }
+        
+//        let endIndex = eff.firstIndex(of: " ")!
+//        print(eff)
+//        print("getfueleffFloat(): \(output)")
+        
+        return output!
+    }
+    
     func getPrice() -> String {
         return self.cardObj!.priceStr
+    }
+    
+    func getPriceFloat() -> Float {
+        let price = self.cardObj!.priceStr
+        if (price.isEmpty) { return -1.0 }
+//        print("getPriceFloat(): \(price)")
+        
+        let index = price.index(price.startIndex, offsetBy: 1)
+        
+        return Float(price[index...])!
     }
     
     func getHorsePower() -> String {
         return self.cardObj!.horsepowerStr
     }
     
+    func getHorsePowerFloat() -> Float {
+        return Float(self.cardObj!.horsepowerStr)!
+    }
+    
     func getEngineSize() -> String {
         return self.cardObj!.engineSizeStr
+    }
+    
+    func getEngineSizeFloat() -> Float {
+        return Float(self.cardObj!.engineSizeStr)!
     }
     
     func getWheelBase() -> String {
         return self.cardObj!.wheelbaseStr
     }
     
+    func getWheelBaseFloat() -> Float {
+        return Float(self.cardObj!.wheelbaseStr)!
+    }
+    
     func getFuelEff() -> String {
         return self.cardObj!.fuelEffStr
     }
     
+    func getFuelEffFloat() -> Float {
+        let eff = self.cardObj!.fuelEffStr
+        let output = Float(eff.replacingOccurrences(of: " mpg", with: ""))
+        if (output == nil) { return -1.0 }
+        
+//        let endIndex = eff.firstIndex(of: " ")!
+//        print(eff)
+//        print("getfueleffFloat(): \(output)")
+        
+        return output!
+    }
+    
     func getFuelCap() -> String {
         return self.cardObj!.fuelCapStr
+    }
+    
+    func getFuelCapFloat() -> Float {
+        return Float(self.cardObj!.fuelCapStr)!
     }
     
     func getImgPath() -> String{
