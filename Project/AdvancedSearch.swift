@@ -37,6 +37,7 @@ class AdvancedSearch: UIViewController {
     @IBOutlet var invalidLabel: UILabel!
     
     var searchDelegate: ViewSearchDelegate?
+    var searchElements: SearchElements?
 //
 //    required init?(coder: NSCoder) {
 //        fatalError("init(coder:) has not been implemented")
@@ -68,6 +69,7 @@ class AdvancedSearch: UIViewController {
         invalidLabel.isHidden = true
         addDoneExtensions()
 //        createDatePicker()
+        print(searchElements?.brands as Any)
     }
     
     //Generate the struct
@@ -95,24 +97,37 @@ class AdvancedSearch: UIViewController {
         return criteria
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag+1 //get tag of next field
+        let nextResponder = textField.superview?.viewWithTag(nextTag)
+        
+        if (nextResponder != nil){
+            nextResponder?.becomeFirstResponder()
+        }else{
+            self.view.endEditing(true)
+        }
+        return true
+    }
+    
     
     func addDoneExtensions(){
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        
-        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneBtnHandler))
-        toolbar.setItems([doneBtn], animated: true)
-        
-        self.makeField.inputAccessoryView = toolbar
-        
+//        let toolbar = UIToolbar()
+//        toolbar.sizeToFit()
+//
+//        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneBtnHandler))
+//        let nextBtn = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextBtnHandler))
+//        toolbar.setItems([doneBtn, nextBtn], animated: true)
+//
+        self.makeField.addDoneNextToolbar()
+
         for i in 0...1 {
-            self.priceRange[i].inputAccessoryView = toolbar
-            self.engineRange[i].inputAccessoryView = toolbar
-            self.hpRange[i].inputAccessoryView = toolbar
-            self.wbRange[i].inputAccessoryView = toolbar
-            self.feRange[i].inputAccessoryView = toolbar
-            self.fcRange[i].inputAccessoryView = toolbar
-            self.salesRange[i].inputAccessoryView = toolbar
+            self.priceRange[i].addDoneNextToolbar()
+            self.engineRange[i].addDoneNextToolbar()
+            self.hpRange[i].addDoneNextToolbar()
+            self.wbRange[i].addDoneNextToolbar()
+            self.feRange[i].addDoneNextToolbar()
+            self.fcRange[i].addDoneNextToolbar()
+            self.salesRange[i].addDoneNextToolbar()
 //            self.launchRange[i].inputAccessoryView = toolbar
         }
     }
@@ -169,10 +184,23 @@ class AdvancedSearch: UIViewController {
         searchDelegate?.advancedFilterData(struct: structData)
     }
     
-    @objc func doneBtnHandler(){
-        print("Done pressed")
-        self.view.endEditing(true)
-    }
+//    @objc func doneBtnHandler(){
+//        print("Done pressed")
+//        self.view.endEditing(true)
+//    }
+//
+//    @objc func nextBtnHandler(){
+//        self.resignFirstResponder()
+//
+//        let nextTag = self.tag+1 //get tag of next field
+//        let nextResponder = self.superview?.viewWithTag(nextTag)
+//
+//        if (nextResponder != nil){
+//            nextResponder?.becomeFirstResponder()
+//        }else{
+//            self.endEditing(true)
+//        }
+//    }
     /*
     // MARK: - Navigation
 
@@ -183,4 +211,35 @@ class AdvancedSearch: UIViewController {
     }
     */
 
+}
+
+extension UITextField {
+    func addDoneNextToolbar(onDone: (target: Any, action: Selector)? = nil, onNext: (target: Any, action: Selector)? = nil) {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneBtnHandler))
+        let nextBtn = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextBtnHandler))
+        toolbar.setItems([doneBtn, nextBtn], animated: true)
+        
+        self.inputAccessoryView = toolbar
+    }
+    
+    
+    @objc func doneBtnHandler(){
+        self.resignFirstResponder()
+    }
+    
+    @objc func nextBtnHandler(){
+        self.resignFirstResponder()
+        
+        let nextTag = self.tag+1 //get tag of next field
+        let nextResponder = self.superview?.viewWithTag(nextTag)
+        
+        if (nextResponder != nil){
+            nextResponder?.becomeFirstResponder()
+        }else{
+            self.endEditing(true)
+        }
+    }
 }

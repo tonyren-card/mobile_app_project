@@ -45,6 +45,7 @@ class ViewSearch: Search, ViewSearchDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let asc = segue.destination as? AdvancedSearch{
             asc.searchDelegate = self
+            asc.searchElements = self
         }
     }
     

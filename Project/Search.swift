@@ -8,7 +8,11 @@
 
 import UIKit
 
-class Search: UITableViewController {
+protocol SearchElements{
+    var brands: [String] { get set }
+}
+
+class Search: UITableViewController, SearchElements{
     
     @IBOutlet var tableViewCont: UITableView!
     
@@ -20,6 +24,7 @@ class Search: UITableViewController {
     
     var cards: [Card] = []
     var filteredcards: [Card] = []
+    var brands: [String] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,9 +100,16 @@ class Search: UITableViewController {
                     firstLine = false
                     continue
                 }
+                //Create card
                 foundCarInfo = line.components(separatedBy: ",")
                 createcard(foundCarInfo!)
+                
+                //Add brand to brands
+                if (!brands.contains(foundCarInfo![0])){
+                    brands.append(foundCarInfo![0])
+                }
             }
+            print(brands)
         }catch{
             print("File read error for file \(filepath)")
         }
