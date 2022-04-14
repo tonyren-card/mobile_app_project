@@ -43,6 +43,8 @@ class AdvancedSearch: UIViewController {
 //        fatalError("init(coder:) has not been implemented")
 //    }
     
+    let makePicker = UIPickerView()
+    
     let datePickerLaunch = UIDatePicker()
 //    var datePickerLaunch = [UIDatePicker](repeating: UIDatePicker(), count: 2)
     
@@ -62,6 +64,9 @@ class AdvancedSearch: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        makePicker.dataSource = self
+        makePicker.delegate = self
         
         launchRange[0].isHidden = true
         launchRange[1].isHidden = true
@@ -119,6 +124,7 @@ class AdvancedSearch: UIViewController {
 //        toolbar.setItems([doneBtn, nextBtn], animated: true)
 //
         self.makeField.addDoneNextToolbar()
+        self.makeField.inputView = makePicker
 
         for i in 0...1 {
             self.priceRange[i].addDoneNextToolbar()
@@ -211,6 +217,39 @@ class AdvancedSearch: UIViewController {
     }
     */
 
+}
+
+extension AdvancedSearch: UIPickerViewDataSource {
+    // Number of columns
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // Number of rows
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return searchElements!.brands.count + 1
+    }
+}
+
+extension AdvancedSearch: UIPickerViewDelegate{
+    // Map array to picker
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if (row == 0){
+            return ""
+        }
+        return searchElements!.brands[row-1]
+    }
+    
+    // Set make field to value of picker selection
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        var selector: String
+        if (row == 0){
+            selector = ""
+        }else{
+            selector = searchElements!.brands[row-1]
+        }
+        self.makeField.text = selector
+    }
 }
 
 extension UITextField {
