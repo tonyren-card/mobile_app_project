@@ -16,6 +16,12 @@ class ViewSearch: Search, ViewSearchDelegate {
     
     var cardDel: CardDelegate?
     
+    let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        return formatter
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,7 +98,7 @@ class ViewSearch: Search, ViewSearchDelegate {
         self.filteredcards.removeAll()
         
         for card in cards{
-//            print(card.getPriceFloat())
+            let cardDate = formatter.date(from: card.getLatestLaunch())!
             if (card.getCarName().lowercased().starts(with: criteria.make.lowercased())
                 && (criteria.priceRange[0] <= card.getPriceFloat() && card.getPriceFloat() <= criteria.priceRange[1])
                 && (criteria.engineRange[0] <= card.getEngineSizeFloat() && card.getEngineSizeFloat() <= criteria.engineRange[1])
@@ -100,7 +106,8 @@ class ViewSearch: Search, ViewSearchDelegate {
                 && (criteria.wbRange[0] <= card.getWheelBaseFloat() && card.getWheelBaseFloat() <= criteria.wbRange[1])
                 && (criteria.feRange[0] <= card.getFuelEffFloat() && card.getFuelEffFloat() <= criteria.feRange[1])
                 && (criteria.fcRange[0] <= card.getFuelCapFloat() && card.getFuelCapFloat() <= criteria.fcRange[1])
-                && (criteria.salesRange[0] <= card.getSalesFloat() && card.getSalesFloat() <= criteria.salesRange[1]))
+                && (criteria.salesRange[0] <= card.getSalesFloat() && card.getSalesFloat() <= criteria.salesRange[1])
+                && (criteria.launchRange[0]! <= cardDate && cardDate <= criteria.launchRange[1]!))
             {
                 print(card.getCardObj())
                 if let existing = mainController?.getCard(equals: card.getCarName()) {

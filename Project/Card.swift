@@ -105,19 +105,6 @@ class Card: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.cardObj = cardObj
         self.delegate = delegate
-        
-//        if (self.cardObj!.carMakeStr == " " || self.cardObj!.carModelStr == " "){
-//            var nameMake = self.cardObj!.carNameStr
-//            var nameModel = self.cardObj!.carNameStr
-//            if let i = nameMake.firstIndex(of: " "){
-//                nameMake.removeSubrange(i...)
-//                nameModel.removeSubrange(...i)
-//            }
-//            try! Realm().write {
-//                self.cardObj!.carMakeStr = nameMake
-//                self.cardObj!.carModelStr = nameModel
-//            }
-//        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -155,7 +142,6 @@ class Card: UIViewController {
     func getPriceFloat() -> Float {
         let price = self.cardObj!.priceStr
         if (price.isEmpty) { return -1.0 }
-//        print("getPriceFloat(): \(price)")
         
         let index = price.index(price.startIndex, offsetBy: 1)
         
@@ -208,6 +194,10 @@ class Card: UIViewController {
     
     func getFuelCapFloat() -> Float {
         return Float(self.cardObj!.fuelCapStr)!
+    }
+    
+    func getLatestLaunch() -> String {
+        return self.cardObj!.latestLaunchStr
     }
     
     func getImgPath() -> String{

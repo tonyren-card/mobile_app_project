@@ -17,7 +17,7 @@ struct AdvancedSearchCriteria {
     var feRange: [Float] = Array(repeating: 0, count: 2)
     var fcRange: [Float] = Array(repeating: 0, count: 2)
     var salesRange: [Float] = Array(repeating: 0, count: 2)
-//    var launchRange: [Float] = Array(repeating: 0, count: 2)
+    var launchRange: [Date?] = Array(repeating: nil, count: 2)
 }
 
 class AdvancedSearch: UIViewController {
@@ -44,9 +44,13 @@ class AdvancedSearch: UIViewController {
 //    }
     
     let makePicker = UIPickerView()
-    
     let datePickerLaunch = UIDatePicker()
-//    var datePickerLaunch = [UIDatePicker](repeating: UIDatePicker(), count: 2)
+    
+    let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        return formatter
+    }()
     
     //more like init
     override func loadView() {
@@ -68,13 +72,9 @@ class AdvancedSearch: UIViewController {
         makePicker.dataSource = self
         makePicker.delegate = self
         
-        launchRange[0].isHidden = true
-        launchRange[1].isHidden = true
-        
         invalidLabel.isHidden = true
         addDoneExtensions()
-//        createDatePicker()
-        print(searchElements?.brands as Any)
+        createDatePicker()
     }
     
     //Generate the struct
@@ -84,10 +84,17 @@ class AdvancedSearch: UIViewController {
         criteria.make = self.makeField.text!
         
         var limit: Float
+        var launchLimit: Date
         
         for i in 0...1{
-            if (i==0) { limit = 0 }
-            else      { limit = Float(NSIntegerMax) }
+            if (i==0) {
+                limit = 0
+                launchLimit = formatter.date(from: "01/01/1900")! //Default min date
+            }
+            else      {
+                limit = Float(NSIntegerMax)
+                launchLimit = Date() //Set to today's date
+            }
             
             criteria.priceRange[i] = Float(self.priceRange[i].text!) ?? limit
             criteria.engineRange[i] = Float(self.engineRange[i].text!) ?? limit
@@ -96,7 +103,8 @@ class AdvancedSearch: UIViewController {
             criteria.feRange[i] = Float(self.feRange[i].text!) ?? limit
             criteria.fcRange[i] = Float(self.fcRange[i].text!) ?? limit
             criteria.salesRange[i] = Float(self.salesRange[i].text!) ?? limit
-//            criteria.launchRange[i] = Float(self.launchRange[i].text!) ?? limit
+            
+            criteria.launchRange[i] = formatter.date(from: self.launchRange[i].text!) ?? launchLimit
         }
         
         return criteria
@@ -116,15 +124,10 @@ class AdvancedSearch: UIViewController {
     
     
     func addDoneExtensions(){
-//        let toolbar = UIToolbar()
-//        toolbar.sizeToFit()
-//
-//        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneBtnHandler))
-//        let nextBtn = UIBarButtonItem(title: "Next", style: .plain, target: self, action: #selector(nextBtnHandler))
-//        toolbar.setItems([doneBtn, nextBtn], animated: true)
-//
         self.makeField.addDoneNextToolbar()
         self.makeField.inputView = makePicker
+        self.launchRange[0].inputView = datePickerLaunch
+        self.launchRange[1].inputView = datePickerLaunch
 
         for i in 0...1 {
             self.priceRange[i].addDoneNextToolbar()
@@ -134,25 +137,24 @@ class AdvancedSearch: UIViewController {
             self.feRange[i].addDoneNextToolbar()
             self.fcRange[i].addDoneNextToolbar()
             self.salesRange[i].addDoneNextToolbar()
-//            self.launchRange[i].inputAccessoryView = toolbar
+            self.launchRange[i].addDoneNextToolbar()
         }
     }
     
-//    func createDatePicker(){
-//        let toolbar = UIToolbar()
-//        toolbar.sizeToFit()
-//
-//        let doneBtn = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneBtnHandler))
-//        toolbar.setItems([doneBtn], animated: true)
-//
-//        launchRange[0].inputAccessoryView = toolbar
-//        launchRange[1].inputAccessoryView = toolbar
-//
-//        launchRange[0].inputView = datePickerLaunch
-//        launchRange[1].inputView = datePickerLaunch
-//
-//        datePickerLaunch.datePickerMode = .date
-//    }
+    func createDatePicker(){
+        datePickerLaunch.preferredDatePickerStyle = .wheels
+        datePickerLaunch.datePickerMode = .date
+        datePickerLaunch.addTarget(self, action: #selector(datePickerValueChanged(sender:)), for: .valueChanged)
+    }
+    
+    // Assign to corresponding text field as soon as date picker changes selection
+    @objc func datePickerValueChanged(sender: UIDatePicker){
+        if (launchRange[0].isFirstResponder){
+            launchRange[0].text = formatter.string(from: sender.date)
+        }else if (launchRange[1].isFirstResponder){
+            launchRange[1].text = formatter.string(from: sender.date)
+        }
+    }
     
     @IBAction func searchPressedAction(_ sender: Any) {
         print("Search pressed")
@@ -189,33 +191,6 @@ class AdvancedSearch: UIViewController {
         
         searchDelegate?.advancedFilterData(struct: structData)
     }
-    
-//    @objc func doneBtnHandler(){
-//        print("Done pressed")
-//        self.view.endEditing(true)
-//    }
-//
-//    @objc func nextBtnHandler(){
-//        self.resignFirstResponder()
-//
-//        let nextTag = self.tag+1 //get tag of next field
-//        let nextResponder = self.superview?.viewWithTag(nextTag)
-//
-//        if (nextResponder != nil){
-//            nextResponder?.becomeFirstResponder()
-//        }else{
-//            self.endEditing(true)
-//        }
-//    }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
